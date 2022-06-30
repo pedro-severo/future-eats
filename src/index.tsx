@@ -4,6 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { InitialGlobalState } from "./global/InitialGlobalState";
 import { setGlobal } from "reactn";
+import "./styles/global.css";
 
 setGlobal(InitialGlobalState);
 
