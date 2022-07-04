@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { InitialGlobalState } from "./global/InitialGlobalState";
 import { setGlobal } from "reactn";
 import "./styles/global.css";
+import UseUserDataProvider from "./context/userData/userDataProvider";
 
 setGlobal(InitialGlobalState);
 
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <UseUserDataProvider>
+      <App />
+    </UseUserDataProvider>
   </React.StrictMode>
 );
 
