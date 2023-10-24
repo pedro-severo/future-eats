@@ -1,8 +1,5 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import styled, {
-  ThemeProvider as StyledThemeProvider,
-} from "styled-components";
 
 const customTheme = createTheme({
   palette: {
@@ -18,19 +15,8 @@ const customTheme = createTheme({
   },
 });
 
-// TODO: Discover why typography config in createTheme function doesn't working in ThemeProvider component
-const FontFamilyProvider = styled.div`
-  font-family: ${({ theme }) => theme?.typography?.fontFamily};
-`;
-
 const ThemeUsage: React.FC<any> = ({ children }) => {
-  return (
-    <ThemeProvider theme={customTheme}>
-      <StyledThemeProvider theme={{ ...customTheme }}>
-        <FontFamilyProvider>{children}</FontFamilyProvider>
-      </StyledThemeProvider>
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={customTheme}>{children}</ThemeProvider>;
 };
 
 export default ThemeUsage;

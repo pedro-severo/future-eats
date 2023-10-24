@@ -2,17 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { InitialGlobalState } from "./global/InitialGlobalState";
-import { setGlobal } from "reactn";
-
-setGlobal(InitialGlobalState);
+import "./styles/global.css";
+import GlobalStateProvider from "./global";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <GlobalStateProvider>
+      <App />
+    </GlobalStateProvider>
   </React.StrictMode>
 );
 
