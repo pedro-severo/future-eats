@@ -3,7 +3,7 @@ export interface User {
 };
 
 export interface UserInput {
-  userName?: string;
+  userName: string;
 };
 
 export interface UserGlobalState {
