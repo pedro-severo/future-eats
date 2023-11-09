@@ -4,7 +4,7 @@ import { PATH } from "./paths";
 
 //  TODO: Remove this imports and their usage after to start project
 import { Link } from "react-router-dom";
-import { LoginPage } from "../pages/login/LoginPage";
+import { LoginPage } from "../pages/login";
 
 export const Router = () => {
   return (

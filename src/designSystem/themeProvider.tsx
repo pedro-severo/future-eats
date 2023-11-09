@@ -1,22 +1,37 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
-const customTheme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: "#ffffff",
-      light: "#ffffff",
-      dark: "#ffffff",
-      contrastText: "#ffffff",
+      main: '#5cb646', 
     },
     secondary: {
-      main: "#ffffff",
+      main: '#b8b8b8',
     },
+    error: {
+      main: '#e02020',
+    },
+    text: {
+      primary: "#000000",
+    },
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+    h1: {
+      fontSize: '2rem',
+    },
+    h2: {
+      fontSize: "16px",
+    },
+    subtitle1: {
+      fontSize: '16px',
+    }
   },
 });
 
 const ThemeUsage: React.FC<any> = ({ children }) => {
-  return <ThemeProvider theme={customTheme}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
 export default ThemeUsage;
