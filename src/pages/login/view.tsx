@@ -8,6 +8,8 @@ import { Controller, Control } from "react-hook-form";
 import { LoginInputNames } from "./hooks/useSchema";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { theme } from "../../designSystem/themeProvider";
+import { useNavigate } from 'react-router-dom';
+import { PATH } from "../../routes/paths";
 
 interface ILoginPageViewProps {
   onSubmit: () => void;
@@ -15,6 +17,7 @@ interface ILoginPageViewProps {
 }
 
 export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -37,7 +40,6 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
             <TextFieldInput
               {...field}
               placeholder="email@email.com"
-              required
               label="E-mail"
               error={!!error}
               helperText={error?.message}
@@ -55,7 +57,6 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
               {...field}
               placeholder="Mínimo 6 caracteres"
               type={showPassword ? "text" : "password"}
-              required
               label="Senha"
               error={!!error}
               helperText={error?.message}
@@ -95,7 +96,13 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
       </LoginForm>
       {/* TODO: implement "go to register" logic */}
       <Typography variant="subtitle1">
-        Nao possui cadastro? Clique aqui
+        Nao possui cadastro?{" "}
+        <span
+          style={{ color: theme.palette.text.hint }}
+          onClick={() => navigate(PATH.REGISTER)}
+        >
+          Clique aqui
+        </span>
       </Typography>
     </LoginPageWrapper>
   );

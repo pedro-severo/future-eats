@@ -14,6 +14,7 @@ export const theme = createTheme({
     },
     text: {
       primary: "#000000",
+      hint: "#419bf9",
     },
   },
   typography: {
