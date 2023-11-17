@@ -1,7 +1,7 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: '#5cb646', 
