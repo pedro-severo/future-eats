@@ -7,7 +7,7 @@ import { LoginPageView } from "./view";
 
 export const LoginPage = () => {
   // TODO: Create a eslint configuration. Look this link: https://www.geeksforgeeks.org/how-to-configure-eslint-for-react-projects/
-  const { schema } = useSchema()
+  const { schema } = useSchema();
   const {
     control,
     handleSubmit,
@@ -18,9 +18,6 @@ export const LoginPage = () => {
   const onSubmit = (data: IFormInputNames) => {
     // TODO: Implement function
   };
-  
-  return <LoginPageView 
-    onSubmit={handleSubmit(onSubmit)}
-    control={control}
-  />
+
+  return <LoginPageView onSubmit={handleSubmit(onSubmit)} control={control} />;
 };

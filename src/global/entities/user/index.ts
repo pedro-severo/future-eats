@@ -3,15 +3,15 @@ import { User, UserGlobalState, UserInput } from "./interface";
 
 export const useUserDataState = (): UserGlobalState => {
   const [user, setUser] = useState<User>({
-    userName: "", 
+    userName: "",
   });
 
   const setUserProps = (newUserProps: UserInput) => {
     setUser({
       ...user,
-      ...newUserProps
-    })
-  }
+      ...newUserProps,
+    });
+  };
 
   return {
     user,
@@ -19,6 +19,8 @@ export const useUserDataState = (): UserGlobalState => {
   };
 };
 
-export const UserDataContext = createContext<UserGlobalState>({} as UserGlobalState);
+export const UserDataContext = createContext<UserGlobalState>(
+  {} as UserGlobalState
+);
 
 export const useUserData = (): UserGlobalState => useContext(UserDataContext);
