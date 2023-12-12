@@ -94,7 +94,6 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
           Entrar
         </Button>
       </LoginForm>
-      {/* TODO: implement "go to register" logic */}
       <Typography variant="subtitle1">
         Nao possui cadastro?{" "}
         <span
