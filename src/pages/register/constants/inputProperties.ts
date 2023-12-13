@@ -1,6 +1,6 @@
 export const inputProperties = {
     email: {
-        label: "E-mail*",
+        label: "E-mail",
         placeholder: "email@email.com"
     },
     name: {
