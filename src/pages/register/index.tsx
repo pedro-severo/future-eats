@@ -3,9 +3,9 @@ import { useSchema } from "./hooks/useSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormInputNames } from "./interfaces/FormInputNames";
-import { LoginPageView } from "./view";
+import { RegisterPageView } from "./view";
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
   // TODO: Create a eslint configuration. Look this link: https://www.geeksforgeeks.org/how-to-configure-eslint-for-react-projects/
   const { schema } = useSchema();
   const {
@@ -19,5 +19,5 @@ export const LoginPage = () => {
     // TODO: Implement function
   };
 
-  return <LoginPageView onSubmit={handleSubmit(onSubmit)} control={control} />;
+  return <RegisterPageView onSubmit={handleSubmit(onSubmit)} control={control} />;
 };
