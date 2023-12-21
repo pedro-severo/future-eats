@@ -5,7 +5,7 @@ import { TextFieldInput } from "../../designSystem/components/TextField";
 import { IconButton, InputAdornment, Typography } from "@material-ui/core";
 import { Button } from "../../designSystem/components/Button";
 import { Controller, Control } from "react-hook-form";
-import { RegisterInputNames } from "./hooks/useSchema";
+import { RegisterInputNames } from "./hooks/useRegisterSchema";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { theme } from "../../designSystem/themeProvider";
 import { useNavigate } from 'react-router-dom';

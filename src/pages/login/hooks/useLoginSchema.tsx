@@ -12,7 +12,7 @@ export enum LoginInputNames {
   EMAIL = "email",
 }
 
-export const useSchema = (): IUseSchemaResponse => {
+export const useLoginSchema = (): IUseSchemaResponse => {
   const schema = useMemo(() => {
     return yup.object<IFormInputNames>().shape({
       password: yup

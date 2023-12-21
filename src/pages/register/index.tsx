@@ -1,5 +1,5 @@
 import React from "react";
-import { useSchema } from "./hooks/useSchema";
+import { useRegisterSchema } from "./hooks/useRegisterSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormInputNames } from "./interfaces/FormInputNames";
@@ -7,7 +7,7 @@ import { RegisterPageView } from "./view";
 
 export const RegisterPage = () => {
   // TODO: Create a eslint configuration. Look this link: https://www.geeksforgeeks.org/how-to-configure-eslint-for-react-projects/
-  const { schema } = useSchema();
+  const { schema } = useRegisterSchema();
   const {
     control,
     handleSubmit,

@@ -15,7 +15,7 @@ export enum RegisterInputNames {
   PASSWORD_CONFIRMATION = "passwordConfirmation",
 }
 
-export const useSchema = (): IUseSchemaResponse => {
+export const useRegisterSchema = (): IUseSchemaResponse => {
   const schema = useMemo(() => {
     return yup.object<IFormInputNames>().shape({
       password: yup
@@ -32,7 +32,7 @@ export const useSchema = (): IUseSchemaResponse => {
       name: yup
         .string()
         .required(errorMessages.requiredField)
-        .matches(/^[a-z ,.'-]+$/i),
+        .matches(/^[a-z ,.'-]+$/i,  { message: errorMessages.invalidName }),
       cpf: yup
         .string()
         .required(errorMessages.requiredField)
