@@ -8,8 +8,6 @@ import { Controller, Control } from "react-hook-form";
 import { RegisterInputNames } from "./hooks/useRegisterSchema";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { theme } from "../../designSystem/themeProvider";
-import { useNavigate } from 'react-router-dom';
-import { PATH } from "../../routes/paths";
 import { inputProperties } from "./constants/inputProperties";
 
 interface IRegisterPageViewProps {
@@ -18,14 +16,8 @@ interface IRegisterPageViewProps {
 }
 
 export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
   return (
     <RegisterPageWrapper>
       <img src={mainLogo} />
@@ -98,8 +90,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
                   <InputAdornment position="start">
                     <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
+                      onClick={() => setShowPassword(!showPassword)}
                       edge="end"
                     >
                       {showPassword ? (
@@ -129,7 +120,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
               {...field}
               placeholder={inputProperties.passwordConfirmation.placeholder}
               label={inputProperties.passwordConfirmation.label}               
-              type={showPassword ? "text" : "password"}
+              type={showPasswordConfirmation ? "text" : "password"}
               error={!!error}
               helperText={error?.message}
               InputProps={{
@@ -137,11 +128,10 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
                   <InputAdornment position="start">
                     <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
+                      onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
                       edge="end"
                     >
-                      {showPassword ? (
+                      {showPasswordConfirmation ? (
                         <VisibilityOff
                           style={{ color: `${theme.palette.secondary.main}` }}
                         />
@@ -163,18 +153,9 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
           variant="contained"
           fullWidth={true}
         >
-          Entrar
+          Criar
         </Button>
       </RegisterForm>
-      <Typography variant="subtitle1">
-        Nao possui cadastro?{" "}
-        <span
-          style={{ color: theme.palette.text.hint }}
-          onClick={() => navigate(PATH.REGISTER)}
-        >
-          Clique aqui
-        </span>
-      </Typography>
     </RegisterPageWrapper>
   );
 };
