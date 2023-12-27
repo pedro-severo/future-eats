@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { HeaderTitle, HeaderWrapper, IconWrapper } from "./styles";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-
-// TODO: Create a global state to store back function and header title
+import { NavigationHeaderDataContext } from "../../../global/entities/navigationHeader";
+import { useNavigate } from "react-router-dom";
+import { usePagesNavigation } from "../../../hooks/usePagesNavigation";
 
 export const HeaderView = () => {
+  const { navigationHeader } = useContext(NavigationHeaderDataContext)
+  const { title, shouldRenderHeader } = navigationHeader
+  const { handleGoBack } = usePagesNavigation()
   return (
-    <HeaderWrapper>
-        <IconWrapper>
+    <HeaderWrapper shouldRenderHeader={shouldRenderHeader} >
+        <IconWrapper onClick={handleGoBack}>
             <ArrowBackIosNewIcon />
         </IconWrapper>
         <HeaderTitle>
-            Titulo 
+            {title} 
         </HeaderTitle>
     </HeaderWrapper>
   );
