@@ -6,11 +6,10 @@ export interface NavigationHeader {
 }
 
 export interface NavigationHeaderInput {
+  navigationHistory: NavigationHeader[]
   title?: string;
   hasTitle?: boolean
   shouldRenderHeader?: boolean
-  navigationHistory?: NavigationHeader[]
-
 }
 
 export interface NavigationHeaderGlobalState {

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useContext } from "react"
 import { PATH } from "../routes/paths";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeaderDataContext, navigationHeaderInitialState } from "../global/entities/navigationHeader";

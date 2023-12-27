@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { HeaderTitle, HeaderWrapper, IconWrapper } from "./styles";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { NavigationHeaderDataContext } from "../../../global/entities/navigationHeader";
-import { useNavigate } from "react-router-dom";
 import { usePagesNavigation } from "../../../hooks/usePagesNavigation";
 
 export const HeaderView = () => {

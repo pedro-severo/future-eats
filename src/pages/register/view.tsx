@@ -28,7 +28,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
@@ -44,7 +44,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
@@ -60,7 +60,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
@@ -76,7 +76,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
@@ -114,7 +114,7 @@ export const RegisterPageView = ({ onSubmit, control }: IRegisterPageViewProps) 
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
