@@ -1,6 +1,6 @@
 export interface IFormInputNames {
     password: string,
-    passwordConfirmation: string | undefined,
+    passwordConfirmation: string,
     email: string,
     cpf: string,
     name: string

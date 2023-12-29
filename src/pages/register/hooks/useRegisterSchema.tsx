@@ -28,7 +28,8 @@ export const useRegisterSchema = (): IUseSchemaResponse => {
         .required(errorMessages.requiredField),
       passwordConfirmation: yup
         .string()
-        .oneOf([yup.ref(RegisterInputNames.PASSWORD), undefined], errorMessages.unmatchedPasswordConfirmation),
+        .oneOf([yup.ref(RegisterInputNames.PASSWORD), undefined], errorMessages.unmatchedPasswordConfirmation)
+        .required(errorMessages.requiredField),
       name: yup
         .string()
         .required(errorMessages.requiredField)
