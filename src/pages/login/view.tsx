@@ -5,11 +5,11 @@ import { TextFieldInput } from "../../designSystem/components/TextField";
 import { IconButton, InputAdornment, Typography } from "@material-ui/core";
 import { Button } from "../../designSystem/components/Button";
 import { Controller, Control } from "react-hook-form";
-import { LoginInputNames } from "./hooks/useSchema";
+import { LoginInputNames } from "./hooks/useLoginSchema";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { theme } from "../../designSystem/themeProvider";
-import { useNavigate } from 'react-router-dom';
 import { PATH } from "../../routes/paths";
+import { usePagesNavigation } from "../../hooks/usePagesNavigation";
 
 interface ILoginPageViewProps {
   onSubmit: () => void;
@@ -17,14 +17,9 @@ interface ILoginPageViewProps {
 }
 
 export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
+  const { handleGoToRegisterPage } = usePagesNavigation()
   return (
     <LoginPageWrapper>
       <img src={mainLogo} />
@@ -35,7 +30,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
@@ -51,7 +46,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
           control={control}
           render={({
             field,
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
           }) => (
             <TextFieldInput
               {...field}
@@ -66,7 +61,6 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
                       {showPassword ? (
@@ -98,7 +92,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
         Nao possui cadastro?{" "}
         <span
           style={{ color: theme.palette.text.hint }}
-          onClick={() => navigate(PATH.REGISTER)}
+          onClick={handleGoToRegisterPage}
         >
           Clique aqui
         </span>

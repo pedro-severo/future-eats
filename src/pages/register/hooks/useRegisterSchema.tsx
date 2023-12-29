@@ -7,12 +7,15 @@ interface IUseSchemaResponse {
   schema: yup.ObjectSchema<IFormInputNames>;
 }
 
-export enum LoginInputNames {
-  PASSWORD = "password",
+export enum RegisterInputNames {
+  NAME = "name",
   EMAIL = "email",
+  CPF = "cpf",
+  PASSWORD = "password",
+  PASSWORD_CONFIRMATION = "passwordConfirmation",
 }
 
-export const useSchema = (): IUseSchemaResponse => {
+export const useRegisterSchema = (): IUseSchemaResponse => {
   const schema = useMemo(() => {
     return yup.object<IFormInputNames>().shape({
       password: yup
@@ -23,6 +26,18 @@ export const useSchema = (): IUseSchemaResponse => {
         .string()
         .email(errorMessages.invalidEmail)
         .required(errorMessages.requiredField),
+      passwordConfirmation: yup
+        .string()
+        .oneOf([yup.ref(RegisterInputNames.PASSWORD), undefined], errorMessages.unmatchedPasswordConfirmation)
+        .required(errorMessages.requiredField),
+      name: yup
+        .string()
+        .required(errorMessages.requiredField)
+        .matches(/^[a-z ,.'-]+$/i,  { message: errorMessages.invalidName }),
+      cpf: yup
+        .string()
+        .required(errorMessages.requiredField)
+        .matches(/^[0-9]*$/i),
     });
   }, [yup]);
 
