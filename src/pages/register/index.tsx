@@ -16,6 +16,7 @@ export const RegisterPage = () => {
   } = useForm<IFormInputNames>({ resolver: yupResolver(schema) });
 
   const onSubmit = (data: IFormInputNames) => {
+    // TODO: Check password and passwordConfirmation match before anithing 
     // TODO: Implement function
   };
 
