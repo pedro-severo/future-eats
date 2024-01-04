@@ -1,3 +1,3 @@
-import EmptyComponent from "./components/EmptyComponent";
+import EmptyComponent from './components/EmptyComponent';
 
 export const designSystem = {};

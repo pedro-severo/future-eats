@@ -1,31 +1,41 @@
-import { useState, createContext, useContext } from "react";
-import { NavigationHeader, NavigationHeaderGlobalState, NavigationHeaderInput } from "./interface";
+import { useState, createContext, useContext } from 'react';
+import {
+    NavigationHeader,
+    NavigationHeaderGlobalState,
+    NavigationHeaderInput,
+} from './interface';
 
 export const navigationHeaderInitialState = {
-  title: "",
-  hasTitle: false, 
-  shouldRenderHeader: false,
-  navigationHistory: []
-}
-
-export const useNavigationHeaderDataState = (): NavigationHeaderGlobalState => {
-  const [navigationHeader, setNavigationHeader] = useState<NavigationHeader>(navigationHeaderInitialState);
-
-  const setNavigationHeaderProps = (newNavigationHeaderProps: NavigationHeaderInput) => {
-    setNavigationHeader({
-      ...navigationHeader,
-      ...newNavigationHeaderProps,
-    });
-  };
-
-  return {
-    navigationHeader,
-    setNavigationHeaderProps
-  };
+    title: '',
+    hasTitle: false,
+    shouldRenderHeader: false,
+    navigationHistory: [],
 };
 
-export const NavigationHeaderDataContext = createContext<NavigationHeaderGlobalState>(
-  {} as NavigationHeaderGlobalState
-);
+export const useNavigationHeaderDataState = (): NavigationHeaderGlobalState => {
+    const [navigationHeader, setNavigationHeader] = useState<NavigationHeader>(
+        navigationHeaderInitialState
+    );
 
-export const useNavigationHeaderData = (): NavigationHeaderGlobalState => useContext(NavigationHeaderDataContext);
+    const setNavigationHeaderProps = (
+        newNavigationHeaderProps: NavigationHeaderInput
+    ) => {
+        setNavigationHeader({
+            ...navigationHeader,
+            ...newNavigationHeaderProps,
+        });
+    };
+
+    return {
+        navigationHeader,
+        setNavigationHeaderProps,
+    };
+};
+
+export const NavigationHeaderDataContext =
+    createContext<NavigationHeaderGlobalState>(
+        {} as NavigationHeaderGlobalState
+    );
+
+export const useNavigationHeaderData = (): NavigationHeaderGlobalState =>
+    useContext(NavigationHeaderDataContext);

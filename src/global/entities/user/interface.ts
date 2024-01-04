@@ -1,12 +1,12 @@
 export interface User {
-  userName: string;
+    userName: string;
 }
 
 export interface UserInput {
-  userName: string;
+    userName: string;
 }
 
 export interface UserGlobalState {
-  user: User;
-  setUserProps: (newUserProps: UserInput) => void;
+    user: User;
+    setUserProps: (newUserProps: UserInput) => void;
 }

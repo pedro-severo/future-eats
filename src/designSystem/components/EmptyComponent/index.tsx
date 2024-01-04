@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EmptyComponent: React.FC<any> = () => {
-  return <div />;
+    return <div />;
 };
 
-export default EmptyComponent
+export default EmptyComponent;
