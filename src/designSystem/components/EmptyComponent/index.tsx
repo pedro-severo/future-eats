@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EmptyComponent: React.FC<any> = () => {
+const EmptyComponent = () => {
     return <div />;
 };
 

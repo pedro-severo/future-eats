@@ -31,6 +31,7 @@ export const theme = createTheme({
     },
 });
 
+// eslint-disable-next-line
 const ThemeUsage: React.FC<any> = ({ children }) => {
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

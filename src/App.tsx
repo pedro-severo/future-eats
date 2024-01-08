@@ -1,3 +1,4 @@
+import React from 'react';
 import ThemeUsage from './designSystem/themeProvider';
 import { Router } from './routes/router';
 

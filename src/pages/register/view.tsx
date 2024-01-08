@@ -12,6 +12,7 @@ import { inputProperties } from './constants/inputProperties';
 
 interface IRegisterPageViewProps {
     onSubmit: () => void;
+    // eslint-disable-next-line
     control: Control<any, any>;
 }
 

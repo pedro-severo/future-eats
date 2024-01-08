@@ -11,11 +11,10 @@ export const LoginPage = () => {
     const {
         control,
         handleSubmit,
-        formState: { errors },
-        // @ts-expect-error
+        // @ts-expect-error: expected to works with yup lib
     } = useForm<IFormInputNames>({ resolver: yupResolver(schema) });
 
-    const onSubmit = (data: IFormInputNames) => {
+    const onSubmit = () => {
         // TODO: Implement function
     };
 

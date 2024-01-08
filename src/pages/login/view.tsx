@@ -8,11 +8,11 @@ import { Controller, Control } from 'react-hook-form';
 import { LoginInputNames } from './hooks/useLoginSchema';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { theme } from '../../designSystem/themeProvider';
-import { PATH } from '../../routes/paths';
 import { usePagesNavigation } from '../../hooks/usePagesNavigation';
 
 interface ILoginPageViewProps {
     onSubmit: () => void;
+    // eslint-disable-next-line
     control: Control<any, any>;
 }
 
