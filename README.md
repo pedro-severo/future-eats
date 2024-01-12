@@ -47,8 +47,8 @@ This folder have two folder who separete ordinary components (components folder)
 TODO: list all comands of the project
 
 
-- yarn lint => The command who lets you execute linting from the terminal according lint rules defined on `.eslintrc.json` and `.prettierrc` files;
-- yarn format => Format code according rules defined on `.prettierrc` file;
+- `yarn lint` => The command who lets you execute linting from the terminal according lint rules defined on `.eslintrc.json` and `.prettierrc` files;
+- `yarn format` => Format code according rules defined on `.prettierrc` file;
 
 
 ## Getting Started
