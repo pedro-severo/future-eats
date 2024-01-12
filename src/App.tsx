@@ -7,9 +7,6 @@ function App() {
         <ThemeUsage>
             <Router />
         </ThemeUsage>
-
-
-
     );
 }
 
