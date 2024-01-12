@@ -16,7 +16,7 @@
 
 ![folders](https://user-images.githubusercontent.com/53839013/168600287-642e3fb4-7f48-4c65-a868-6e75f5063e34.png)
 
-- `assets` => The folder that keeps the .png and .svg files
+- `assets` => The folder who stores the .png and .svg files
 
 - `components`=> The folk who stores the ordinary components of the project. There are another components in DesignSystem and Screens folders. Into each respective component folder, the files are divided acoording the following rule:
   - ***index.tsx*** => who keeps the component to be exported to foreing folders and keeps all component logic that doesn't about design;
@@ -66,9 +66,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 ## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-API: https://documenter.getpostman.com/view/7549981/SWTEdGtT#a671fbe5-a360-4cd3-b269-d5a121e19da0
