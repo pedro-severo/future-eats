@@ -35,7 +35,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "lint": "eslint src",
-        "format": "prettier . --write"
+        "format": "prettier ./src --write"
     },
     "eslintConfig": {
         "extends": [
@@ -75,7 +75,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged && pretty-quick --staged"
+            "pre-commit": "prettier ./src --write && eslint src"
         }
-     }
+    }
 }
