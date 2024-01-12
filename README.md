@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Future Eats
 
 ## A brief description of the project choices 
 
@@ -8,20 +6,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - [React](https://github.com/facebook/create-react-app)
 - [Typescript](https://www.typescriptlang.org/)
-- [MaterialUI](https://mui.com/) - Lib with some styled components according google design 
-- [Styled-components](https://styled-components.com/) - Lib to style components with css in javascript (or typescript) files
-- [ReactN](https://github.com/CharlesStover/reactn) - Lib to manager the global state
-- [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - Lib to manager the url routes of the project
-- [Axios](https://github.com/axios/axios) - Lib to conect with rest apis
+- [MaterialUI](https://mui.com/) - DesignSystem
+- [Styled-components](https://styled-components.com/) - CSS
+- [ReactN](https://github.com/CharlesStover/reactn) - Global State
+- [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - Router
+- [Axios](https://github.com/axios/axios) - HTTP Requests
 
 ### A description of folders division
 
 ![folders](https://user-images.githubusercontent.com/53839013/168600287-642e3fb4-7f48-4c65-a868-6e75f5063e34.png)
 
-- `assets` => The folder that keeps the .png and .svg files that I got in the Figma layout
+- `assets` => The folder that keeps the .png and .svg files
 
-- `components`=> The folder that keeps the ordinary components that I created to the project. In this project, there are three: Header, EditableTags (the created tags in "Add more" button) and BreweryCard. There are other components in project, in DesignSystem and Screens folders, that I will give more details below. 
-Each component is separeted in this files:
+- `components`=> The folk who stores the ordinary components of the project. There are another components in DesignSystem and Screens folders. Into each respective component folder, the files are divided acoording the following rule:
   - ***index.tsx*** => who keeps the component to be exported to foreing folders and keeps all component logic that doesn't about design;
   - ***view.tsx*** => who keeps JSX ("html" of React) structure of component and design logic (if necessary some design logic). This component is responsible to import the styled components from design system or styled components file;
   - ***style.tsx*** => who keeps all components that demand some css config by `styled-components` lib;
@@ -44,6 +41,14 @@ This folder have two folder who separete ordinary components (components folder)
 - `services` => The folder that keeps the connections with forein services. In this project, just the connection with the rest API to get breweries.
 
 - `utils` => The folder that keeps some util stuff that can be used in more than one case. In this project, just a regex function who validate text without number and special characters.
+
+### Runing coomands:
+
+TODO: list all comands of the project
+
+
+- yarn lint => The command who lets you execute linting from the terminal according lint rules defined on `.eslintrc.json` and `.prettierrc` files;
+- yarn format => Format code according rules defined on `.prettierrc` file;
 
 
 ## Getting Started
