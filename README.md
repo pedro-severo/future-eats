@@ -8,7 +8,7 @@
 - [Typescript](https://www.typescriptlang.org/)
 - [MaterialUI](https://mui.com/) - DesignSystem
 - [Styled-components](https://styled-components.com/) - CSS
-- [ReactN](https://github.com/CharlesStover/reactn) - Global State
+- React Context - Global State
 - [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - Router
 - [Axios](https://github.com/axios/axios) - HTTP Requests
 
