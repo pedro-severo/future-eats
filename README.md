@@ -1,5 +1,61 @@
 # Future Eats
 
+## Getting Started
+
+Follow these steps to set up and run Future Eats on your local machine.
+
+### Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Node.js and npm](https://nodejs.org/)
+
+### Setup
+
+1. (optional) **Install yarn:**
+
+   consider installing the yarn command to use it in place of npm commands:
+
+   ```bash
+   npm install -g yarn
+
+
+2. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/pedro-severo/future-eats.git
+
+
+3. **Navigate to the project directory:**
+
+   ```bash
+   cd future-eats
+
+4. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+   or
+   ```bash
+   yarn install     
+
+5. **Start the application:**
+
+   ```bash
+   npm run start
+   ```
+   or
+   ```bash
+   yarn start
+  
+6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+<br>
+<br>
+<br>
+
 ## A brief description of the project choices 
 
 ### Main technologies used
@@ -49,20 +105,3 @@ TODO: list all comands of the project
 
 - `yarn lint` => The command who lets you execute linting from the terminal according lint rules defined on .eslintrc.json and .prettierrc files;
 - `yarn format` => Format code according rules defined on `.prettierrc` file;
-
-
-## Getting Started
-
-After clone of repository, run:
-
-### `yarn install` or `npm install`
-
-So, open react project, running:
-
-### `yarn start` or `npm run start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-
-
-## Learn More
