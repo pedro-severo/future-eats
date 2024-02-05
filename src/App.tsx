@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeUsage from './designSystem/themeProvider';
-import { Router } from './routes/router';
+import { Router } from './routes';
 
 function App() {
     return (
