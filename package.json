@@ -38,7 +38,7 @@
         "lint": "eslint ./src",
         "format": "prettier ./src --write",
         "precommit": "lint-staged",
-        "prepush": "npm test --coverage",
+        "prepush": "npm test --coverage --silent",
         "prepare": "husky install"
     },
     "eslintConfig": {
@@ -99,7 +99,7 @@
         ],
         "coverageThreshold": {
             "global": {
-                "lines": 60
+                "lines": 100
             }
         },
         "moduleNameMapper": {
