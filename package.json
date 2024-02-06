@@ -91,7 +91,7 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged && pretty-quick --staged",
-            "pre-push": "yarn coverage"
+            "pre-push": "jest -- --coverage"
         }
     },
     "jest": {
