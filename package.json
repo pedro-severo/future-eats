@@ -38,7 +38,7 @@
         "lint": "eslint ./src",
         "format": "prettier ./src --write",
         "precommit": "lint-staged",
-        "prepush": "npm test",
+        "prepush": "npm test -- --watchAll --coverage",
         "prepare": "husky install"
     },
     "eslintConfig": {
@@ -91,7 +91,7 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged && pretty-quick --staged",
-            "pre-push": "jest -- --coverage"
+            "pre-push": "npm test -- --watchAll --coverage"
         }
     },
     "jest": {
