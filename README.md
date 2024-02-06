@@ -19,20 +19,26 @@ Before you begin, make sure you have the following installed:
 
    ```bash
    npm install -g yarn
+   ```
+   more information here: https://www.npmjs.com/package/yarn
 
+<br>
 
-2. **Clone the repository:**
+3. **Clone the repository:**
 
    ```bash
    git clone https://github.com/pedro-severo/future-eats.git
+   ```
+   <br>
 
-
-3. **Navigate to the project directory:**
+4. **Navigate to the project directory:**
 
    ```bash
    cd future-eats
+   ```
+   <br>
 
-4. **Install dependencies:**
+5. **Install dependencies:**
 
    ```bash
    npm install
@@ -40,8 +46,10 @@ Before you begin, make sure you have the following installed:
    or
    ```bash
    yarn install     
+   ```
+   <br>
 
-5. **Start the application:**
+6. **Start the application:**
 
    ```bash
    npm run start
@@ -49,12 +57,20 @@ Before you begin, make sure you have the following installed:
    or
    ```bash
    yarn start
+   ```
+   <br>
   
-6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   
+<br>
 
-<br>
-<br>
-<br>
+### Runing coomands:
+
+TODO: list all comands of the project
+
+- `yarn lint` => The command who lets you execute linting from the terminal according lint rules defined on .eslintrc.json and .prettierrc files;
+- `yarn format` => Format code according rules defined on `.prettierrc` file;
+
 
 ## A brief description of the project choices 
 
@@ -97,11 +113,3 @@ This folder have two folder who separete ordinary components (components folder)
 - `services` => The folder that keeps the connections with forein services. In this project, just the connection with the rest API to get breweries.
 
 - `utils` => The folder that keeps some util stuff that can be used in more than one case. In this project, just a regex function who validate text without number and special characters.
-
-### Runing coomands:
-
-TODO: list all comands of the project
-
-
-- `yarn lint` => The command who lets you execute linting from the terminal according lint rules defined on .eslintrc.json and .prettierrc files;
-- `yarn format` => Format code according rules defined on `.prettierrc` file;
