@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import GlobalStateProvider from './global';
 
-test('renders learn react link', () => {
+it('should ensure that Router is rendered', () => {
     render(
         <GlobalStateProvider>
             <App />

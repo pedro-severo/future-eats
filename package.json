@@ -33,6 +33,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
+        "coverage": "npm test -- --coverage --watchAll=false",
         "eject": "react-scripts eject",
         "lint": "eslint ./src",
         "format": "prettier ./src --write",
@@ -82,7 +83,16 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged && pretty-quick --staged"
+            "pre-commit": "lint-staged && pretty-quick --staged",
+            "pre-push": "yarn coverage"
+        }
+    },
+    "jest": {
+        "coverageReporters": ["text-summary"],
+        "coverageThreshold": {
+            "global": {
+                "lines": 100
+            }
         }
     }
 }
