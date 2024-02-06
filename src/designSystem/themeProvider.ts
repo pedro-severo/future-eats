@@ -1,5 +1,4 @@
-import React from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 export const theme = createTheme({
     palette: {
@@ -30,10 +29,3 @@ export const theme = createTheme({
         },
     },
 });
-
-// eslint-disable-next-line
-const ThemeUsage: React.FC<any> = ({ children }) => {
-    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-};
-
-export default ThemeUsage;
