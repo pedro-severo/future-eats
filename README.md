@@ -22,21 +22,18 @@ Before you begin, make sure you have the following installed:
    ```
    more information here: https://www.npmjs.com/package/yarn
 
-<br>
 
 3. **Clone the repository:**
 
    ```bash
    git clone https://github.com/pedro-severo/future-eats.git
    ```
-   <br>
 
 4. **Navigate to the project directory:**
 
    ```bash
    cd future-eats
    ```
-   <br>
 
 5. **Install dependencies:**
 
@@ -46,8 +43,6 @@ Before you begin, make sure you have the following installed:
    or
    ```bash
    yarn install     
-   ```
-   <br>
 
 6. **Start the application:**
 
@@ -58,19 +53,52 @@ Before you begin, make sure you have the following installed:
    ```bash
    yarn start
    ```
-   <br>
   
 7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
    
 <br>
 
-### Runing coomands:
+### Tests and coverage
+
+1. Runing tests:
+
+   ```bash
+   npm run test
+   ```
+   or
+   ```bash
+   yarn test
+   ```
+
+2. Runing coverage:
+
+   ```bash
+   npm run coverage
+   ```
+   or
+   ```bash
+   yarn coverage
+   ```
+
+3. Opening coverage on browser:
+
+   ```bash
+   npm run openCoverage
+   ```
+   or
+   ```bash
+   yarn openCoverage
+   ```
+
+4. Lines coverage percentage to push:
+
+      100%
+
+<br>
+
+### Another coomands:
 
 TODO: list all comands of the project
-
-- `yarn lint` => The command who lets you execute linting from the terminal according lint rules defined on .eslintrc.json and .prettierrc files;
-- `yarn format` => Format code according rules defined on `.prettierrc` file;
-
 
 ## A brief description of the project choices 
 
