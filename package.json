@@ -34,6 +34,7 @@
         "build": "react-scripts build",
         "test": "jest test",
         "coverage": "jest test --coverage --watchAll=false --silent",
+        "openCoverage": "open coverage/lcov-report/index.html",
         "eject": "react-scripts eject",
         "lint": "eslint ./src",
         "format": "prettier ./src --write",
