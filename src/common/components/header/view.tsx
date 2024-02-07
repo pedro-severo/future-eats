@@ -10,14 +10,10 @@ export const HeaderView = () => {
     const { handleGoBack } = usePagesNavigation();
     return (
         <HeaderWrapper shouldRenderHeader={shouldRenderHeader}>
-            {shouldRenderHeader && (
-                <>
-                    <IconWrapper onClick={handleGoBack}>
-                        <ArrowBackIosNewIcon />
-                    </IconWrapper>
-                    <HeaderTitle>{title}</HeaderTitle>
-                </>
-            )}
+            <IconWrapper onClick={handleGoBack}>
+                <ArrowBackIosNewIcon />
+            </IconWrapper>
+            <HeaderTitle>{title}</HeaderTitle>
         </HeaderWrapper>
     );
 };

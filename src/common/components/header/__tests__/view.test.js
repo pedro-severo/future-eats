@@ -34,13 +34,13 @@ describe('Header View', () => {
             NavigationHeaderContext,
             'useNavigationHeaderData'
         ).mockImplementation(() => mockNavigationHeaderDataContext);
+    });
+    it('should render header content', () => {
         render(
             <HeaderView>
                 <HeaderWrapper />
             </HeaderView>
         );
-    });
-    it('should test css config who hide/unhide header of screen', () => {
         const headerTitle = screen.getByText(
             mockNavigationHeaderDataContext.navigationHeader.title
         );
