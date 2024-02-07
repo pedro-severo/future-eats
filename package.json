@@ -32,8 +32,8 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "jest --colors",
-        "coverage": "npm test -- --coverage --watchAll=false --silent",
+        "test": "jest test",
+        "coverage": "jest test --coverage --watchAll=false --silent",
         "eject": "react-scripts eject",
         "lint": "eslint ./src",
         "format": "prettier ./src --write",
@@ -95,8 +95,10 @@
     },
     "jest": {
         "coverageReporters": [
+            "lcov",
             "text-summary"
         ],
+        "coverageDirectory": "coverage",
         "coverageThreshold": {
             "global": {
                 "lines": 100

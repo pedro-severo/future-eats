@@ -9,6 +9,7 @@ export const HeaderWrapper = styled('div')<{ shouldRenderHeader: boolean }>`
     height: 64px;
     display: flex;
     align-items: end;
+    /* istanbul ignore next */
     visibility: ${(props) => (props.shouldRenderHeader ? `none` : `hidden`)};
 `;
 

@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import { PATH } from '../routes/paths';
+import PATH from '../routes/paths';
 import { useNavigate } from 'react-router-dom';
 import {
     NavigationHeaderDataContext,
