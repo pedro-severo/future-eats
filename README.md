@@ -11,6 +11,8 @@ Before you begin, make sure you have the following installed:
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Node.js and npm](https://nodejs.org/)
 
+<br>
+
 ### Setup
 
 1. (optional) **Install yarn:**
