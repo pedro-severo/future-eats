@@ -56,6 +56,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                                             aria-label="toggle password visibility"
                                             onClick={handleClickShowPassword}
                                             edge="end"
+                                            data-testid="iconButton"
                                         >
                                             {showPassword ?
                                                 <VisibilityOff

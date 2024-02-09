@@ -52,6 +52,7 @@ export const usePagesNavigation = () => {
     };
 
     return {
+        handleGoToLoginPage,
         handleGoToRegisterPage,
         handleGoBack,
     };
