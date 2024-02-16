@@ -9,7 +9,10 @@ export const HeaderView = () => {
     const { title, shouldRenderHeader } = navigationHeader;
     const { handleGoBack } = usePagesNavigation();
     return (
-        <HeaderWrapper shouldRenderHeader={shouldRenderHeader}>
+        <HeaderWrapper
+            data-testid="HeaderWrapper"
+            shouldRenderHeader={shouldRenderHeader}
+        >
             <IconWrapper onClick={handleGoBack}>
                 <ArrowBackIosNewIcon />
             </IconWrapper>
