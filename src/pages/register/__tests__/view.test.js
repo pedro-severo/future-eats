@@ -1,7 +1,7 @@
 import React from 'react';
-import { RegisterPageView } from './view';
+import { RegisterPageView } from '../view';
 import { shallow } from 'enzyme';
-import { RegisterForm } from './styles';
+import { RegisterForm } from '../styles';
 
 describe('RegisterView', () => {
     let wrapper;

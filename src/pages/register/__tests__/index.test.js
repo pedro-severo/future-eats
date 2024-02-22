@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as useCustomHook from './hooks/useRegisterSchema';
-import { RegisterPage } from '.';
+import * as useCustomHook from '../hooks/useRegisterSchema';
+import { RegisterPage } from '..';
 
 const schemaMock = {
     password: 'password',
@@ -13,7 +13,7 @@ const schemaMock = {
 
 const mockUsedNavigate = jest.fn();
 
-jest.mock('../../hooks/usePagesNavigation', () => ({
+jest.mock('../../../hooks/usePagesNavigation', () => ({
     usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
 }));
 
