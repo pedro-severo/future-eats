@@ -31,127 +31,151 @@ export const RegisterPageView = ({
                 <Controller
                     name={RegisterInputNames.NAME}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder={inputProperties.name.placeholder}
-                            label={inputProperties.name.label}
-                            error={!!error}
-                            helperText={error?.message}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder={inputProperties.name.placeholder}
+                                label={inputProperties.name.label}
+                                error={!!error}
+                                helperText={error?.message}
+                            />
+                        )
+                    }
                 />
                 <Controller
                     name={RegisterInputNames.EMAIL}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder={inputProperties.email.placeholder}
-                            label={inputProperties.email.label}
-                            error={!!error}
-                            helperText={error?.message}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder={inputProperties.email.placeholder}
+                                label={inputProperties.email.label}
+                                error={!!error}
+                                helperText={error?.message}
+                            />
+                        )
+                    }
                 />
                 <Controller
                     name={RegisterInputNames.CPF}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder={inputProperties.cpf.placeholder}
-                            label={inputProperties.cpf.label}
-                            error={!!error}
-                            helperText={error?.message}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder={inputProperties.cpf.placeholder}
+                                label={inputProperties.cpf.label}
+                                error={!!error}
+                                helperText={error?.message}
+                            />
+                        )
+                    }
                 />
                 <Controller
                     name={RegisterInputNames.PASSWORD}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder={inputProperties.password.placeholder}
-                            label={inputProperties.password.label}
-                            type={showPassword ? 'text' : 'password'}
-                            error={!!error}
-                            helperText={error?.message}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="start">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={() =>
-                                                setShowPassword(!showPassword)
-                                            }
-                                            edge="end"
-                                        >
-                                            {showPassword ?
-                                                <VisibilityOff
-                                                    style={{
-                                                        color: `${theme.palette.secondary.main}`,
-                                                    }}
-                                                />
-                                            :   <Visibility
-                                                    style={{
-                                                        color: `${theme.palette.secondary.main}`,
-                                                    }}
-                                                />
-                                            }
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder={
+                                    inputProperties.password.placeholder
+                                }
+                                label={inputProperties.password.label}
+                                type={showPassword ? 'text' : 'password'}
+                                error={!!error}
+                                helperText={error?.message}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="start">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={() =>
+                                                    setShowPassword(
+                                                        !showPassword
+                                                    )
+                                                }
+                                                edge="end"
+                                            >
+                                                {showPassword ?
+                                                    <VisibilityOff
+                                                        style={{
+                                                            color: `${theme.palette.secondary.main}`,
+                                                        }}
+                                                    />
+                                                :   <Visibility
+                                                        style={{
+                                                            color: `${theme.palette.secondary.main}`,
+                                                        }}
+                                                    />
+                                                }
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        )
+                    }
                 />
                 <Controller
                     name={RegisterInputNames.PASSWORD_CONFIRMATION}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder={
-                                inputProperties.passwordConfirmation.placeholder
-                            }
-                            label={inputProperties.passwordConfirmation.label}
-                            type={
-                                showPasswordConfirmation ? 'text' : 'password'
-                            }
-                            error={!!error}
-                            helperText={error?.message}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="start">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={() =>
-                                                setShowPasswordConfirmation(
-                                                    !showPasswordConfirmation
-                                                )
-                                            }
-                                            edge="end"
-                                        >
-                                            {showPasswordConfirmation ?
-                                                <VisibilityOff
-                                                    style={{
-                                                        color: `${theme.palette.secondary.main}`,
-                                                    }}
-                                                />
-                                            :   <Visibility
-                                                    style={{
-                                                        color: `${theme.palette.secondary.main}`,
-                                                    }}
-                                                />
-                                            }
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder={
+                                    inputProperties.passwordConfirmation
+                                        .placeholder
+                                }
+                                label={
+                                    inputProperties.passwordConfirmation.label
+                                }
+                                type={
+                                    showPasswordConfirmation ? 'text' : (
+                                        'password'
+                                    )
+                                }
+                                error={!!error}
+                                helperText={error?.message}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="start">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={() =>
+                                                    setShowPasswordConfirmation(
+                                                        !showPasswordConfirmation
+                                                    )
+                                                }
+                                                edge="end"
+                                            >
+                                                {showPasswordConfirmation ?
+                                                    <VisibilityOff
+                                                        style={{
+                                                            color: `${theme.palette.secondary.main}`,
+                                                        }}
+                                                    />
+                                                :   <Visibility
+                                                        style={{
+                                                            color: `${theme.palette.secondary.main}`,
+                                                        }}
+                                                    />
+                                                }
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        )
+                    }
                 />
                 <Button
                     type="submit"

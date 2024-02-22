@@ -1,35 +1,34 @@
 import React from 'react';
-import { LoginPageView } from '../view';
+import { RegisterPageView } from './view';
 import { shallow } from 'enzyme';
-import { LoginForm } from '../styles';
+import { RegisterForm } from './styles';
 
-const mockUsedNavigate = jest.fn();
-
-jest.mock('../../../hooks/usePagesNavigation', () => ({
-    usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
-}));
-
-describe('LoginPageView', () => {
+describe('RegisterView', () => {
     let wrapper;
     const mockSetShowPassword = jest.fn();
+    const mockSetShowPasswordConfirmation = jest.fn();
     const mockOnSubmit = jest.fn();
     const mockControl = {};
     beforeEach(() => {
         wrapper = shallow(
-            <LoginPageView onSubmit={mockOnSubmit} control={mockControl} />
+            <RegisterPageView onSubmit={mockOnSubmit} control={mockControl} />
         );
         jest.spyOn(React, 'useState').mockImplementation(() => [
             false,
             mockSetShowPassword,
         ]);
+        jest.spyOn(React, 'useState').mockImplementation(() => [
+            false,
+            mockSetShowPasswordConfirmation,
+        ]);
     });
 
-    it('should test LoginPageView rendering', () => {
+    it('should test RegisterView rendering', () => {
         expect(wrapper.exists()).toBeTruthy();
     });
     it('should test form submit', () => {
-        const loginForm = wrapper.find(LoginForm);
-        loginForm.simulate('submit');
+        const registerForm = wrapper.find(RegisterForm);
+        registerForm.simulate('submit');
         expect(mockOnSubmit).toBeCalledTimes(1);
     });
 });

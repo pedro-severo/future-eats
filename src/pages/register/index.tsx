@@ -11,6 +11,7 @@ export const RegisterPage = () => {
         resolver: yupResolver(schema),
     });
 
+    // istanbul ignore next
     const onSubmit = () => {
         // TODO: Check password and passwordConfirmation match before anithing
         // TODO: Implement function

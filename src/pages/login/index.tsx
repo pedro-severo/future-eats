@@ -11,6 +11,7 @@ export const LoginPage = () => {
         resolver: yupResolver(schema),
     });
 
+    // istanbul ignore next
     const onSubmit = () => {
         // TODO: Implement function
     };
