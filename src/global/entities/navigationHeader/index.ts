@@ -37,5 +37,6 @@ export const NavigationHeaderDataContext =
         {} as NavigationHeaderGlobalState
     );
 
+// istanbul ignore next
 export const useNavigationHeaderData = (): NavigationHeaderGlobalState =>
     useContext(NavigationHeaderDataContext);

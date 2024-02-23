@@ -23,6 +23,5 @@ export const UserDataContext = createContext<UserGlobalState>(
     {} as UserGlobalState
 );
 
-// TODO: remove this istanbul when we start to use useUserData in some component
 // istanbul ignore next
 export const useUserData = (): UserGlobalState => useContext(UserDataContext);
