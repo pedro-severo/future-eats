@@ -1,9 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import { shallow } from 'enzyme';
 
-test('renders learn react link', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+describe('App component', () => {
+    it('should ensure that Router is rendered', () => {
+        const wrapper = shallow(<App />);
+        const RouterComponent = wrapper.find('Router');
+        expect(RouterComponent.exists()).toBe(true);
+    });
 });
