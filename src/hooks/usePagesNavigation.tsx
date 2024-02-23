@@ -22,7 +22,7 @@ export const usePagesNavigation = () => {
     const handleGoToRegisterPage = useCallback(() => {
         const newHistory = getNewNavigationHistory(navigationHeader);
         setNavigationHeaderProps({
-            title: 'd d',
+            title: '',
             hasTitle: false,
             shouldRenderHeader: true,
             navigationHistory: newHistory,
