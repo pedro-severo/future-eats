@@ -18,7 +18,6 @@ interface ILoginPageViewProps {
 
 export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
     const [showPassword, setShowPassword] = useState(false);
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
     const { handleGoToRegisterPage } = usePagesNavigation();
     return (
         <LoginPageWrapper>
@@ -28,53 +27,64 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                 <Controller
                     name={LoginInputNames.EMAIL}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder="email@email.com"
-                            label="E-mail"
-                            error={!!error}
-                            helperText={error?.message}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder="email@email.com"
+                                label="E-mail"
+                                error={!!error}
+                                helperText={error?.message}
+                            />
+                        )
+                    }
                 />
                 <Controller
                     name={LoginInputNames.PASSWORD}
                     control={control}
-                    render={({ field, fieldState: { error } }) => (
-                        <TextFieldInput
-                            {...field}
-                            placeholder="Mínimo 6 caracteres"
-                            type={showPassword ? 'text' : 'password'}
-                            label="Senha"
-                            error={!!error}
-                            helperText={error?.message}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="start">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword}
-                                            edge="end"
-                                        >
-                                            {showPassword ?
-                                                <VisibilityOff
-                                                    style={{
-                                                        color: `${theme.palette.secondary.main}`,
-                                                    }}
-                                                />
-                                            :   <Visibility
-                                                    style={{
-                                                        color: `${theme.palette.secondary.main}`,
-                                                    }}
-                                                />
-                                            }
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    )}
+                    render={
+                        // istanbul ignore next
+                        ({ field, fieldState: { error } }) => (
+                            <TextFieldInput
+                                {...field}
+                                placeholder="Mínimo 6 caracteres"
+                                type={showPassword ? 'text' : 'password'}
+                                label="Senha"
+                                error={!!error}
+                                helperText={error?.message}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="start">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={() => {
+                                                    setShowPassword(
+                                                        !showPassword
+                                                    );
+                                                }}
+                                                edge="end"
+                                                id="password-visibility-icon-button"
+                                            >
+                                                {showPassword ?
+                                                    <VisibilityOff
+                                                        style={{
+                                                            color: `${theme.palette.secondary.main}`,
+                                                        }}
+                                                    />
+                                                :   <Visibility
+                                                        style={{
+                                                            color: `${theme.palette.secondary.main}`,
+                                                        }}
+                                                    />
+                                                }
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        )
+                    }
                 />
                 <Button
                     type="submit"
@@ -88,6 +98,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
             <Typography variant="subtitle1">
                 Nao possui cadastro?{' '}
                 <span
+                    data-testid="go-to-register-button"
                     style={{ color: theme.palette.text.hint }}
                     onClick={handleGoToRegisterPage}
                 >

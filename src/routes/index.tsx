@@ -7,14 +7,12 @@ import { Header } from '../common/components/header';
 
 export const Router = () => {
     return (
-        <div data-testid="Router">
-            <BrowserRouter>
-                <Header />
-                <Routes>
-                    <Route path={PATH.LOGIN} element={<LoginPage />} />
-                    <Route path={PATH.REGISTER} element={<RegisterPage />} />
-                </Routes>
-            </BrowserRouter>
-        </div>
+        <BrowserRouter>
+            <Header />
+            <Routes>
+                <Route path={PATH.LOGIN} element={<LoginPage />} />
+                <Route path={PATH.REGISTER} element={<RegisterPage />} />
+            </Routes>
+        </BrowserRouter>
     );
 };

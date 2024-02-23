@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import { PATH } from '../routes/paths';
+import PATH from '../routes/paths';
 import { useNavigate } from 'react-router-dom';
 import {
     NavigationHeaderDataContext,
@@ -22,7 +22,7 @@ export const usePagesNavigation = () => {
     const handleGoToRegisterPage = useCallback(() => {
         const newHistory = getNewNavigationHistory(navigationHeader);
         setNavigationHeaderProps({
-            title: 'd d',
+            title: '',
             hasTitle: false,
             shouldRenderHeader: true,
             navigationHistory: newHistory,
@@ -52,6 +52,7 @@ export const usePagesNavigation = () => {
     };
 
     return {
+        handleGoToLoginPage,
         handleGoToRegisterPage,
         handleGoBack,
     };

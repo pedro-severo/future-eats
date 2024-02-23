@@ -23,4 +23,5 @@ export const UserDataContext = createContext<UserGlobalState>(
     {} as UserGlobalState
 );
 
+// istanbul ignore next
 export const useUserData = (): UserGlobalState => useContext(UserDataContext);

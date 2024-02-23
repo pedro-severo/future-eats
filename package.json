@@ -11,16 +11,16 @@
         "@mui/material": "^5.14.17",
         "@mui/styles": "^5.14.17",
         "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^13.2.0",
+        "@testing-library/react": "^12.1.2",
         "@testing-library/user-event": "^13.5.0",
         "@types/jest": "^27.5.1",
         "@types/node": "^16.11.34",
         "@types/react": "^18.0.9",
         "@types/react-router-dom": "^5.3.3",
         "axios": "^0.27.2",
-        "react": "^18.1.0",
-        "react-dom": "^18.1.0",
-        "react-hook-form": "^7.48.2",
+        "react": "^16.14.0",
+        "react-dom": "^16.14.0",
+        "react-hook-form": "7.34.2",
         "react-i18next": "^13.3.1",
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
@@ -32,11 +32,13 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "jest --colors",
-        "coverage": "npm test -- --coverage --watchAll=false --silent",
+        "test": "jest test",
+        "testFile": "yarn test -- --findRelatedTests",
+        "coverage": "jest test --coverage --watchAll=false --silent",
+        "openCoverage": "open coverage/lcov-report/index.html",
         "eject": "react-scripts eject",
         "lint": "eslint ./src",
-        "format": "prettier ./src --write",
+        "prettier": "prettier ./src --write",
         "precommit": "lint-staged",
         "prepush": "yarn coverage",
         "prepare": "husky install"
@@ -62,11 +64,16 @@
     "devDependencies": {
         "@babel/preset-env": "^7.23.9",
         "@babel/preset-react": "^7.23.3",
+        "@testing-library/react-hooks": "^8.0.1",
+        "@types/enzyme": "^3.10.18",
+        "@types/enzyme-adapter-react-16": "^1.0.9",
         "@types/react-dom": "^18.0.4",
         "@typescript-eslint/eslint-plugin": "^6.17.0",
         "@typescript-eslint/parser": "^6.17.0",
         "autoprefixer": "^10.4.7",
         "babel-jest": "^29.7.0",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.8",
         "eslint": "^8.56.0",
         "eslint-plugin-react": "^7.33.2",
         "husky": "^8.0.3",
@@ -74,6 +81,7 @@
         "install": "^0.13.0",
         "jest": "^29.7.0",
         "jest-environment-jsdom": "^29.7.0",
+        "jest-styled-components": "^7.2.0",
         "lint-staged": "^15.2.0",
         "npm": "^8.13.2",
         "postcss": "^8.4.14",
@@ -95,8 +103,10 @@
     },
     "jest": {
         "coverageReporters": [
+            "lcov",
             "text-summary"
         ],
+        "coverageDirectory": "coverage",
         "coverageThreshold": {
             "global": {
                 "lines": 100
@@ -106,6 +116,8 @@
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.ts"
         },
         "testEnvironment": "jsdom",
-        "setupFilesAfterEnv": ["<rootDir>/setupTests.js"]
+        "setupFilesAfterEnv": [
+            "<rootDir>/setupTests.js"
+        ]
     }
 }
