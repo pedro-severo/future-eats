@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import mainLogo from '../../assets/images/futureEatsLogo/logo-future-eats-invert.png';
 import { RegisterForm, RegisterPageWrapper } from './styles';
-import { TextFieldInput } from '../../designSystem/components/TextField';
-import { IconButton, InputAdornment, Typography } from '@material-ui/core';
-import { Button } from '../../designSystem/components/Button';
+import designSystem from '../../designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { RegisterInputNames } from './hooks/useRegisterSchema';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { theme } from '../../designSystem/themeProvider';
 import { inputProperties } from './constants/inputProperties';
 
@@ -27,14 +24,16 @@ export const RegisterPageView = ({
         <RegisterPageWrapper>
             <img src={mainLogo} />
             <RegisterForm onSubmit={onSubmit}>
-                <Typography variant="h2">Cadastrar</Typography>
+                <designSystem.typography variant="h2">
+                    Cadastrar
+                </designSystem.typography>
                 <Controller
                     name={RegisterInputNames.NAME}
                     control={control}
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder={inputProperties.name.placeholder}
                                 label={inputProperties.name.label}
@@ -50,7 +49,7 @@ export const RegisterPageView = ({
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder={inputProperties.email.placeholder}
                                 label={inputProperties.email.label}
@@ -66,7 +65,7 @@ export const RegisterPageView = ({
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder={inputProperties.cpf.placeholder}
                                 label={inputProperties.cpf.label}
@@ -82,7 +81,7 @@ export const RegisterPageView = ({
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder={
                                     inputProperties.password.placeholder
@@ -93,8 +92,8 @@ export const RegisterPageView = ({
                                 helperText={error?.message}
                                 InputProps={{
                                     endAdornment: (
-                                        <InputAdornment position="start">
-                                            <IconButton
+                                        <designSystem.inputAdornment position="start">
+                                            <designSystem.iconButton
                                                 aria-label="toggle password visibility"
                                                 onClick={() =>
                                                     setShowPassword(
@@ -104,19 +103,19 @@ export const RegisterPageView = ({
                                                 edge="end"
                                             >
                                                 {showPassword ?
-                                                    <VisibilityOff
+                                                    <designSystem.visibilityOffIcon
                                                         style={{
                                                             color: `${theme.palette.secondary.main}`,
                                                         }}
                                                     />
-                                                :   <Visibility
+                                                :   <designSystem.visibilityIcon
                                                         style={{
                                                             color: `${theme.palette.secondary.main}`,
                                                         }}
                                                     />
                                                 }
-                                            </IconButton>
-                                        </InputAdornment>
+                                            </designSystem.iconButton>
+                                        </designSystem.inputAdornment>
                                     ),
                                 }}
                             />
@@ -129,7 +128,7 @@ export const RegisterPageView = ({
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder={
                                     inputProperties.passwordConfirmation
@@ -147,8 +146,8 @@ export const RegisterPageView = ({
                                 helperText={error?.message}
                                 InputProps={{
                                     endAdornment: (
-                                        <InputAdornment position="start">
-                                            <IconButton
+                                        <designSystem.inputAdornment position="start">
+                                            <designSystem.iconButton
                                                 aria-label="toggle password visibility"
                                                 onClick={() =>
                                                     setShowPasswordConfirmation(
@@ -158,33 +157,33 @@ export const RegisterPageView = ({
                                                 edge="end"
                                             >
                                                 {showPasswordConfirmation ?
-                                                    <VisibilityOff
+                                                    <designSystem.visibilityOffIcon
                                                         style={{
                                                             color: `${theme.palette.secondary.main}`,
                                                         }}
                                                     />
-                                                :   <Visibility
+                                                :   <designSystem.visibilityIcon
                                                         style={{
                                                             color: `${theme.palette.secondary.main}`,
                                                         }}
                                                     />
                                                 }
-                                            </IconButton>
-                                        </InputAdornment>
+                                            </designSystem.iconButton>
+                                        </designSystem.inputAdornment>
                                     ),
                                 }}
                             />
                         )
                     }
                 />
-                <Button
+                <designSystem.button
                     type="submit"
                     color="primary"
                     variant="contained"
                     fullWidth={true}
                 >
                     Criar
-                </Button>
+                </designSystem.button>
             </RegisterForm>
         </RegisterPageWrapper>
     );

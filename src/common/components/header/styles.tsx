@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import designSystem from '../../../designSystem';
 
 export const HeaderWrapper = styled('div')<{ shouldRenderHeader: boolean }>`
     width: 100%;
@@ -17,7 +17,7 @@ export const IconWrapper = styled.div`
     margin-left: 16px;
 `;
 
-export const HeaderTitle = styled(Typography)`
+export const HeaderTitle = styled(designSystem.typography)`
     width: 100%;
     display: flex;
     justify-content: center;

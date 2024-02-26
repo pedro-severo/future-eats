@@ -1,8 +1,8 @@
 import React from 'react';
 import { HeaderTitle, HeaderWrapper, IconWrapper } from './styles';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigationHeaderData } from '../../../global/entities/navigationHeader';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
+import designSystem from '../../../designSystem';
 
 export const HeaderView = () => {
     const { navigationHeader } = useNavigationHeaderData();
@@ -14,7 +14,7 @@ export const HeaderView = () => {
             shouldRenderHeader={shouldRenderHeader}
         >
             <IconWrapper onClick={handleGoBack}>
-                <ArrowBackIosNewIcon />
+                <designSystem.arrowBackIcon />
             </IconWrapper>
             <HeaderTitle>{title}</HeaderTitle>
         </HeaderWrapper>
