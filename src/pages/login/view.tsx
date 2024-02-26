@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import mainLogo from '../../assets/images/futureEatsLogo/logo-future-eats-invert.png';
 import { LoginForm, LoginPageWrapper } from './styles';
-import { TextFieldInput } from '../../designSystem/components/TextField';
-import { IconButton, InputAdornment, Typography } from '@material-ui/core';
-import { Button } from '../../designSystem/components/Button';
+import designSystem from '../../designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { LoginInputNames } from './hooks/useLoginSchema';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { theme } from '../../designSystem/themeProvider';
 import { usePagesNavigation } from '../../hooks/usePagesNavigation';
 
@@ -23,14 +20,16 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
         <LoginPageWrapper>
             <img src={mainLogo} />
             <LoginForm onSubmit={onSubmit}>
-                <Typography variant="h2">Entrar</Typography>
+                <designSystem.typography variant="h2">
+                    Entrar
+                </designSystem.typography>
                 <Controller
                     name={LoginInputNames.EMAIL}
                     control={control}
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder="email@email.com"
                                 label="E-mail"
@@ -46,7 +45,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                     render={
                         // istanbul ignore next
                         ({ field, fieldState: { error } }) => (
-                            <TextFieldInput
+                            <designSystem.textFieldInput
                                 {...field}
                                 placeholder="Mínimo 6 caracteres"
                                 type={showPassword ? 'text' : 'password'}
@@ -55,8 +54,8 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                                 helperText={error?.message}
                                 InputProps={{
                                     endAdornment: (
-                                        <InputAdornment position="start">
-                                            <IconButton
+                                        <designSystem.inputAdornment position="start">
+                                            <designSystem.iconButton
                                                 aria-label="toggle password visibility"
                                                 onClick={() => {
                                                     setShowPassword(
@@ -67,35 +66,35 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                                                 id="password-visibility-icon-button"
                                             >
                                                 {showPassword ?
-                                                    <VisibilityOff
+                                                    <designSystem.visibilityOffIcon
                                                         style={{
                                                             color: `${theme.palette.secondary.main}`,
                                                         }}
                                                     />
-                                                :   <Visibility
+                                                :   <designSystem.visibilityIcon
                                                         style={{
                                                             color: `${theme.palette.secondary.main}`,
                                                         }}
                                                     />
                                                 }
-                                            </IconButton>
-                                        </InputAdornment>
+                                            </designSystem.iconButton>
+                                        </designSystem.inputAdornment>
                                     ),
                                 }}
                             />
                         )
                     }
                 />
-                <Button
+                <designSystem.button
                     type="submit"
                     color="primary"
                     variant="contained"
                     fullWidth={true}
                 >
                     Entrar
-                </Button>
+                </designSystem.button>
             </LoginForm>
-            <Typography variant="subtitle1">
+            <designSystem.typography variant="subtitle1">
                 Nao possui cadastro?{' '}
                 <span
                     data-testid="go-to-register-button"
@@ -104,7 +103,7 @@ export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
                 >
                     Clique aqui
                 </span>
-            </Typography>
+            </designSystem.typography>
         </LoginPageWrapper>
     );
 };
