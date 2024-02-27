@@ -4,4 +4,5 @@ export const errorMessages = {
     invalidEmail: 'Email inválido',
     unmatchedPasswordConfirmation: 'As senhas não se correspondem',
     invalidName: 'Este não é um nome válido',
+    invalidCPF: 'Este não é um cpf válido',
 };

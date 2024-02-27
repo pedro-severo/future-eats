@@ -1,15 +1,15 @@
 export const inputProperties = {
     email: {
         label: 'E-mail',
-        placeholder: 'email@email.com',
+        placeholder: '',
     },
     name: {
         label: 'Nome',
-        placeholder: 'Nome e sobrenome',
+        placeholder: '',
     },
     cpf: {
         label: 'CPF',
-        placeholder: '000.000.000-00',
+        placeholder: '',
     },
     password: {
         label: 'Senha',

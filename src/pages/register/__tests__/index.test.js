@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import * as useCustomHook from '../hooks/useRegisterSchema';
 import { RegisterPage } from '..';
+import { yupCustomValidationsSetup } from '../../../services/yup';
 
 const schemaMock = {
     password: 'password',
@@ -20,6 +21,7 @@ jest.mock('../../../hooks/usePagesNavigation', () => ({
 describe('RegisterPage', () => {
     let wrapper;
     beforeEach(() => {
+        yupCustomValidationsSetup();
         wrapper = shallow(<RegisterPage />);
         jest.spyOn(useCustomHook, 'useRegisterSchema').mockImplementation(
             () => {
