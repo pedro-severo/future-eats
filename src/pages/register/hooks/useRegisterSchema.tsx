@@ -41,10 +41,11 @@ export const useRegisterSchema = (): IUseSchemaResponse => {
                 }),
             cpf: yup
                 .string()
-                .required(errorMessages.requiredField)
-                .matches(/^[0-9]*$/i),
+                // @ts-expect-error custom validation method
+                .cpf(),
         });
     }, [yup]);
 
+    // @ts-expect-error schema with a custom validation method
     return { schema };
 };
