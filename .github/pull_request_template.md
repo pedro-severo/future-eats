@@ -22,6 +22,6 @@ _Put an `x` in the boxes that apply. You can also fill these out after creating 
 - [ ] Any dependent changes have been merged and published in downstream modules
 - [ ] I link this PR with the trello card
 
-## Further comments
+# for Pedro from future
 
-If this is a relatively large or complex change, kick off the discussion by explaining why you chose the solution you did and what alternatives you considered, etc...
+If is the case, put here some documentation or important info to future visits
