@@ -1,34 +1,40 @@
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import PATH from '../routes/paths';
 import { useNavigate } from 'react-router-dom';
+import { useNavigationHeaderState } from '../global/navigationHeader/context';
 import {
-    NavigationHeaderDataContext,
-    navigationHeaderInitialState,
-} from '../global/entities/navigationHeader';
-import { NavigationHeader } from '../global/entities/navigationHeader/interface';
+    NAVIGATION_ACTION_TYPES,
+    NavigationHeaderState,
+} from '../global/navigationHeader/interface';
+import { navigationHeaderInitialState } from '../global/navigationHeader/reducer';
 
 export const usePagesNavigation = () => {
     const navigate = useNavigate();
-    const { setNavigationHeaderProps, navigationHeader } = useContext(
-        NavigationHeaderDataContext
-    );
-    const { navigationHistory } = navigationHeader;
+    const { navigationHeaderDispatch, navigationHeaderState } =
+        useNavigationHeaderState();
+    const { navigationHistory } = navigationHeaderState;
 
     const handleGoToLoginPage = useCallback(() => {
-        setNavigationHeaderProps(navigationHeaderInitialState);
+        navigationHeaderDispatch({
+            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+            payload: navigationHeaderInitialState,
+        });
         navigate(PATH.LOGIN);
-    }, [navigate, setNavigationHeaderProps, navigationHeaderInitialState]);
+    }, [navigate, navigationHeaderDispatch, navigationHeaderInitialState]);
 
     const handleGoToRegisterPage = useCallback(() => {
-        const newHistory = getNewNavigationHistory(navigationHeader);
-        setNavigationHeaderProps({
-            title: '',
-            hasTitle: false,
-            shouldRenderHeader: true,
-            navigationHistory: newHistory,
+        const newHistory = getNewNavigationHistory(navigationHeaderState);
+        navigationHeaderDispatch({
+            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+            payload: {
+                title: '',
+                hasTitle: false,
+                shouldRenderHeader: true,
+                navigationHistory: newHistory,
+            },
         });
         navigate(PATH.REGISTER);
-    }, [navigate, setNavigationHeaderProps, navigationHeader]);
+    }, [navigate, navigationHeaderDispatch, navigationHeaderState]);
 
     const handleGoBack = useCallback(() => {
         const previousPage =
@@ -36,17 +42,20 @@ export const usePagesNavigation = () => {
                 navigationHistory[navigationHistory.length - 1]
             :   undefined;
         if (previousPage) {
-            setNavigationHeaderProps(previousPage);
+            navigationHeaderDispatch({
+                type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+                payload: previousPage,
+            });
             navigate(-1);
         } else handleGoToLoginPage();
     }, [
         navigate,
-        setNavigationHeaderProps,
+        navigationHeaderDispatch,
         navigationHistory,
         handleGoToLoginPage,
     ]);
 
-    const getNewNavigationHistory = (currentPage: NavigationHeader) => {
+    const getNewNavigationHistory = (currentPage: NavigationHeaderState) => {
         const newHistory = [...navigationHistory, currentPage];
         return newHistory;
     };

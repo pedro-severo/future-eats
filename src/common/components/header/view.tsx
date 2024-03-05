@@ -1,12 +1,12 @@
 import React from 'react';
 import { HeaderTitle, HeaderWrapper, IconWrapper } from './styles';
-import { useNavigationHeaderData } from '../../../global/entities/navigationHeader';
+import { useNavigationHeaderState } from '../../../global/navigationHeader/context';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
 import designSystem from '../../../designSystem';
 
 export const HeaderView = () => {
-    const { navigationHeader } = useNavigationHeaderData();
-    const { title, shouldRenderHeader } = navigationHeader;
+    const { navigationHeaderState } = useNavigationHeaderState();
+    const { title, shouldRenderHeader } = navigationHeaderState;
     const { handleGoBack } = usePagesNavigation();
     return (
         <HeaderWrapper
