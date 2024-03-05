@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { HeaderView } from '../view';
-import * as NavigationHeaderContext from '../../../../global/entities/navigationHeader';
+import * as NavigationHeaderContext from '../../../../global/navigationHeader/context';
 import { HeaderWrapper } from '../styles';
 import { shallow } from 'enzyme';
 import 'jest-styled-components';
@@ -11,14 +11,6 @@ const mockUsedNavigate = jest.fn();
 const mockUsePagesNavigations = {
     handleGoToRegisterPage: jest.fn(),
     handleGoBack: jest.fn(),
-};
-
-const mockNavigationHeaderDataContext = {
-    navigationHeader: {
-        title: 'headerTitle',
-        shouldRenderHeader: true,
-        navigationHistory: [],
-    },
 };
 
 jest.mock('../../../../hooks/usePagesNavigation', () => ({
@@ -31,11 +23,21 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Header View', () => {
+    const mockNavigationHeaderState = {
+        title: 'headerTitle',
+        shouldRenderHeader: true,
+        navigationHistory: [],
+    };
+    const mockNavigationHeaderDispatch = jest.fn();
+    const mockUseNavigationHeaderStateReturn = {
+        navigationHeaderDispatch: mockNavigationHeaderDispatch,
+        navigationHeaderState: mockNavigationHeaderState,
+    };
     beforeEach(() => {
         jest.spyOn(
             NavigationHeaderContext,
-            'useNavigationHeaderData'
-        ).mockImplementation(() => mockNavigationHeaderDataContext);
+            'useNavigationHeaderState'
+        ).mockImplementation(() => mockUseNavigationHeaderStateReturn);
     });
     it('should render header content', () => {
         render(
@@ -43,23 +45,23 @@ describe('Header View', () => {
                 <HeaderWrapper />
             </HeaderView>
         );
-        const headerTitle = screen.getByText(
-            mockNavigationHeaderDataContext.navigationHeader.title
-        );
+        const headerTitle = screen.getByText(mockNavigationHeaderState.title);
         expect(headerTitle).toBeInTheDocument();
     });
     it('should test logic on css when shouldRenderHeader is false', () => {
-        const mockNavigationHeaderDataContext = {
-            navigationHeader: {
-                title: 'headerTitle',
-                shouldRenderHeader: false,
-                navigationHistory: [],
-            },
+        const mockNavigationHeaderState = {
+            title: 'headerTitle',
+            shouldRenderHeader: false,
+            navigationHistory: [],
+        };
+        const mockUseNavigationHeaderStateReturn = {
+            navigationHeaderDispatch: mockNavigationHeaderDispatch,
+            navigationHeaderState: mockNavigationHeaderState,
         };
         jest.spyOn(
             NavigationHeaderContext,
-            'useNavigationHeaderData'
-        ).mockImplementation(() => mockNavigationHeaderDataContext);
+            'useNavigationHeaderState'
+        ).mockImplementation(() => mockUseNavigationHeaderStateReturn);
         const wrapper = shallow(<HeaderView />);
         const HeaderWrapper = wrapper.find('[data-testid="HeaderWrapper"]');
         expect(HeaderWrapper.exists()).toBeTruthy();

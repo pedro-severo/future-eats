@@ -1,9 +1,11 @@
-import React, { ReactElement } from 'react';
-import { useUserDataState, UserDataContext } from './entities/user';
+import React, { ReactElement, useReducer } from 'react';
+import { UserStateContext } from './user/context';
+import { userInitialState, userReducer } from './user/reducer';
+import { NavigationHeaderStateContext } from './navigationHeader/context';
 import {
-    NavigationHeaderDataContext,
-    useNavigationHeaderDataState,
-} from './entities/navigationHeader';
+    navigationHeaderInitialState,
+    navigationHeaderReducer,
+} from './navigationHeader/reducer';
 
 type GlobalStateProviderProps = {
     children: JSX.Element | JSX.Element[];
@@ -12,17 +14,19 @@ type GlobalStateProviderProps = {
 const GlobalStateProvider = ({
     children,
 }: GlobalStateProviderProps): ReactElement => {
-    const { user, setUserProps } = useUserDataState();
-    const { navigationHeader, setNavigationHeaderProps } =
-        useNavigationHeaderDataState();
+    const [userState, userDispatch] = useReducer(userReducer, userInitialState);
+    const [navigationHeaderState, navigationHeaderDispatch] = useReducer(
+        navigationHeaderReducer,
+        navigationHeaderInitialState
+    );
     return (
-        <UserDataContext.Provider value={{ user, setUserProps }}>
-            <NavigationHeaderDataContext.Provider
-                value={{ navigationHeader, setNavigationHeaderProps }}
+        <UserStateContext.Provider value={{ userState, userDispatch }}>
+            <NavigationHeaderStateContext.Provider
+                value={{ navigationHeaderState, navigationHeaderDispatch }}
             >
                 {children}
-            </NavigationHeaderDataContext.Provider>
-        </UserDataContext.Provider>
+            </NavigationHeaderStateContext.Provider>
+        </UserStateContext.Provider>
     );
 };
 

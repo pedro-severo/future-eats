@@ -1,8 +1,9 @@
-import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import { usePagesNavigation } from '../usePagesNavigation';
 import PATH from '../../routes/paths';
-import { navigationHeaderInitialState } from '../../global/entities/navigationHeader';
+import * as NavigationHeaderContext from '../../global/navigationHeader/context';
+import { navigationHeaderInitialState } from '../../global/navigationHeader/reducer';
+import { NAVIGATION_ACTION_TYPES } from '../../global/navigationHeader/interface';
 
 const mockNavigate = jest.fn();
 
@@ -11,21 +12,21 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('usePagesNavigation', () => {
-    const mockSetNavigationHeaderProps = jest.fn();
-    const mockNavigationHeader = {
-        title: 'title',
-        hasTitle: false,
-        shouldRenderHeader: false,
+    const mockNavigationHeaderState = {
+        title: 'headerTitle',
+        shouldRenderHeader: true,
         navigationHistory: [],
     };
-    const mockUseContextReturn = {
-        setNavigationHeaderProps: mockSetNavigationHeaderProps,
-        navigationHeader: mockNavigationHeader,
+    const mockNavigationHeaderDispatch = jest.fn();
+    const mockUseNavigationHeaderStateReturn = {
+        navigationHeaderDispatch: mockNavigationHeaderDispatch,
+        navigationHeaderState: mockNavigationHeaderState,
     };
     beforeEach(() => {
-        jest.spyOn(React, 'useContext').mockImplementation(
-            () => mockUseContextReturn
-        );
+        jest.spyOn(
+            NavigationHeaderContext,
+            'useNavigationHeaderState'
+        ).mockImplementation(() => mockUseNavigationHeaderStateReturn);
     });
     it('should test usePagesNavigation return values', () => {
         const { result } = renderHook(() => usePagesNavigation());
@@ -38,58 +39,65 @@ describe('usePagesNavigation', () => {
         result.current.handleGoToLoginPage();
         expect(mockNavigate).toBeCalled();
         expect(mockNavigate).toBeCalledWith(PATH.LOGIN);
-        expect(mockSetNavigationHeaderProps).toBeCalled();
-        expect(mockSetNavigationHeaderProps).toBeCalledWith(
-            navigationHeaderInitialState
-        );
+        expect(mockNavigationHeaderDispatch).toBeCalled();
+        expect(mockNavigationHeaderDispatch).toBeCalledWith({
+            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+            payload: navigationHeaderInitialState,
+        });
     });
     it('should test handleGoToLoginPage function', () => {
         const { result } = renderHook(() => usePagesNavigation());
         result.current.handleGoToRegisterPage();
         expect(mockNavigate).toBeCalled();
         expect(mockNavigate).toBeCalledWith(PATH.REGISTER);
-        expect(mockSetNavigationHeaderProps).toBeCalled();
+        expect(mockNavigationHeaderDispatch).toBeCalled();
     });
     it('should test handleGoBack function', () => {
         const { result } = renderHook(() => usePagesNavigation());
         result.current.handleGoBack();
         expect(mockNavigate).toBeCalled();
         expect(mockNavigate).toBeCalledWith(PATH.LOGIN);
-        expect(mockSetNavigationHeaderProps).toBeCalled();
-        expect(mockSetNavigationHeaderProps).toBeCalledWith(
-            navigationHeaderInitialState
-        );
+        expect(mockNavigationHeaderDispatch).toBeCalled();
+        expect(mockNavigationHeaderDispatch).toBeCalledWith({
+            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+            payload: navigationHeaderInitialState,
+        });
     });
     it('should test handleGoBack function', () => {
         const mockUseContextReturn = {
-            setNavigationHeaderProps: mockSetNavigationHeaderProps,
-            navigationHeader: {
-                title: 'title',
-                hasTitle: false,
-                shouldRenderHeader: false,
-                navigationHistory: [
-                    {
-                        title: 'title',
-                        hasTitle: false,
-                        shouldRenderHeader: false,
-                        navigationHistory: [],
-                    },
-                ],
-            },
+            title: 'title',
+            hasTitle: false,
+            shouldRenderHeader: false,
+            navigationHistory: [
+                {
+                    title: 'title',
+                    hasTitle: false,
+                    shouldRenderHeader: false,
+                    navigationHistory: [],
+                },
+            ],
         };
-        jest.spyOn(React, 'useContext').mockImplementation(
-            () => mockUseContextReturn
-        );
+        const mockUseNavigationHeaderStateReturn = {
+            navigationHeaderDispatch: mockNavigationHeaderDispatch,
+            navigationHeaderState: mockUseContextReturn,
+        };
+        jest.spyOn(
+            NavigationHeaderContext,
+            'useNavigationHeaderState'
+        ).mockImplementation(() => mockUseNavigationHeaderStateReturn);
         const { result } = renderHook(() => usePagesNavigation());
         result.current.handleGoBack();
         expect(mockNavigate).toBeCalled();
         expect(mockNavigate).toBeCalledWith(-1);
-        expect(mockSetNavigationHeaderProps).toBeCalled();
-        expect(mockSetNavigationHeaderProps).toBeCalledWith({
-            title: 'title',
-            hasTitle: false,
-            shouldRenderHeader: false,
-            navigationHistory: [],
+        expect(mockNavigationHeaderDispatch).toBeCalled();
+        expect(mockNavigationHeaderDispatch).toBeCalledWith({
+            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+            payload: {
+                title: 'title',
+                hasTitle: false,
+                shouldRenderHeader: false,
+                navigationHistory: [],
+            },
         });
     });
 });
