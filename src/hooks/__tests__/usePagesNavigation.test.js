@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { usePagesNavigation } from '../usePagesNavigation';
-import PATH from '../../routes/paths';
+import PATH from '../../router/paths';
 import * as NavigationHeaderContext from '../../global/navigationHeader/context';
 import { navigationHeaderInitialState } from '../../global/navigationHeader/reducer';
 import { NAVIGATION_ACTION_TYPES } from '../../global/navigationHeader/interface';
