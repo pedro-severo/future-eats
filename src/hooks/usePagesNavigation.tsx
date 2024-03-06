@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import PATH from '../routes/paths';
+import PATH from '../router/paths';
 import { useNavigate } from 'react-router-dom';
 import { useNavigationHeaderState } from '../global/navigationHeader/context';
 import {
