@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import PATH from '../router/paths';
+import PATH from '../router/interfaces';
 import { useNavigate } from 'react-router-dom';
 import { useNavigationHeaderState } from '../global/navigationHeader/context';
 import {
@@ -15,25 +15,18 @@ export const usePagesNavigation = () => {
     const { navigationHistory } = navigationHeaderState;
 
     const handleGoToLoginPage = useCallback(() => {
-        navigationHeaderDispatch({
-            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
-            payload: navigationHeaderInitialState,
-        });
+        setNavigationHeaderState(PATH.LOGIN);
         navigate(PATH.LOGIN);
     }, [navigate, navigationHeaderDispatch, navigationHeaderInitialState]);
 
     const handleGoToRegisterPage = useCallback(() => {
-        const newHistory = getNewNavigationHistory(navigationHeaderState);
-        navigationHeaderDispatch({
-            type: NAVIGATION_ACTION_TYPES.NAVIGATE,
-            payload: {
-                title: '',
-                hasTitle: false,
-                shouldRenderHeader: true,
-                navigationHistory: newHistory,
-            },
-        });
+        setNavigationHeaderState(PATH.REGISTER);
         navigate(PATH.REGISTER);
+    }, [navigate, navigationHeaderDispatch, navigationHeaderState]);
+
+    const handleGoToHomePage = useCallback(() => {
+        setNavigationHeaderState(PATH.HOME);
+        navigate(PATH.HOME);
     }, [navigate, navigationHeaderDispatch, navigationHeaderState]);
 
     const handleGoBack = useCallback(() => {
@@ -60,9 +53,42 @@ export const usePagesNavigation = () => {
         return newHistory;
     };
 
+    const setNavigationHeaderState = (newPath?: PATH): void => {
+        const newHistory = getNewNavigationHistory(navigationHeaderState);
+        switch (newPath) {
+            case PATH.LOGIN:
+                return navigationHeaderDispatch({
+                    type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+                    payload: navigationHeaderInitialState,
+                });
+            case PATH.REGISTER:
+                return navigationHeaderDispatch({
+                    type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+                    payload: {
+                        title: '',
+                        hasTitle: false,
+                        shouldRenderHeader: true,
+                        navigationHistory: newHistory,
+                    },
+                });
+            case PATH.HOME:
+                return navigationHeaderDispatch({
+                    type: NAVIGATION_ACTION_TYPES.NAVIGATE,
+                    payload: {
+                        title: 'FutureEats',
+                        hasTitle: true,
+                        shouldRenderHeader: true,
+                        navigationHistory: newHistory,
+                    },
+                });
+            default:
+        }
+    };
+
     return {
         handleGoToLoginPage,
         handleGoToRegisterPage,
         handleGoBack,
+        handleGoToHomePage,
     };
 };

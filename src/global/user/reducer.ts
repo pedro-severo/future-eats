@@ -30,8 +30,24 @@ export const userReducer = (
                 hasError: false,
             };
         }
+        case USER_ACTION_TYPES.LOGIN_LOADING: {
+            return {
+                ...state,
+                isLoading: true,
+                hasError: false,
+            };
+        }
+        case USER_ACTION_TYPES.LOGIN_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+                hasError: true,
+            };
+        }
         default: {
-            return state;
+            throw new Error(
+                `Unknown action type for userReducer: ${action.type}`
+            );
         }
     }
 };

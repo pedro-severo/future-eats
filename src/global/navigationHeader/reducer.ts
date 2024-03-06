@@ -19,6 +19,8 @@ export const navigationHeaderReducer = (
         case NAVIGATION_ACTION_TYPES.NAVIGATE:
             return action.payload as NavigationHeaderState;
         default:
-            return state;
+            throw new Error(
+                `Unknown action type for navigationHeaderReducer: ${action.type}`
+            );
     }
 };
