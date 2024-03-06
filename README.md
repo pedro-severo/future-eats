@@ -110,9 +110,10 @@ TODO: list all comands of the project
 - [Typescript](https://www.typescriptlang.org/)
 - [MaterialUI](https://mui.com/) - DesignSystem
 - [Styled-components](https://styled-components.com/) - CSS
-- React Context - Global State
+- React Context and useReducer - Global State
 - [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - Router
 - [Axios](https://github.com/axios/axios) - HTTP Requests
+- [Jest](https://jestjs.io/) and [Enzyme](https://enzymejs.github.io/enzyme/) - Tests
 
 ### A description of the architecture
 
