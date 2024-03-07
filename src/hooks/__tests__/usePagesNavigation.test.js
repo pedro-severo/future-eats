@@ -52,6 +52,13 @@ describe('usePagesNavigation', () => {
         expect(mockNavigate).toBeCalledWith(PATH.REGISTER);
         expect(mockNavigationHeaderDispatch).toBeCalled();
     });
+    it('should test handleGoToHomePage function', () => {
+        const { result } = renderHook(() => usePagesNavigation());
+        result.current.handleGoToHomePage();
+        expect(mockNavigate).toBeCalled();
+        expect(mockNavigate).toBeCalledWith(PATH.HOME);
+        expect(mockNavigationHeaderDispatch).toBeCalled();
+    });
     it('should test handleGoBack function', () => {
         const { result } = renderHook(() => usePagesNavigation());
         result.current.handleGoBack();

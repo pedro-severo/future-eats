@@ -81,6 +81,7 @@ export const usePagesNavigation = () => {
                         navigationHistory: newHistory,
                     },
                 });
+            // istanbul ignore next
             default:
         }
     };

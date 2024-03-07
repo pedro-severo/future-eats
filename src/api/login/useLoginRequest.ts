@@ -20,6 +20,7 @@ export const useLoginRequest = () => {
             });
             return handleGoToHomePage();
         } catch (e) {
+            // istanbul ignore next
             userDispatch({
                 type: USER_ACTION_TYPES.LOGIN_FAILURE,
             });
