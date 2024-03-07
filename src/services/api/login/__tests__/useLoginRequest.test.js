@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useLoginRequest } from '../useLoginRequest';
-import * as useUserState from '../../../global/user/context';
-import * as usePagesNavigation from '../../../hooks/usePagesNavigation';
+import * as useUserState from '../../../../global/user/context';
+import * as usePagesNavigation from '../../../../hooks/usePagesNavigation';
 
 const mockNavigate = jest.fn();
 const mockUserDispatch = jest.fn();
