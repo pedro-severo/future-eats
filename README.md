@@ -68,6 +68,8 @@ The backend project is not deployed yet, so, to run and test the api connection 
 
 Sorry by the (no) Readme, but to run the future-eats-service is just to run npm (or yarn) install + npm run (or yarn) start 
 
+<br>
+
 ### Tests and coverage
 
 1. Runing tests:
