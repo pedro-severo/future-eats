@@ -9,11 +9,11 @@ const schemaMock = {
 
 const mockHandleMockLogin = jest.fn();
 
-jest.mock('../../../../api/login/useLoginRequest', () => ({
+jest.mock('../../../../services/api/login/useLoginRequest', () => ({
     useLoginRequest: () => ({ handleLogin: mockHandleMockLogin }),
 }));
 
-describe('useLoginSchema', () => {
+describe('useLoginPage', () => {
     beforeEach(() => {
         jest.spyOn(useCustomHook, 'useLoginSchema').mockImplementation(() => {
             return {
