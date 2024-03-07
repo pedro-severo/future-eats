@@ -17,7 +17,7 @@ Before you begin, make sure you have the following installed:
 
 1. (optional) **Install yarn:**
 
-   consider to install yarn command to use it in place of npm commands:
+   consider to install yarn command to use it in place of npm command:
 
    ```bash
    npm install -g yarn
