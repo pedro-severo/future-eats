@@ -30,7 +30,7 @@ describe('Login request', () => {
         expect(api.post).toBeCalled();
         expect(api.post).toBeCalledWith('/user/login', loginInput);
     });
-    it('should call login request correctly', async () => {
+    it('should call login request with error', async () => {
         const loginInput = {
             username: 'invalid_user',
             password: 'invalid_password',
