@@ -9,7 +9,7 @@ Follow these steps to set up and run Future Eats on your local machine.
 Before you begin, make sure you have the following installed:
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Node.js and npm](https://nodejs.org/)
+- [Node.js and npm](https://nodejs.org/) - version 20
 
 <br>
 
