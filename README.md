@@ -62,11 +62,11 @@ Before you begin, make sure you have the following installed:
 
 ### Connecting the API
 
-The backend project is not deployed yet, so, to run and test the api connection on frunt, is necessary to run the backend also. Here is the link:
+The backend project is not deployed yet, so, to run and test the api connection on front, is necessary to run the backend also. Here is the link:
 
 [Future Eats Service](https://github.com/pedro-severo/future-eats-service)
 
-Sorry by the (no) Readme, but to run the future-eats-service is just to run `npm (or yarn) install` + `npm run (or yarn) start`
+Sorry by the (no) Readme, the work is in progress there, but to run the future-eats-service is just to run `npm (or yarn) install` + `npm run (or yarn) start`
 
 <br>
 
