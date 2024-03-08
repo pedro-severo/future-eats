@@ -22,9 +22,8 @@ export const useLoginRequest = () => {
                 });
                 return handleGoToHomePage();
             } catch (e) {
-                // istanbul ignore next
                 userDispatch({
-                    type: USER_ACTION_TYPES.USER_LOADING,
+                    type: USER_ACTION_TYPES.USER_FAILURE,
                 });
             }
         },
