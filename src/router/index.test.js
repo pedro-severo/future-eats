@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Router } from '.';
-import PATH from './paths';
+import PATH from './interfaces';
 
 describe('Router', () => {
     it('should check if all Routes are rendered', () => {

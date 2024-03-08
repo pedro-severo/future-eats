@@ -30,8 +30,31 @@ export const userReducer = (
                 hasError: false,
             };
         }
+        case USER_ACTION_TYPES.REGISTER_SUCCESS: {
+            return {
+                user: action.payload as User,
+                isLoading: false,
+                hasError: false,
+            };
+        }
+        case USER_ACTION_TYPES.USER_LOADING: {
+            return {
+                ...state,
+                isLoading: true,
+                hasError: false,
+            };
+        }
+        case USER_ACTION_TYPES.USER_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+                hasError: true,
+            };
+        }
         default: {
-            return state;
+            throw new Error(
+                `Unknown action type for userReducer: ${action.type}`
+            );
         }
     }
 };

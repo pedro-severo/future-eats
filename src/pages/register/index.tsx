@@ -1,23 +1,14 @@
 import React from 'react';
-import { useRegisterSchema } from './hooks/useRegisterSchema';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { IFormInputNames } from './interfaces/FormInputNames';
 import { RegisterPageView } from './view';
+import { useRegisterPage } from './hooks/useRegisterPage';
 
 export const RegisterPage = () => {
-    const { schema } = useRegisterSchema();
-    const { control, handleSubmit } = useForm<IFormInputNames>({
-        resolver: yupResolver(schema),
-    });
-
-    // istanbul ignore next
-    const onSubmit = () => {
-        // TODO: Check password and passwordConfirmation match before anithing
-        // TODO: Implement function
-    };
+    const { handleSubmit, onSubmitForm, control } = useRegisterPage();
 
     return (
-        <RegisterPageView onSubmit={handleSubmit(onSubmit)} control={control} />
+        <RegisterPageView
+            onSubmit={handleSubmit(onSubmitForm)}
+            control={control}
+        />
     );
 };

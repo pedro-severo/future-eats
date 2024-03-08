@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { usePagesNavigation } from '../usePagesNavigation';
-import PATH from '../../router/paths';
+import PATH from '../../router/interfaces';
 import * as NavigationHeaderContext from '../../global/navigationHeader/context';
 import { navigationHeaderInitialState } from '../../global/navigationHeader/reducer';
 import { NAVIGATION_ACTION_TYPES } from '../../global/navigationHeader/interface';
@@ -50,6 +50,13 @@ describe('usePagesNavigation', () => {
         result.current.handleGoToRegisterPage();
         expect(mockNavigate).toBeCalled();
         expect(mockNavigate).toBeCalledWith(PATH.REGISTER);
+        expect(mockNavigationHeaderDispatch).toBeCalled();
+    });
+    it('should test handleGoToHomePage function', () => {
+        const { result } = renderHook(() => usePagesNavigation());
+        result.current.handleGoToHomePage();
+        expect(mockNavigate).toBeCalled();
+        expect(mockNavigate).toBeCalledWith(PATH.HOME);
         expect(mockNavigationHeaderDispatch).toBeCalled();
     });
     it('should test handleGoBack function', () => {

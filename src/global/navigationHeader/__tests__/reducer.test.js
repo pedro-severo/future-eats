@@ -25,17 +25,19 @@ describe('navigationHeaderReducer', () => {
         );
     });
     it('should test default of reducer', () => {
-        const result = navigationHeaderReducer(navigationHeaderInitialState, {
-            type: '',
-            payload: mockNewState,
-        });
-        expect(result.title).toBe(navigationHeaderInitialState.title);
-        expect(result.hasTitle).toBe(navigationHeaderInitialState.hasTitle);
-        expect(result.shouldRenderHeader).toBe(
-            navigationHeaderInitialState.shouldRenderHeader
-        );
-        expect(result.navigationHistory).toEqual(
-            navigationHeaderInitialState.navigationHistory
-        );
+        try {
+            const result = navigationHeaderReducer(
+                navigationHeaderInitialState,
+                {
+                    type: 'INVALID_TYPE',
+                    payload: mockNewState,
+                }
+            );
+            expect(result).toThrow(TypeError);
+        } catch (e) {
+            expect(e.message).toBe(
+                'Unknown action type for navigationHeaderReducer: INVALID_TYPE'
+            );
+        }
     });
 });
