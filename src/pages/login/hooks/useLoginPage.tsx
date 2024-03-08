@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useLoginSchema } from './useLoginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useLoginRequest } from '../../../api/login/useLoginRequest';
-import { LoginInput } from '../../../api/login/interface';
+import { useLoginRequest } from '../../../services/api/login/useLoginRequest';
+import { LoginInput } from '../../../services/api/login/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 
 export const useLoginPage = () => {

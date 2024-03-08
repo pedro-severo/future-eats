@@ -30,14 +30,21 @@ export const userReducer = (
                 hasError: false,
             };
         }
-        case USER_ACTION_TYPES.LOGIN_LOADING: {
+        case USER_ACTION_TYPES.REGISTER_SUCCESS: {
+            return {
+                user: action.payload as User,
+                isLoading: false,
+                hasError: false,
+            };
+        }
+        case USER_ACTION_TYPES.USER_LOADING: {
             return {
                 ...state,
                 isLoading: true,
                 hasError: false,
             };
         }
-        case USER_ACTION_TYPES.LOGIN_FAILURE: {
+        case USER_ACTION_TYPES.USER_FAILURE: {
             return {
                 ...state,
                 isLoading: false,

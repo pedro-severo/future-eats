@@ -1,13 +1,13 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { useLoginRequest } from '../useLoginRequest';
-import * as useUserState from '../../../global/user/context';
-import * as usePagesNavigation from '../../../hooks/usePagesNavigation';
+import { useRegisterRequest } from '../useRegisterRequest';
+import * as useUserState from '../../../../global/user/context';
+import * as usePagesNavigation from '../../../../hooks/usePagesNavigation';
 
 const mockNavigate = jest.fn();
 const mockUserDispatch = jest.fn();
 
 jest.mock('../request', () => ({
-    login: () => ({
+    register: () => ({
         response: {
             user: {
                 id: '',
@@ -22,13 +22,15 @@ jest.mock('../request', () => ({
     }),
 }));
 
-const mockLoginInput = {
-    email: 'email',
-    password: 'password',
+const mockRegisterInput = {
+    name: 'string',
+    email: 'string',
+    password: 'string',
+    cpf: 'string',
 };
 
-describe('useLoginRequest', () => {
-    it('should test handle login calling', async () => {
+describe('useRegisterRequest', () => {
+    it('should test handle register calling', async () => {
         jest.spyOn(useUserState, 'useUserState').mockImplementation(() => {
             return {
                 userDispatch: mockUserDispatch,
@@ -41,8 +43,8 @@ describe('useLoginRequest', () => {
                 };
             }
         );
-        const { result } = renderHook(() => useLoginRequest());
-        await result.current.handleLogin(mockLoginInput);
+        const { result } = renderHook(() => useRegisterRequest());
+        await result.current.handleRegister(mockRegisterInput);
         expect(mockUserDispatch).toBeCalledTimes(2);
         expect(mockNavigate).toBeCalledTimes(1);
     });
