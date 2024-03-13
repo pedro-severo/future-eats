@@ -4,13 +4,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStateProvider from './global';
 import './global.css';
+import APIProvider from './services/api/api';
 
 // eslint-disable-next-line react/no-deprecated
 ReactDOM.render(
     <React.StrictMode>
-        <GlobalStateProvider>
-            <App />
-        </GlobalStateProvider>
+        <APIProvider>
+            <GlobalStateProvider>
+                <App />
+            </GlobalStateProvider>
+        </APIProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

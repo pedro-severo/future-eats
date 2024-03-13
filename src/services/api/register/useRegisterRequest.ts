@@ -1,34 +1,46 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useUserState } from '../../../global/user/context';
 import { USER_ACTION_TYPES } from '../../../global/user/interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
 import { RegisterInput } from './interface';
-import { register } from './request';
+import { REGISTER } from './schema';
+import { useMutation } from '@apollo/client';
 
 export const useRegisterRequest = () => {
     const { userDispatch } = useUserState();
     const { handleGoToHomePage } = usePagesNavigation();
+    const [signup, { loading, error }] = useMutation(REGISTER);
+
+    useEffect(() => {
+        if (loading)
+            userDispatch({
+                type: USER_ACTION_TYPES.USER_LOADING,
+            });
+    }, [loading, userDispatch]);
+
+    useEffect(() => {
+        if (error)
+            userDispatch({
+                type: USER_ACTION_TYPES.USER_FAILURE,
+            });
+    }, [error, userDispatch]);
 
     const handleRegister = useCallback(
         async (registerInput: RegisterInput): Promise<void> => {
-            try {
-                userDispatch({
-                    type: USER_ACTION_TYPES.USER_LOADING,
+            const { email, password, cpf, name } = registerInput;
+            signup({ variables: { email, password, cpf, name } })
+                .then((response) => {
+                    userDispatch({
+                        type: USER_ACTION_TYPES.REGISTER_SUCCESS,
+                        payload: response.data.signup.data.user,
+                    });
+                    handleGoToHomePage();
+                })
+                .catch(() => {
+                    // do nothing
                 });
-                const response = await register(registerInput);
-                userDispatch({
-                    type: USER_ACTION_TYPES.REGISTER_SUCCESS,
-                    payload: response.user,
-                });
-                return handleGoToHomePage();
-            } catch (e) {
-                // istanbul ignore next
-                userDispatch({
-                    type: USER_ACTION_TYPES.USER_FAILURE,
-                });
-            }
         },
-        [userDispatch, handleGoToHomePage, register]
+        [userDispatch, handleGoToHomePage, signup]
     );
 
     return { handleRegister };

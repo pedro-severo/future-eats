@@ -1,9 +1,4 @@
-import {
-    USER_ACTION_TYPES,
-    User,
-    UserState,
-    UserReducerAction,
-} from './interface';
+import { USER_ACTION_TYPES, UserState, UserReducerAction } from './interface';
 
 export const userInitialState: UserState = {
     user: {
@@ -25,14 +20,14 @@ export const userReducer = (
     switch (action.type) {
         case USER_ACTION_TYPES.LOGIN_SUCCESS: {
             return {
-                user: action.payload as User,
+                user: { ...state.user, ...action.payload },
                 isLoading: false,
                 hasError: false,
             };
         }
         case USER_ACTION_TYPES.REGISTER_SUCCESS: {
             return {
-                user: action.payload as User,
+                user: { ...state.user, ...action.payload },
                 isLoading: false,
                 hasError: false,
             };
