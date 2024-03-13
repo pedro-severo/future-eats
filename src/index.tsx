@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStateProvider from './global';
 import './global.css';
-import APIProvider from './services/api/api';
+import APIProvider from './services/api';
 
 // eslint-disable-next-line react/no-deprecated
 ReactDOM.render(

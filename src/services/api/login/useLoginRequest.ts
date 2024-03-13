@@ -9,7 +9,7 @@ import { LOGIN } from './schema';
 export const useLoginRequest = () => {
     const { userDispatch } = useUserState();
     const { handleGoToHomePage } = usePagesNavigation();
-    const [login, { loading, error }] = useMutation(LOGIN);
+    const [login, { loading }] = useMutation(LOGIN);
 
     useEffect(() => {
         if (loading)
@@ -18,27 +18,23 @@ export const useLoginRequest = () => {
             });
     }, [loading, userDispatch]);
 
-    useEffect(() => {
-        if (error)
-            userDispatch({
-                type: USER_ACTION_TYPES.USER_FAILURE,
-            });
-    }, [error, userDispatch]);
-
     const handleLogin = useCallback(
         async (loginInput: LoginInput): Promise<void> => {
-            const { email, password } = loginInput;
-            login({ variables: { email, password } })
-                .then((response) => {
-                    userDispatch({
-                        type: USER_ACTION_TYPES.LOGIN_SUCCESS,
-                        payload: response.data.login.data.user,
-                    });
-                    handleGoToHomePage();
-                })
-                .catch(() => {
-                    // do nothing
+            try {
+                const { email, password } = loginInput;
+                const response = await login({
+                    variables: { email, password },
                 });
+                userDispatch({
+                    type: USER_ACTION_TYPES.LOGIN_SUCCESS,
+                    payload: response?.data?.login?.data?.user,
+                });
+                handleGoToHomePage();
+            } catch (e) {
+                userDispatch({
+                    type: USER_ACTION_TYPES.USER_FAILURE,
+                });
+            }
         },
         [userDispatch, login, handleGoToHomePage]
     );

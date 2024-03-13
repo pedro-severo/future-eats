@@ -9,7 +9,7 @@ import { useMutation } from '@apollo/client';
 export const useRegisterRequest = () => {
     const { userDispatch } = useUserState();
     const { handleGoToHomePage } = usePagesNavigation();
-    const [signup, { loading, error }] = useMutation(REGISTER);
+    const [signup, { loading }] = useMutation(REGISTER);
 
     useEffect(() => {
         if (loading)
@@ -18,27 +18,23 @@ export const useRegisterRequest = () => {
             });
     }, [loading, userDispatch]);
 
-    useEffect(() => {
-        if (error)
-            userDispatch({
-                type: USER_ACTION_TYPES.USER_FAILURE,
-            });
-    }, [error, userDispatch]);
-
     const handleRegister = useCallback(
         async (registerInput: RegisterInput): Promise<void> => {
-            const { email, password, cpf, name } = registerInput;
-            signup({ variables: { email, password, cpf, name } })
-                .then((response) => {
-                    userDispatch({
-                        type: USER_ACTION_TYPES.REGISTER_SUCCESS,
-                        payload: response.data.signup.data.user,
-                    });
-                    handleGoToHomePage();
-                })
-                .catch(() => {
-                    // do nothing
+            try {
+                const { email, password, cpf, name } = registerInput;
+                const response = await signup({
+                    variables: { email, password, cpf, name },
                 });
+                userDispatch({
+                    type: USER_ACTION_TYPES.REGISTER_SUCCESS,
+                    payload: response?.data?.signup?.data?.user,
+                });
+                handleGoToHomePage();
+            } catch (e) {
+                userDispatch({
+                    type: USER_ACTION_TYPES.USER_FAILURE,
+                });
+            }
         },
         [userDispatch, handleGoToHomePage, signup]
     );
