@@ -1,34 +1,42 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useUserState } from '../../../global/user/context';
 import { USER_ACTION_TYPES } from '../../../global/user/interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
 import { RegisterInput } from './interface';
-import { register } from './request';
+import { REGISTER } from './schema';
+import { useMutation } from '@apollo/client';
 
 export const useRegisterRequest = () => {
     const { userDispatch } = useUserState();
     const { handleGoToHomePage } = usePagesNavigation();
+    const [signup, { loading }] = useMutation(REGISTER);
+
+    useEffect(() => {
+        if (loading)
+            userDispatch({
+                type: USER_ACTION_TYPES.USER_LOADING,
+            });
+    }, [loading, userDispatch]);
 
     const handleRegister = useCallback(
         async (registerInput: RegisterInput): Promise<void> => {
             try {
-                userDispatch({
-                    type: USER_ACTION_TYPES.USER_LOADING,
+                const { email, password, cpf, name } = registerInput;
+                const response = await signup({
+                    variables: { email, password, cpf, name },
                 });
-                const response = await register(registerInput);
                 userDispatch({
                     type: USER_ACTION_TYPES.REGISTER_SUCCESS,
-                    payload: response.user,
+                    payload: response?.data?.signup?.data?.user,
                 });
-                return handleGoToHomePage();
+                handleGoToHomePage();
             } catch (e) {
-                // istanbul ignore next
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,
                 });
             }
         },
-        [userDispatch, handleGoToHomePage, register]
+        [userDispatch, handleGoToHomePage, signup]
     );
 
     return { handleRegister };

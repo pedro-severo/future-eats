@@ -14,6 +14,13 @@ jest.mock('../../../hooks/usePagesNavigation', () => ({
     usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
 }));
 
+const mockLogin = jest.fn();
+
+jest.mock('@apollo/client', () => ({
+    gql: jest.fn(),
+    useMutation: jest.fn().mockReturnValue([mockLogin, { loading: false }]),
+}));
+
 describe('LoginPage', () => {
     let wrapper;
     beforeEach(() => {

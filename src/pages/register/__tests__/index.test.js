@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as useCustomHook from '../hooks/useRegisterSchema';
+import * as useRegisterSchema from '../hooks/useRegisterSchema';
 import { RegisterPage } from '..';
 import { yupCustomValidationsSetup } from '../../../services/yup';
 
@@ -18,12 +18,19 @@ jest.mock('../../../hooks/usePagesNavigation', () => ({
     usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
 }));
 
+const mockLogin = jest.fn();
+
+jest.mock('@apollo/client', () => ({
+    gql: jest.fn(),
+    useMutation: jest.fn().mockReturnValue([mockLogin, { loading: false }]),
+}));
+
 describe('RegisterPage', () => {
     let wrapper;
     beforeEach(() => {
         yupCustomValidationsSetup();
         wrapper = shallow(<RegisterPage />);
-        jest.spyOn(useCustomHook, 'useRegisterSchema').mockImplementation(
+        jest.spyOn(useRegisterSchema, 'useRegisterSchema').mockImplementation(
             () => {
                 return {
                     schema: schemaMock,

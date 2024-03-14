@@ -1,26 +1,34 @@
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-import api from '../api';
+import React from 'react';
+import { render } from '@testing-library/react';
+import APIProvider from '../index';
 
-const mock = new MockAdapter(axios);
+jest.mock('@apollo/client', () => ({
+    ApolloClient: jest.fn(() => ({
+        query: jest.fn(),
+        mutate: jest.fn(),
+        subscribe: jest.fn(),
+        readQuery: jest.fn(),
+        writeQuery: jest.fn(),
+        readFragment: jest.fn(),
+        writeFragment: jest.fn(),
+        clearStore: jest.fn(),
+        resetStore: jest.fn(),
+        onResetStore: jest.fn(),
+        cache: jest.fn(),
+    })),
+    InMemoryCache: jest.fn(),
+    // eslint-disable-next-line react/prop-types
+    ApolloProvider: ({ children }) => <>{children}</>,
+}));
 
-mock.onGet('url').reply(200, { data: 'mocked response' });
-
-describe('API abstraction', () => {
-    it('should make a GET request to the baseURL', async () => {
-        api.get('/').then((res) => {
-            expect(res.status).toBe(200);
-            expect(res.data).toEqual({ data: 'mocked response' });
-        });
-    });
-
-    it('should give a error in a GET request', async () => {
-        api.get('/')
-            .then(() => {
-                throw new Error('Wrong inputs passed in');
-            })
-            .catch((e) => {
-                expect(e.name).toBe('AxiosError');
-            });
+describe('APIProvider component', () => {
+    test('renders children', () => {
+        const ChildComponent = () => <div>Child Component</div>;
+        const { getByText } = render(
+            <APIProvider>
+                <ChildComponent />
+            </APIProvider>
+        );
+        expect(getByText('Child Component')).toBeInTheDocument();
     });
 });
