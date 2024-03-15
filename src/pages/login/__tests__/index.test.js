@@ -16,6 +16,7 @@ jest.mock('../../../hooks/usePagesNavigation', () => ({
 
 const mockLogin = jest.fn();
 
+// for same reason the test was broking and demanding this mock
 jest.mock('@apollo/client', () => ({
     gql: jest.fn(),
     useMutation: jest.fn().mockReturnValue([mockLogin, { loading: false }]),
