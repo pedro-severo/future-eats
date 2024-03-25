@@ -12,7 +12,10 @@ export const Router = () => {
             <Routes>
                 <Route path={PATH.LOGIN} element={<LoginPage />} />
                 <Route path={PATH.REGISTER} element={<RegisterPage />} />
-                <Route path={PATH.HOME} element={<div>HOME PAGE</div>} />
+                <Route
+                    path={PATH.HOME}
+                    element={<div>REGISTER ADDRESS PAGE</div>}
+                />
             </Routes>
         </BrowserRouter>
     );
