@@ -8,7 +8,7 @@ export const LoginPage = () => {
         control,
         handleSubmit,
         hasLoginError,
-        closeAlert,
+        onCloseAlert,
         alertMessage,
     } = useLoginPage();
     return (
@@ -16,7 +16,7 @@ export const LoginPage = () => {
             onSubmit={handleSubmit(onSubmitForm)}
             control={control}
             hasLoginError={hasLoginError}
-            closeAlert={closeAlert}
+            closeAlert={onCloseAlert}
             alertMessage={alertMessage}
         />
     );

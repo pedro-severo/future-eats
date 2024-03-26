@@ -8,7 +8,7 @@ export const RegisterPage = () => {
         onSubmitForm,
         control,
         hasSignupError,
-        closeAlert,
+        onCloseAlert,
         alertMessage,
     } = useRegisterPage();
 
@@ -17,7 +17,7 @@ export const RegisterPage = () => {
             onSubmit={handleSubmit(onSubmitForm)}
             control={control}
             hasSignupError={hasSignupError}
-            closeAlert={closeAlert}
+            closeAlert={onCloseAlert}
             alertMessage={alertMessage}
         />
     );
