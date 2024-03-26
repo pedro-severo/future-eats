@@ -11,6 +11,7 @@ export const userInitialState: UserState = {
     },
     isLoading: false,
     hasError: false,
+    alertMessage: undefined,
 };
 
 export const userReducer = (
@@ -44,7 +45,11 @@ export const userReducer = (
                 ...state,
                 isLoading: false,
                 hasError: true,
+                alertMessage: action?.alertMessage,
             };
+        }
+        case USER_ACTION_TYPES.RESET_STATE: {
+            return userInitialState;
         }
         default: {
             throw new Error(

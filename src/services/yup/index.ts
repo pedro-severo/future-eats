@@ -6,6 +6,7 @@ export function yupCustomValidationsSetup() {
     yup.addMethod(yup.string, 'cpf', cpf);
 }
 
+// istanbul ignore next
 function cpf() {
     // @ts-expect-error callback used in a scope with 'this' and 'value' props
     return this.test('isValidCpf', errorMessages.invalidCPF, cpfValidation);

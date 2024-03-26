@@ -11,17 +11,29 @@ interface IRegisterPageViewProps {
     onSubmit: () => void;
     // eslint-disable-next-line
     control: Control<any, any>;
+    hasSignupError: boolean;
+    closeAlert: () => void;
+    alertMessage?: string;
 }
 
 export const RegisterPageView = ({
     onSubmit,
     control,
+    hasSignupError,
+    closeAlert,
+    alertMessage,
 }: IRegisterPageViewProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] =
         useState(false);
     return (
         <RegisterPageWrapper>
+            <designSystem.alert
+                severity="error"
+                isOpen={hasSignupError}
+                message={alertMessage}
+                onClose={closeAlert}
+            />
             <img src={mainLogo} />
             <RegisterForm onSubmit={onSubmit}>
                 <designSystem.typography variant="h2">

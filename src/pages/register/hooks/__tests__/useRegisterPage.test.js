@@ -1,6 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
 import * as useCustomHook from '../useRegisterSchema';
 import { useRegisterPage } from '../useRegisterPage';
+import * as useUserState from '../../../../global/user/context';
+import { USER_ACTION_TYPES } from '../../../../global/user/interface';
 
 const schemaMock = {
     password: 'password',
@@ -13,6 +15,8 @@ jest.mock('../../../../services/api/register/useRegisterRequest', () => ({
     useRegisterRequest: () => ({ handleRegister: mockHandleMockRegister }),
 }));
 
+const mockUserDispatch = jest.fn();
+
 describe('useRegisterPage', () => {
     beforeEach(() => {
         jest.spyOn(useCustomHook, 'useRegisterSchema').mockImplementation(
@@ -22,10 +26,25 @@ describe('useRegisterPage', () => {
                 };
             }
         );
+        jest.spyOn(useUserState, 'useUserState').mockImplementation(() => {
+            return {
+                userDispatch: mockUserDispatch,
+                userState: {
+                    hasError: false,
+                },
+            };
+        });
     });
     it('call onSubmit correctly', async () => {
         const { result } = renderHook(() => useRegisterPage());
         await result.current.onSubmitForm(schemaMock);
         expect(mockHandleMockRegister).toBeCalledWith(schemaMock);
+    });
+    it('call onCloseAlert correctly', async () => {
+        const { result } = renderHook(() => useRegisterPage());
+        await result.current.onCloseAlert();
+        expect(mockUserDispatch).toBeCalledWith({
+            type: USER_ACTION_TYPES.RESET_STATE,
+        });
     });
 });

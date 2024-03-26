@@ -11,13 +11,28 @@ interface ILoginPageViewProps {
     onSubmit: () => void;
     // eslint-disable-next-line
     control: Control<any, any>;
+    hasLoginError: boolean;
+    closeAlert: () => void;
+    alertMessage?: string;
 }
 
-export const LoginPageView = ({ onSubmit, control }: ILoginPageViewProps) => {
+export const LoginPageView = ({
+    onSubmit,
+    control,
+    hasLoginError,
+    closeAlert,
+    alertMessage,
+}: ILoginPageViewProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const { handleGoToRegisterPage } = usePagesNavigation();
     return (
         <LoginPageWrapper>
+            <designSystem.alert
+                severity="error"
+                isOpen={hasLoginError}
+                message={alertMessage}
+                onClose={closeAlert}
+            />
             <img src={mainLogo} />
             <LoginForm onSubmit={onSubmit}>
                 <designSystem.typography variant="h2">

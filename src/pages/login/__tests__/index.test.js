@@ -16,10 +16,23 @@ jest.mock('../../../hooks/usePagesNavigation', () => ({
 
 const mockLogin = jest.fn();
 
-// for same reason the test was broking and demanding this mock
+// for some reason the test was broking and demanding this mock
 jest.mock('@apollo/client', () => ({
     gql: jest.fn(),
     useMutation: jest.fn().mockReturnValue([mockLogin, { loading: false }]),
+}));
+
+const mockOnSubmit = jest.fn();
+
+jest.mock('../hooks/useLoginPage', () => ({
+    useLoginPage: jest.fn().mockImplementation(() => ({
+        onSubmitForm: mockOnSubmit,
+        control: {},
+        handleSubmit: jest.fn(mockOnSubmit),
+        hasLoginError: false,
+        closeAlert: jest.fn(),
+        alertMessage: 'OLLAAAr',
+    })),
 }));
 
 describe('LoginPage', () => {

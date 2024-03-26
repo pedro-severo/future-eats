@@ -64,6 +64,7 @@ describe('useRegisterRequest', () => {
         await result.current.handleRegister(mockRegisterInput);
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.USER_FAILURE,
+            alertMessage: 'foo',
         });
     });
     it('should call loading side effect', async () => {

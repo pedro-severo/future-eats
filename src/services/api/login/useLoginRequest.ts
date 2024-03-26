@@ -3,7 +3,7 @@ import { useUserState } from '../../../global/user/context';
 import { USER_ACTION_TYPES } from '../../../global/user/interface';
 import { LoginInput } from './interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
-import { useMutation } from '@apollo/client';
+import { ApolloError, useMutation } from '@apollo/client';
 import { LOGIN } from './schema';
 
 export const useLoginRequest = () => {
@@ -33,6 +33,7 @@ export const useLoginRequest = () => {
             } catch (e) {
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,
+                    alertMessage: (e as ApolloError).message,
                 });
             }
         },
