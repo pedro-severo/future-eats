@@ -11,12 +11,13 @@ export interface UserState {
     user: User;
     isLoading: boolean;
     hasError: boolean;
-    errorMessage?: string;
+    alertMessage?: string;
 }
 
 export interface UserReducerAction {
     type: USER_ACTION_TYPES;
     payload?: User;
+    alertMessage?: string;
 }
 
 export interface UseReducerReturn {
@@ -29,4 +30,5 @@ export enum USER_ACTION_TYPES {
     REGISTER_SUCCESS = 'REGISTER_SUCCESS',
     USER_LOADING = 'USER_LOADING',
     USER_FAILURE = 'USER_FAILURE',
+    RESET_STATE = 'RESET_STATE',
 }

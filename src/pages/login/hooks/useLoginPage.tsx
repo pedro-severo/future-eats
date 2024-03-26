@@ -4,6 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useLoginRequest } from '../../../services/api/login/useLoginRequest';
 import { LoginInput } from '../../../services/api/login/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
+import { useUserState } from '../../../global/user/context';
+import { USER_ACTION_TYPES } from '../../../global/user/interface';
 
 export const useLoginPage = () => {
     const { schema } = useLoginSchema();
@@ -11,14 +13,25 @@ export const useLoginPage = () => {
         resolver: yupResolver(schema),
     });
     const { handleLogin } = useLoginRequest();
+    const {
+        userState: { hasError, alertMessage },
+        userDispatch,
+    } = useUserState();
 
     const onSubmit = async (loginInput: LoginInput) => {
         handleLogin(loginInput);
+    };
+
+    const closeAlert = () => {
+        userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
     };
 
     return {
         onSubmitForm: onSubmit,
         control,
         handleSubmit,
+        hasLoginError: hasError,
+        closeAlert,
+        alertMessage,
     };
 };

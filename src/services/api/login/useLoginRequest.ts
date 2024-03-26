@@ -33,6 +33,7 @@ export const useLoginRequest = () => {
             } catch (e) {
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,
+                    alertMessage: 'Não foi possível fazer o login.',
                 });
             }
         },
