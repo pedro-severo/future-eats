@@ -40,9 +40,9 @@ describe('useRegisterPage', () => {
         await result.current.onSubmitForm(schemaMock);
         expect(mockHandleMockRegister).toBeCalledWith(schemaMock);
     });
-    it('call closeAlert correctly', async () => {
+    it('call onCloseAlert correctly', async () => {
         const { result } = renderHook(() => useRegisterPage());
-        await result.current.closeAlert();
+        await result.current.onCloseAlert();
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.RESET_STATE,
         });

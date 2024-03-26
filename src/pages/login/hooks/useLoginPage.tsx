@@ -22,7 +22,7 @@ export const useLoginPage = () => {
         handleLogin(loginInput);
     };
 
-    const closeAlert = () => {
+    const onCloseAlert = () => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
     };
 
@@ -31,7 +31,7 @@ export const useLoginPage = () => {
         control,
         handleSubmit,
         hasLoginError: hasError,
-        closeAlert,
+        onCloseAlert,
         alertMessage,
     };
 };

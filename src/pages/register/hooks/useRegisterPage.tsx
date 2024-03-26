@@ -28,7 +28,7 @@ export const useRegisterPage = () => {
         handleRegister(registerInput);
     };
 
-    const closeAlert = () => {
+    const onCloseAlert = () => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
     };
 
@@ -38,6 +38,6 @@ export const useRegisterPage = () => {
         handleSubmit,
         hasSignupError: hasError,
         alertMessage,
-        closeAlert,
+        onCloseAlert,
     };
 };
