@@ -22,6 +22,19 @@ jest.mock('@apollo/client', () => ({
     useMutation: jest.fn().mockReturnValue([mockLogin, { loading: false }]),
 }));
 
+const mockOnSubmit = jest.fn();
+
+jest.mock('../hooks/useLoginPage', () => ({
+    useLoginPage: jest.fn().mockImplementation(() => ({
+        onSubmitForm: mockOnSubmit,
+        control: {},
+        handleSubmit: jest.fn(mockOnSubmit),
+        hasLoginError: false,
+        closeAlert: jest.fn(),
+        alertMessage: 'OLLAAAr',
+    })),
+}));
+
 describe('LoginPage', () => {
     let wrapper;
     beforeEach(() => {

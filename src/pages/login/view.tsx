@@ -27,14 +27,12 @@ export const LoginPageView = ({
     const { handleGoToRegisterPage } = usePagesNavigation();
     return (
         <LoginPageWrapper>
-            {alertMessage && (
-                <designSystem.alert
-                    severity="error"
-                    isOpen={hasLoginError}
-                    message={alertMessage}
-                    onClose={closeAlert}
-                />
-            )}
+            <designSystem.alert
+                severity="error"
+                isOpen={hasLoginError}
+                message={alertMessage}
+                onClose={closeAlert}
+            />
             <img src={mainLogo} />
             <LoginForm onSubmit={onSubmit}>
                 <designSystem.typography variant="h2">

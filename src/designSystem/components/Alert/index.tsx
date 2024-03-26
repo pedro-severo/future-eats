@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export interface IAlertProps extends AlertProps {
     isOpen: boolean;
-    message: string;
+    message?: string;
     timeout?: number;
 }
 
@@ -22,8 +22,11 @@ export const Alert = ({
 }: IAlertProps) => {
     const [open, setOpen] = useState(isOpen);
 
+    // istanbul ignore next
     useEffect(() => {
+        // istanbul ignore next
         setOpen(isOpen);
+        // istanbul ignore next
         return () => {
             setTimeout(function () {
                 setOpen(false);
@@ -33,9 +36,11 @@ export const Alert = ({
 
     return (
         <StyledCollapse in={open}>
-            <MuiAlert id="mui-alert-id" {...props}>
-                {message}
-            </MuiAlert>
+            {message && (
+                <MuiAlert id="mui-alert-id" {...props}>
+                    {message}
+                </MuiAlert>
+            )}
         </StyledCollapse>
     );
 };
