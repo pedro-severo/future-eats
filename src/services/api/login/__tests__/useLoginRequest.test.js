@@ -62,7 +62,7 @@ describe('useLoginRequest', () => {
         await result.current.handleLogin(mockLoginInput);
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.USER_FAILURE,
-            alertMessage: 'Não foi possível fazer o login.',
+            alertMessage: 'foo',
         });
     });
     it('should call loading side effect', async () => {

@@ -4,7 +4,7 @@ import { USER_ACTION_TYPES } from '../../../global/user/interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
 import { RegisterInput } from './interface';
 import { REGISTER } from './schema';
-import { useMutation } from '@apollo/client';
+import { ApolloError, useMutation } from '@apollo/client';
 
 export const useRegisterRequest = () => {
     const { userDispatch } = useUserState();
@@ -33,6 +33,7 @@ export const useRegisterRequest = () => {
             } catch (e) {
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,
+                    alertMessage: (e as ApolloError).message,
                 });
             }
         },

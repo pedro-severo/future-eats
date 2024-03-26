@@ -4,6 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRegisterRequest } from '../../../services/api/register/useRegisterRequest';
 import { RegisterInput } from '../../../services/api/register/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
+import { USER_ACTION_TYPES } from '../../../global/user/interface';
+import { useUserState } from '../../../global/user/context';
 
 export const useRegisterPage = () => {
     const { schema } = useRegisterSchema();
@@ -11,6 +13,10 @@ export const useRegisterPage = () => {
         resolver: yupResolver(schema),
     });
     const { handleRegister } = useRegisterRequest();
+    const {
+        userState: { hasError, alertMessage },
+        userDispatch,
+    } = useUserState();
 
     const onSubmit = (data: IFormInputNames) => {
         const registerInput: RegisterInput = {
@@ -22,9 +28,16 @@ export const useRegisterPage = () => {
         handleRegister(registerInput);
     };
 
+    const closeAlert = () => {
+        userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
+    };
+
     return {
         onSubmitForm: onSubmit,
         control,
         handleSubmit,
+        hasSignupError: hasError,
+        alertMessage,
+        closeAlert,
     };
 };
