@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
 import * as useCustomHook from '../useLoginSchema';
 import { useLoginPage } from '../useLoginPage';
-import * as useUserState from '../../../../global/user/context';
-import { USER_ACTION_TYPES } from '../../../../global/user/interface';
+import * as useUserState from '../../../../global/redux/user/context';
+import { USER_ACTION_TYPES } from '../../../../global/redux/user/interface';
 
 const schemaMock = {
     password: 'password',

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { useUserState } from '../../../global/user/context';
-import { USER_ACTION_TYPES } from '../../../global/user/interface';
+import { useUserState } from '../../../global/redux/user/context';
+import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
 import { LoginInput } from './interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
 import { ApolloError, useMutation } from '@apollo/client';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { HeaderView } from '../view';
-import * as NavigationHeaderContext from '../../../../global/navigationHeader/context';
+import * as NavigationHeaderContext from '../../../../global/navigationHeader';
 import { HeaderWrapper } from '../styles';
 import { shallow } from 'enzyme';
 import 'jest-styled-components';
@@ -31,7 +31,7 @@ describe('Header View', () => {
     const mockNavigationHeaderDispatch = jest.fn();
     const mockUseNavigationHeaderStateReturn = {
         navigationHeaderDispatch: mockNavigationHeaderDispatch,
-        navigationHeaderState: mockNavigationHeaderState,
+        navigationHeader: mockNavigationHeaderState,
     };
     beforeEach(() => {
         jest.spyOn(
@@ -56,7 +56,7 @@ describe('Header View', () => {
         };
         const mockUseNavigationHeaderStateReturn = {
             navigationHeaderDispatch: mockNavigationHeaderDispatch,
-            navigationHeaderState: mockNavigationHeaderState,
+            navigationHeader: mockNavigationHeaderState,
         };
         jest.spyOn(
             NavigationHeaderContext,

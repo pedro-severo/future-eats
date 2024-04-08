@@ -5,6 +5,8 @@ import * as NavigationHeaderContext from '../../global/navigationHeader/context'
 import { navigationHeaderInitialState } from '../../global/navigationHeader/reducer';
 import { NAVIGATION_ACTION_TYPES } from '../../global/navigationHeader/interface';
 
+// TODO: Fix file test
+
 const mockNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
@@ -42,7 +44,7 @@ describe('usePagesNavigation', () => {
         expect(mockNavigationHeaderDispatch).toBeCalled();
         expect(mockNavigationHeaderDispatch).toBeCalledWith({
             type: NAVIGATION_ACTION_TYPES.NAVIGATE,
-            payload: navigationHeaderInitialState,
+            payload: NavigationHeaderContext,
         });
     });
     it('should test handleGoToLoginPage function', () => {
