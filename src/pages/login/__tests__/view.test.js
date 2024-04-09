@@ -4,10 +4,8 @@ import { shallow } from 'enzyme';
 import { LoginForm } from '../styles';
 import designSystem from '../../../designSystem';
 
-const mockUsedNavigate = jest.fn();
-
 jest.mock('../../../hooks/usePagesNavigation', () => ({
-    usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
+    usePagesNavigation: () => ({}),
 }));
 
 describe('LoginPageView', () => {

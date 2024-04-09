@@ -3,7 +3,7 @@ import { SignupPageView } from '../view';
 import { shallow } from 'enzyme';
 import { SignupForm } from '../styles';
 
-describe('RegisterView', () => {
+describe('SignupView', () => {
     let wrapper;
     const mockSetShowPassword = jest.fn();
     const mockSetShowPasswordConfirmation = jest.fn();
@@ -23,7 +23,7 @@ describe('RegisterView', () => {
         ]);
     });
 
-    it('should test RegisterView rendering', () => {
+    it('should test SignupView rendering', () => {
         expect(wrapper.exists()).toBeTruthy();
     });
     it('should test form submit', () => {
