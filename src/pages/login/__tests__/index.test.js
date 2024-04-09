@@ -8,10 +8,8 @@ const schemaMock = {
     email: 'email',
 };
 
-const mockUsedNavigate = jest.fn();
-
 jest.mock('../../../hooks/usePagesNavigation', () => ({
-    usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
+    usePagesNavigation: () => ({}),
 }));
 
 const mockLogin = jest.fn();

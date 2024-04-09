@@ -7,8 +7,8 @@ describe('Router', () => {
     it('should check if all Routes are rendered', () => {
         const wrapper = shallow(<Router />);
         const loginRoute = wrapper.find({ path: PATH.LOGIN });
-        const registerRoute = wrapper.find({ path: PATH.REGISTER });
+        const signupRoute = wrapper.find({ path: PATH.SIGNUP });
         expect(loginRoute.exists()).toBeTruthy();
-        expect(registerRoute.exists()).toBeTruthy();
+        expect(signupRoute.exists()).toBeTruthy();
     });
 });

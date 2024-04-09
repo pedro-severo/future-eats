@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { useRegisterRequest } from '../useRegisterRequest';
+import { useSignupRequest } from '../useSignupRequest';
 import * as useUserState from '../../../../global/redux/user';
 import * as usePagesNavigation from '../../../../hooks/usePagesNavigation';
 import { USER_ACTION_TYPES } from '../../../../global/redux/user/interface';
@@ -8,14 +8,14 @@ const mockNavigate = jest.fn();
 const mockUserDispatch = jest.fn();
 const mockSignup = jest.fn();
 
-const mockRegisterInput = {
+const mockSignupInput = {
     name: 'string',
     email: 'string',
     password: 'string',
     cpf: 'string',
 };
 
-describe('useRegisterRequest', () => {
+describe('useSignupRequest', () => {
     beforeEach(() => {
         jest.spyOn(useUserState, 'useUserState').mockImplementation(() => {
             return {
@@ -35,17 +35,17 @@ describe('useRegisterRequest', () => {
             }
         );
     });
-    it('should call handleRegister correctly', async () => {
-        const { email, password, cpf, name } = mockRegisterInput;
-        const { result } = renderHook(() => useRegisterRequest());
-        await result.current.handleRegister(mockRegisterInput);
+    it('should call handleSignup correctly', async () => {
+        const { email, password, cpf, name } = mockSignupInput;
+        const { result } = renderHook(() => useSignupRequest());
+        await result.current.handleSignup(mockSignupInput);
         expect(mockSignup).toBeCalledTimes(1);
         expect(mockSignup).toBeCalledWith({
             variables: { email, password, cpf, name },
         });
         expect(mockUserDispatch).toBeCalledTimes(1);
         expect(mockUserDispatch).toBeCalledWith({
-            type: USER_ACTION_TYPES.REGISTER_SUCCESS,
+            type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
             payload: undefined,
         });
         expect(mockUserDispatch).not.toBeCalledWith({
@@ -53,15 +53,15 @@ describe('useRegisterRequest', () => {
         });
         expect(mockNavigate).toBeCalledTimes(1);
     });
-    it('should call handleRegister with error', async () => {
+    it('should call handleSignup with error', async () => {
         const mockError = jest.fn().mockRejectedValueOnce(new Error('foo'));
         jest.spyOn(require('@apollo/client'), 'useMutation').mockImplementation(
             () => {
                 return [mockError, { loading: false }];
             }
         );
-        const { result } = renderHook(() => useRegisterRequest());
-        await result.current.handleRegister(mockRegisterInput);
+        const { result } = renderHook(() => useSignupRequest());
+        await result.current.handleSignup(mockSignupInput);
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.USER_FAILURE,
             alertMessage: 'foo',
@@ -73,7 +73,7 @@ describe('useRegisterRequest', () => {
                 return [mockSignup, { loading: true }];
             }
         );
-        renderHook(() => useRegisterRequest());
+        renderHook(() => useSignupRequest());
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.USER_LOADING,
         });

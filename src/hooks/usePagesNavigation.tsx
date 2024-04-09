@@ -18,9 +18,9 @@ export const usePagesNavigation = () => {
         navigate(PATH.LOGIN);
     }, [navigate, setNavigationHeader, navigationHeaderInitialState]);
 
-    const handleGoToRegisterPage = useCallback(() => {
-        setNavigationHeaderState(PATH.REGISTER);
-        navigate(PATH.REGISTER);
+    const handleGoToSignupPage = useCallback(() => {
+        setNavigationHeaderState(PATH.SIGNUP);
+        navigate(PATH.SIGNUP);
     }, [navigate, setNavigationHeader, navigationHeader]);
 
     const handleGoToHomePage = useCallback(() => {
@@ -49,7 +49,7 @@ export const usePagesNavigation = () => {
         switch (newPath) {
             case PATH.LOGIN:
                 return setNavigationHeader(navigationHeaderInitialState);
-            case PATH.REGISTER:
+            case PATH.SIGNUP:
                 return setNavigationHeader({
                     title: '',
                     hasTitle: false,
@@ -70,7 +70,7 @@ export const usePagesNavigation = () => {
 
     return {
         handleGoToLoginPage,
-        handleGoToRegisterPage,
+        handleGoToSignupPage,
         handleGoBack,
         handleGoToHomePage,
     };

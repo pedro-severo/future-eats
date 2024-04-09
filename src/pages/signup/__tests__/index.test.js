@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as useRegisterSchema from '../hooks/useRegisterSchema';
-import { RegisterPage } from '..';
+import * as useSignupSchema from '../hooks/useSignupSchema';
+import { SignupPage } from '..';
 import { yupCustomValidationsSetup } from '../../../services/yup';
 
 const schemaMock = {
@@ -15,7 +15,7 @@ const schemaMock = {
 const mockUsedNavigate = jest.fn();
 
 jest.mock('../../../hooks/usePagesNavigation', () => ({
-    usePagesNavigation: () => ({ handleGoToRegisterPage: mockUsedNavigate }),
+    usePagesNavigation: () => ({ handleGoToSignupPage: mockUsedNavigate }),
 }));
 
 const mockLogin = jest.fn();
@@ -28,8 +28,8 @@ jest.mock('@apollo/client', () => ({
 
 const mockOnSubmit = jest.fn();
 
-jest.mock('../hooks/useRegisterPage', () => ({
-    useRegisterPage: jest.fn().mockImplementation(() => ({
+jest.mock('../hooks/useSignupPage', () => ({
+    useSignupPage: jest.fn().mockImplementation(() => ({
         onSubmitForm: mockOnSubmit,
         control: {},
         handleSubmit: jest.fn(mockOnSubmit),
@@ -39,12 +39,12 @@ jest.mock('../hooks/useRegisterPage', () => ({
     })),
 }));
 
-describe('RegisterPage', () => {
+describe('Signup', () => {
     let wrapper;
     beforeEach(() => {
         yupCustomValidationsSetup();
-        wrapper = shallow(<RegisterPage />);
-        jest.spyOn(useRegisterSchema, 'useRegisterSchema').mockImplementation(
+        wrapper = shallow(<SignupPage />);
+        jest.spyOn(useSignupSchema, 'useSignupSchema').mockImplementation(
             () => {
                 return {
                     schema: schemaMock,
@@ -52,8 +52,8 @@ describe('RegisterPage', () => {
             }
         );
     });
-    it('should test RegisterPage rendering', () => {
-        const RegisterPageView = wrapper.find('RegisterPageView');
-        expect(RegisterPageView.exists()).toBeTruthy();
+    it('should test SignupPage rendering', () => {
+        const SignupPageView = wrapper.find('SignupPageView');
+        expect(SignupPageView.exists()).toBeTruthy();
     });
 });

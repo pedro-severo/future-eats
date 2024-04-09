@@ -24,7 +24,7 @@ export const LoginPageView = ({
     alertMessage,
 }: ILoginPageViewProps) => {
     const [showPassword, setShowPassword] = useState(false);
-    const { handleGoToRegisterPage } = usePagesNavigation();
+    const { handleGoToSignupPage } = usePagesNavigation();
     return (
         <LoginPageWrapper>
             <designSystem.alert
@@ -112,9 +112,9 @@ export const LoginPageView = ({
             <designSystem.typography variant="subtitle1">
                 Nao possui cadastro?{' '}
                 <span
-                    data-testid="go-to-register-button"
+                    data-testid="go-to-signup-button"
                     style={{ color: theme.palette.text.hint }}
-                    onClick={handleGoToRegisterPage}
+                    onClick={handleGoToSignupPage}
                 >
                     Clique aqui
                 </span>

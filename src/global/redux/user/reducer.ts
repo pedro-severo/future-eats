@@ -26,7 +26,7 @@ export const userReducer = (
                 hasError: false,
             };
         }
-        case USER_ACTION_TYPES.REGISTER_SUCCESS: {
+        case USER_ACTION_TYPES.SIGNUP_SUCCESS: {
             return {
                 user: { ...state.user, ...action.payload },
                 isLoading: false,

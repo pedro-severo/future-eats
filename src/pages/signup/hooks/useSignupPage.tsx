@@ -1,31 +1,31 @@
 import { useForm } from 'react-hook-form';
-import { useRegisterSchema } from './useRegisterSchema';
+import { useSignupSchema } from './useSignupSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRegisterRequest } from '../../../services/api/register/useRegisterRequest';
-import { RegisterInput } from '../../../services/api/register/interface';
+import { useSignupRequest } from '../../../services/api/signup/useSignupRequest';
+import { SignupInput } from '../../../services/api/signup/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
 import { useUserState } from '../../../global/redux/user';
 
-export const useRegisterPage = () => {
-    const { schema } = useRegisterSchema();
+export const useSignupPage = () => {
+    const { schema } = useSignupSchema();
     const { control, handleSubmit } = useForm<IFormInputNames>({
         resolver: yupResolver(schema),
     });
-    const { handleRegister } = useRegisterRequest();
+    const { handleSignup } = useSignupRequest();
     const {
         userState: { hasError, alertMessage },
         userDispatch,
     } = useUserState();
 
     const onSubmit = (data: IFormInputNames) => {
-        const registerInput: RegisterInput = {
+        const signupInput: SignupInput = {
             name: data.name,
             email: data.email,
             password: data.password,
             cpf: data.cpf,
         };
-        handleRegister(registerInput);
+        handleSignup(signupInput);
     };
 
     const onCloseAlert = () => {

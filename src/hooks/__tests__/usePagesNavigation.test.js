@@ -30,7 +30,7 @@ describe('usePagesNavigation', () => {
     it('should test usePagesNavigation return values', () => {
         const { result } = renderHook(() => usePagesNavigation());
         expect(typeof result.current.handleGoToLoginPage).toBe('function');
-        expect(typeof result.current.handleGoToRegisterPage).toBe('function');
+        expect(typeof result.current.handleGoToSignupPage).toBe('function');
         expect(typeof result.current.handleGoBack).toBe('function');
     });
     it('should test handleGoToLoginPage function', () => {
@@ -45,9 +45,9 @@ describe('usePagesNavigation', () => {
     });
     it('should test handleGoToLoginPage function', () => {
         const { result } = renderHook(() => usePagesNavigation());
-        result.current.handleGoToRegisterPage();
+        result.current.handleGoToSignupPage();
         expect(mockNavigate).toBeCalled();
-        expect(mockNavigate).toBeCalledWith(PATH.REGISTER);
+        expect(mockNavigate).toBeCalledWith(PATH.SIGNUP);
         expect(mockSetNavigationHeader).toBeCalled();
     });
     it('should test handleGoToHomePage function', () => {

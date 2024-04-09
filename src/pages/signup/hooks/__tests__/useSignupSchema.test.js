@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { useRegisterSchema } from '../useRegisterSchema';
+import { useSignupSchema } from '../useSignupSchema';
 
 jest.mock('yup', () => ({
     object: jest.fn(() => ({
@@ -26,9 +26,9 @@ jest.mock('yup', () => ({
     })),
 }));
 
-describe('useRegisterSchema test', () => {
+describe('useSignupSchema test', () => {
     it('should test hook return', () => {
-        const { result } = renderHook(() => useRegisterSchema());
+        const { result } = renderHook(() => useSignupSchema());
         expect(result.current.schema).toBeTruthy();
     });
 });

@@ -9,7 +9,6 @@ import 'jest-styled-components';
 const mockUsedNavigate = jest.fn();
 
 const mockUsePagesNavigations = {
-    handleGoToRegisterPage: jest.fn(),
     handleGoBack: jest.fn(),
 };
 

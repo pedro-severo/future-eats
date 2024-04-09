@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import mainLogo from '../../assets/images/futureEatsLogo/logo-future-eats-invert.png';
-import { RegisterForm, RegisterPageWrapper } from './styles';
+import { SignupForm, SignupPageWrapper } from './styles';
 import designSystem from '../../designSystem';
 import { Controller, Control } from 'react-hook-form';
-import { RegisterInputNames } from './hooks/useRegisterSchema';
+import { SignupInputNames } from './hooks/useSignupSchema';
 import { theme } from '../../designSystem/themeProvider';
 import { inputProperties } from './constants/inputProperties';
 
-interface IRegisterPageViewProps {
+interface ISignupPageViewProps {
     onSubmit: () => void;
     // eslint-disable-next-line
     control: Control<any, any>;
@@ -16,18 +16,18 @@ interface IRegisterPageViewProps {
     alertMessage?: string;
 }
 
-export const RegisterPageView = ({
+export const SignupPageView = ({
     onSubmit,
     control,
     hasSignupError,
     closeAlert,
     alertMessage,
-}: IRegisterPageViewProps) => {
+}: ISignupPageViewProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] =
         useState(false);
     return (
-        <RegisterPageWrapper>
+        <SignupPageWrapper>
             <designSystem.alert
                 severity="error"
                 isOpen={hasSignupError}
@@ -35,12 +35,12 @@ export const RegisterPageView = ({
                 onClose={closeAlert}
             />
             <img src={mainLogo} />
-            <RegisterForm onSubmit={onSubmit}>
+            <SignupForm onSubmit={onSubmit}>
                 <designSystem.typography variant="h2">
                     Cadastrar
                 </designSystem.typography>
                 <Controller
-                    name={RegisterInputNames.NAME}
+                    name={SignupInputNames.NAME}
                     control={control}
                     render={
                         // istanbul ignore next
@@ -56,7 +56,7 @@ export const RegisterPageView = ({
                     }
                 />
                 <Controller
-                    name={RegisterInputNames.EMAIL}
+                    name={SignupInputNames.EMAIL}
                     control={control}
                     render={
                         // istanbul ignore next
@@ -72,7 +72,7 @@ export const RegisterPageView = ({
                     }
                 />
                 <Controller
-                    name={RegisterInputNames.CPF}
+                    name={SignupInputNames.CPF}
                     control={control}
                     render={
                         // istanbul ignore next
@@ -88,7 +88,7 @@ export const RegisterPageView = ({
                     }
                 />
                 <Controller
-                    name={RegisterInputNames.PASSWORD}
+                    name={SignupInputNames.PASSWORD}
                     control={control}
                     render={
                         // istanbul ignore next
@@ -135,7 +135,7 @@ export const RegisterPageView = ({
                     }
                 />
                 <Controller
-                    name={RegisterInputNames.PASSWORD_CONFIRMATION}
+                    name={SignupInputNames.PASSWORD_CONFIRMATION}
                     control={control}
                     render={
                         // istanbul ignore next
@@ -196,7 +196,7 @@ export const RegisterPageView = ({
                 >
                     Criar
                 </designSystem.button>
-            </RegisterForm>
-        </RegisterPageWrapper>
+            </SignupForm>
+        </SignupPageWrapper>
     );
 };
