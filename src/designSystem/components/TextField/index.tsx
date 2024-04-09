@@ -1,6 +1,8 @@
 import React from 'react';
-import { TextField as MUITextField } from '@material-ui/core';
+import { TextField as MUITextField, TextFieldProps } from '@material-ui/core';
 
-export const TextFieldInput = ({ ...props }) => {
-    return <MUITextField variant="outlined" fullWidth={true} {...props} />;
+export const TextFieldInput = ({ id, ...props }: TextFieldProps) => {
+    return (
+        <MUITextField variant="outlined" fullWidth={true} id={id} {...props} />
+    );
 };
