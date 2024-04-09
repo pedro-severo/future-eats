@@ -2,14 +2,14 @@ import { useCallback, useEffect } from 'react';
 import { useUserState } from '../../../global/redux/user';
 import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
-import { RegisterInput } from './interface';
-import { REGISTER } from './schema';
+import { SignupInput } from './interface';
+import { SIGNUP } from './schema';
 import { ApolloError, useMutation } from '@apollo/client';
 
-export const useRegisterRequest = () => {
+export const useSignupRequest = () => {
     const { userDispatch } = useUserState();
     const { handleGoToHomePage } = usePagesNavigation();
-    const [signup, { loading }] = useMutation(REGISTER);
+    const [signup, { loading }] = useMutation(SIGNUP);
 
     useEffect(() => {
         if (loading)
@@ -18,15 +18,15 @@ export const useRegisterRequest = () => {
             });
     }, [loading, userDispatch]);
 
-    const handleRegister = useCallback(
-        async (registerInput: RegisterInput): Promise<void> => {
+    const handleSignup = useCallback(
+        async (signupInput: SignupInput): Promise<void> => {
             try {
-                const { email, password, cpf, name } = registerInput;
+                const { email, password, cpf, name } = signupInput;
                 const response = await signup({
                     variables: { email, password, cpf, name },
                 });
                 userDispatch({
-                    type: USER_ACTION_TYPES.REGISTER_SUCCESS,
+                    type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
                     payload: response?.data?.signup?.data?.user,
                 });
                 handleGoToHomePage();
@@ -40,5 +40,5 @@ export const useRegisterRequest = () => {
         [userDispatch, handleGoToHomePage, signup]
     );
 
-    return { handleRegister };
+    return { handleSignup };
 };

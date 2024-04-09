@@ -1,8 +1,8 @@
 import React from 'react';
-import { RegisterPageView } from './view';
-import { useRegisterPage } from './hooks/useRegisterPage';
+import { SignupPageView } from './view';
+import { useSignupPage } from './hooks/useSignupPage';
 
-export const RegisterPage = () => {
+export const SignupPage = () => {
     const {
         handleSubmit,
         onSubmitForm,
@@ -10,10 +10,10 @@ export const RegisterPage = () => {
         hasSignupError,
         onCloseAlert,
         alertMessage,
-    } = useRegisterPage();
+    } = useSignupPage();
 
     return (
-        <RegisterPageView
+        <SignupPageView
             onSubmit={handleSubmit(onSubmitForm)}
             control={control}
             hasSignupError={hasSignupError}

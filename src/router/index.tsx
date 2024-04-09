@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PATH from './interfaces';
 import { LoginPage } from '../pages/login';
-import { RegisterPage } from '../pages/register';
+import { SignupPage } from '../pages/signup';
 import { Header } from '../common/components/header';
 
 export const Router = () => {
@@ -11,7 +11,7 @@ export const Router = () => {
             <Header />
             <Routes>
                 <Route path={PATH.LOGIN} element={<LoginPage />} />
-                <Route path={PATH.REGISTER} element={<RegisterPage />} />
+                <Route path={PATH.SIGNUP} element={<SignupPage />} />
                 <Route
                     path={PATH.HOME}
                     element={<div>REGISTER ADDRESS PAGE</div>}

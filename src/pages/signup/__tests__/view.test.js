@@ -1,7 +1,7 @@
 import React from 'react';
-import { RegisterPageView } from '../view';
+import { SignupPageView } from '../view';
 import { shallow } from 'enzyme';
-import { RegisterForm } from '../styles';
+import { SignupForm } from '../styles';
 
 describe('RegisterView', () => {
     let wrapper;
@@ -11,7 +11,7 @@ describe('RegisterView', () => {
     const mockControl = {};
     beforeEach(() => {
         wrapper = shallow(
-            <RegisterPageView onSubmit={mockOnSubmit} control={mockControl} />
+            <SignupPageView onSubmit={mockOnSubmit} control={mockControl} />
         );
         jest.spyOn(React, 'useState').mockImplementation(() => [
             false,
@@ -27,8 +27,8 @@ describe('RegisterView', () => {
         expect(wrapper.exists()).toBeTruthy();
     });
     it('should test form submit', () => {
-        const registerForm = wrapper.find(RegisterForm);
-        registerForm.simulate('submit');
+        const signupForm = wrapper.find(SignupForm);
+        signupForm.simulate('submit');
         expect(mockOnSubmit).toBeCalledTimes(1);
     });
 });

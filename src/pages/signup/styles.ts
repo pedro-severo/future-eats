@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RegisterPageWrapper = styled.div`
+export const SignupPageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,7 @@ export const RegisterPageWrapper = styled.div`
     padding: 88px 16px 0;
 `;
 
-export const RegisterForm = styled.form`
+export const SignupForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
