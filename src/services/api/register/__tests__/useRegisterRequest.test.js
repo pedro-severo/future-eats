@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useRegisterRequest } from '../useRegisterRequest';
-import * as useUserState from '../../../../global/redux/user/context';
+import * as useUserState from '../../../../global/redux/user';
 import * as usePagesNavigation from '../../../../hooks/usePagesNavigation';
 import { USER_ACTION_TYPES } from '../../../../global/redux/user/interface';
 

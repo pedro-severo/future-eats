@@ -1,5 +1,5 @@
 import React, { ReactElement, useReducer, useState } from 'react';
-import { UserStateContext } from './redux/user/context';
+import { UserStateContext } from './redux/user';
 import { userInitialState, userReducer } from './redux/user/reducer';
 import {
     NavigationHeaderStateContext,

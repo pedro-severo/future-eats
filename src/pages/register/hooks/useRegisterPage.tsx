@@ -5,7 +5,7 @@ import { useRegisterRequest } from '../../../services/api/register/useRegisterRe
 import { RegisterInput } from '../../../services/api/register/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
-import { useUserState } from '../../../global/redux/user/context';
+import { useUserState } from '../../../global/redux/user';
 
 export const useRegisterPage = () => {
     const { schema } = useRegisterSchema();

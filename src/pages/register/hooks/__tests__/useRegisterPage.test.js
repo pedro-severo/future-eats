@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import * as useCustomHook from '../useRegisterSchema';
 import { useRegisterPage } from '../useRegisterPage';
-import * as useUserState from '../../../../global/redux/user/context';
+import * as useUserState from '../../../../global/redux/user';
 import { USER_ACTION_TYPES } from '../../../../global/redux/user/interface';
 
 const schemaMock = {

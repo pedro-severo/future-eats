@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { useUserState } from '../../../global/redux/user/context';
+import { useUserState } from '../../../global/redux/user';
 import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
 import { LoginInput } from './interface';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
