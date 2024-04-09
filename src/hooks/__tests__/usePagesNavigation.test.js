@@ -4,8 +4,6 @@ import PATH from '../../router/interfaces';
 import * as NavigationHeaderContext from '../../global/navigationHeader';
 import { navigationHeaderInitialState } from '../../global/navigationHeader';
 
-// TODO: Fix file test
-
 const mockNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
