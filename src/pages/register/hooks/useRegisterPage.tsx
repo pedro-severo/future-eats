@@ -4,8 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRegisterRequest } from '../../../services/api/register/useRegisterRequest';
 import { RegisterInput } from '../../../services/api/register/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
-import { USER_ACTION_TYPES } from '../../../global/user/interface';
-import { useUserState } from '../../../global/user/context';
+import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
+import { useUserState } from '../../../global/redux/user';
 
 export const useRegisterPage = () => {
     const { schema } = useRegisterSchema();

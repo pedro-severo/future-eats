@@ -1,3 +1,5 @@
+import { SetStateAction } from 'react';
+
 export interface NavigationHeaderState {
     title: string;
     hasTitle: boolean;
@@ -5,16 +7,7 @@ export interface NavigationHeaderState {
     navigationHistory: NavigationHeaderState[];
 }
 
-export interface NavigationHeaderReducerAction {
-    type: NAVIGATION_ACTION_TYPES;
-    payload?: NavigationHeaderState;
-}
-
-export interface NavigationHeaderReducerReturn {
-    navigationHeaderState: NavigationHeaderState;
-    navigationHeaderDispatch: React.Dispatch<NavigationHeaderReducerAction>;
-}
-
-export enum NAVIGATION_ACTION_TYPES {
-    NAVIGATE = 'NAVIGATE',
+export interface NavigationHeaderStateReturn {
+    navigationHeader: NavigationHeaderState;
+    setNavigationHeader: React.Dispatch<SetStateAction<NavigationHeaderState>>;
 }

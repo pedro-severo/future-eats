@@ -1,11 +1,11 @@
-import React, { ReactElement, useReducer } from 'react';
-import { UserStateContext } from './user/context';
-import { userInitialState, userReducer } from './user/reducer';
-import { NavigationHeaderStateContext } from './navigationHeader/context';
+import React, { ReactElement, useReducer, useState } from 'react';
+import { UserStateContext } from './redux/user';
+import { userInitialState, userReducer } from './redux/user/reducer';
 import {
+    NavigationHeaderStateContext,
     navigationHeaderInitialState,
-    navigationHeaderReducer,
-} from './navigationHeader/reducer';
+} from './navigationHeader';
+import { NavigationHeaderState } from './navigationHeader/interface';
 
 type GlobalStateProviderProps = {
     children: JSX.Element | JSX.Element[];
@@ -15,14 +15,12 @@ const GlobalStateProvider = ({
     children,
 }: GlobalStateProviderProps): ReactElement => {
     const [userState, userDispatch] = useReducer(userReducer, userInitialState);
-    const [navigationHeaderState, navigationHeaderDispatch] = useReducer(
-        navigationHeaderReducer,
-        navigationHeaderInitialState
-    );
+    const [navigationHeader, setNavigationHeader] =
+        useState<NavigationHeaderState>(navigationHeaderInitialState);
     return (
         <UserStateContext.Provider value={{ userState, userDispatch }}>
             <NavigationHeaderStateContext.Provider
-                value={{ navigationHeaderState, navigationHeaderDispatch }}
+                value={{ navigationHeader, setNavigationHeader }}
             >
                 {children}
             </NavigationHeaderStateContext.Provider>
