@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import designSystem from '../../../designSystem';
+import React from 'react';
 
-export const HeaderWrapper = styled('div')<{ shouldRenderHeader: boolean }>`
+export const HeaderWrapper = React.memo(styled('div')<{
+    shouldRenderHeader: boolean;
+}>`
     width: 100%;
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     margin: 0 0 24px;
@@ -10,7 +13,7 @@ export const HeaderWrapper = styled('div')<{ shouldRenderHeader: boolean }>`
     display: flex;
     align-items: end;
     visibility: ${(props) => (props.shouldRenderHeader ? `none` : `hidden`)};
-`;
+`);
 
 export const IconWrapper = styled.div`
     position: absolute;

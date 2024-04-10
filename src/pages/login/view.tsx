@@ -6,6 +6,7 @@ import { LoginInputNames } from './hooks/useLoginSchema';
 import { theme } from '../../designSystem/themeProvider';
 import { usePagesNavigation } from '../../hooks/usePagesNavigation';
 import { MainLogo } from '../../common/components/mainLogo';
+import { CallToSignup } from './components/callToSignup';
 
 interface ILoginPageViewProps {
     onSubmit: () => void;
@@ -109,16 +110,10 @@ export const LoginPageView = ({
                     Entrar
                 </designSystem.button>
             </LoginForm>
-            <designSystem.typography variant="subtitle1">
-                Nao possui cadastro?{' '}
-                <span
-                    data-testid="go-to-signup-button"
-                    style={{ color: theme.palette.text.hint }}
-                    onClick={handleGoToSignupPage}
-                >
-                    Clique aqui
-                </span>
-            </designSystem.typography>
+            <CallToSignup
+                action={handleGoToSignupPage}
+                callToActionLinkColor={theme.palette.text.hint}
+            />
         </LoginPageWrapper>
     );
 };
