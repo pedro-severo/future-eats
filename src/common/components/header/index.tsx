@@ -1,6 +1,14 @@
-import React from 'react';
-import { HeaderView } from './view';
+import React, { Suspense, lazy } from 'react';
+import { LazyHeaderLoading } from './lasyLoading';
+
+const HeaderView = lazy(() =>
+    import('./view').then(({ HeaderView }) => ({ default: HeaderView }))
+);
 
 export const Header = () => {
-    return <HeaderView />;
+    return (
+        <Suspense fallback={<LazyHeaderLoading />}>
+            <HeaderView />
+        </Suspense>
+    );
 };

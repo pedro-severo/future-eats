@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ThemeUsage from '../ThemeUsage';
+import ThemeUsage from '../themeUsage';
 
 describe('ThemeUsage Component', () => {
     it('should test if ThemeProvider is rendered on ThemeUsage', () => {

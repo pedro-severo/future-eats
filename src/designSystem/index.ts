@@ -8,6 +8,7 @@ import { VisibilityOffIcon } from './icons/VisibilityOff';
 import { InputAdornment } from './components/InputAdornment';
 import { Typography } from './components/Typography';
 import { Alert } from './components/Alert';
+import { CircularProgressIndeterminate } from './components/CircularProgress';
 // istanbul ignore file
 
 type DesignSystem = {
@@ -20,6 +21,7 @@ type DesignSystem = {
     inputAdornment: typeof InputAdornment;
     typography: typeof Typography;
     alert: typeof Alert;
+    circularProgressIndeterminate: typeof CircularProgressIndeterminate;
 };
 
 const designSystem: DesignSystem = {
@@ -32,6 +34,8 @@ const designSystem: DesignSystem = {
     inputAdornment: InputAdornment || EmptyComponent,
     typography: Typography || EmptyComponent,
     alert: Alert || EmptyComponent,
+    circularProgressIndeterminate:
+        CircularProgressIndeterminate || EmptyComponent,
 };
 
 export default designSystem;

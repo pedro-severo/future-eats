@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import mainLogo from '../../assets/images/futureEatsLogo/logo-future-eats-invert.png';
 import { LoginForm, LoginPageWrapper } from './styles';
 import designSystem from '../../designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { LoginInputNames } from './hooks/useLoginSchema';
 import { theme } from '../../designSystem/themeProvider';
 import { usePagesNavigation } from '../../hooks/usePagesNavigation';
+import { MainLogo } from '../../common/components/mainLogo';
 
 interface ILoginPageViewProps {
     onSubmit: () => void;
@@ -33,7 +33,7 @@ export const LoginPageView = ({
                 message={alertMessage}
                 onClose={closeAlert}
             />
-            <img src={mainLogo} />
+            <MainLogo />
             <LoginForm onSubmit={onSubmit}>
                 <designSystem.typography variant="h2">
                     Entrar

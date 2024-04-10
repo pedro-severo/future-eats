@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import mainLogo from '../../assets/images/futureEatsLogo/logo-future-eats-invert.png';
 import { SignupForm, SignupPageWrapper } from './styles';
 import designSystem from '../../designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { SignupInputNames } from './hooks/useSignupSchema';
 import { theme } from '../../designSystem/themeProvider';
 import { inputProperties } from './constants/inputProperties';
+import { MainLogo } from '../../common/components/mainLogo';
 
 interface ISignupPageViewProps {
     onSubmit: () => void;
@@ -34,7 +34,7 @@ export const SignupPageView = ({
                 message={alertMessage}
                 onClose={closeAlert}
             />
-            <img src={mainLogo} />
+            <MainLogo />
             <SignupForm onSubmit={onSubmit}>
                 <designSystem.typography variant="h2">
                     Cadastrar

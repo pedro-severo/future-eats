@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeUsage from './designSystem/ThemeUsage';
+import ThemeUsage from './designSystem/themeUsage';
 import { Router } from './router';
 import { yupCustomValidationsSetup } from './services/yup';
 
