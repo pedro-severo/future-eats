@@ -14,7 +14,7 @@ export const CallToSignupView = ({
         <designSystem.typography variant="subtitle1">
             Nao possui cadastro?{' '}
             <span
-                data-testid="go-to-signup-button"
+                className="call-to-action-link"
                 style={{ color: callToActionLinkColor }}
                 onClick={action}
             >
