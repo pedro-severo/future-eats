@@ -3,16 +3,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { CircularProgressProps } from '@material-ui/core';
 
-export const MemoCircularProgressIndeterminate = ({
+interface ICircularProgressIndeterminate extends CircularProgressProps {
+    dataTestId?: string;
+}
+
+export const CircularProgressIndeterminate = ({
     color,
-}: CircularProgressProps) => {
+    dataTestId = 'circular-progress-indeterminate',
+}: ICircularProgressIndeterminate) => {
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex' }} data-testid={dataTestId}>
             <CircularProgress color={color} />
         </Box>
     );
 };
-
-export const CircularProgressIndeterminate = React.memo(
-    MemoCircularProgressIndeterminate
-);

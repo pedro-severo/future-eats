@@ -10,7 +10,11 @@ export const MainLogo = () => {
     return (
         <Suspense
             fallback={
-                <designSystem.circularProgressIndeterminate color="primary" />
+                <designSystem.circularProgressIndeterminate
+                    // TODO: color primary is not getting the correct color settled on themeProvider
+                    color="primary"
+                    dataTestId="main-logo-lazy-loading"
+                />
             }
         >
             <MainLogoView />
