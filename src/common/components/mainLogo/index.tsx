@@ -10,7 +10,10 @@ export const MainLogo = () => {
     return (
         <Suspense
             fallback={
-                <designSystem.circularProgressIndeterminate color="primary" />
+                <designSystem.circularProgressIndeterminate
+                    color="primary"
+                    dataTestId="main-logo-lazy-loading"
+                />
             }
         >
             <MainLogoView />

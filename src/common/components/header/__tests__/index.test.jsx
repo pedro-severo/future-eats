@@ -1,14 +1,21 @@
 import React from 'react';
 import { Header } from '..';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render, waitFor } from '@testing-library/react';
+
+jest.mock('../view', () => ({
+    HeaderView: () => <div data-testid="header-view">Header View</div>,
+}));
 
 describe('Header Component', () => {
-    it('should test if HeaderView is rendered on Header', () => {
-        const wrapper = mount(<Header />);
-        const HeaderView = wrapper.find('HeaderView');
-        expect(HeaderView.exists()).toBeTruthy();
+    it('should render lazy loading before header view', async () => {
+        const { getByTestId } = render(<Header />);
+        expect(getByTestId('lazy-header-loading')).toBeInTheDocument();
+        await waitFor(() =>
+            expect(getByTestId('header-view')).toBeInTheDocument()
+        );
     });
-    it('should test if Suspense is rendered with LazyHeaderLoading', () => {
+    it('should render a Suspense component', () => {
         const wrapper = shallow(<Header />);
         expect(wrapper.find('Suspense').exists()).toBeTruthy();
     });
