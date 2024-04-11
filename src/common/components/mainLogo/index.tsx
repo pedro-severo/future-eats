@@ -11,6 +11,7 @@ export const MainLogo = () => {
         <Suspense
             fallback={
                 <designSystem.circularProgressIndeterminate
+                    // TODO: color primary is not getting the correct color settled on themeProvider
                     color="primary"
                     dataTestId="main-logo-lazy-loading"
                 />
