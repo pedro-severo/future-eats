@@ -7,7 +7,7 @@ import { theme } from '../../designSystem/themeProvider';
 import { inputProperties } from './constants/inputProperties';
 import { MainLogo } from '../../common/components/mainLogo';
 
-interface ISignupPageViewProps {
+interface ISignupPageView {
     onSubmit: () => void;
     // eslint-disable-next-line
     control: Control<any, any>;
@@ -22,7 +22,7 @@ export const SignupPageView = ({
     hasSignupError,
     closeAlert,
     alertMessage,
-}: ISignupPageViewProps) => {
+}: ISignupPageView) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] =
         useState(false);

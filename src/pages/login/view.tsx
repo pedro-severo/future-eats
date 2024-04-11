@@ -8,7 +8,7 @@ import { usePagesNavigation } from '../../hooks/usePagesNavigation';
 import { MainLogo } from '../../common/components/mainLogo';
 import { CallToSignup } from './components/callToSignup';
 
-interface ILoginPageViewProps {
+interface ILoginPageView {
     onSubmit: () => void;
     // eslint-disable-next-line
     control: Control<any, any>;
@@ -23,7 +23,7 @@ export const LoginPageView = ({
     hasLoginError,
     closeAlert,
     alertMessage,
-}: ILoginPageViewProps) => {
+}: ILoginPageView) => {
     const [showPassword, setShowPassword] = useState(false);
     const { handleGoToSignupPage } = usePagesNavigation();
     return (
