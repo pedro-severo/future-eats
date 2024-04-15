@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useLoginRequest } from '../useLoginRequest';
-import * as useUserState from '../../../../global/redux/user';
+import * as useUserState from '../../../../stores/redux/user';
 import * as usePagesNavigation from '../../../../hooks/usePagesNavigation';
-import { USER_ACTION_TYPES } from '../../../../global/redux/user/interface';
+import { USER_ACTION_TYPES } from '../../../../stores/redux/user/interface';
 
 const mockNavigate = jest.fn();
 const mockUserDispatch = jest.fn();

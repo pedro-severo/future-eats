@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import {
     navigationHeaderInitialState,
     useNavigationHeaderState,
-} from '../global/navigationHeader';
-import { NavigationHeaderState } from '../global/navigationHeader/interface';
+} from '../stores/navigationHeader';
+import { NavigationHeaderState } from '../stores/navigationHeader/interface';
 
 export const usePagesNavigation = () => {
     const navigate = useNavigate();

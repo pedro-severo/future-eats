@@ -4,8 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useLoginRequest } from '../../../services/api/login/useLoginRequest';
 import { LoginInput } from '../../../services/api/login/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
-import { useUserState } from '../../../global/redux/user';
-import { USER_ACTION_TYPES } from '../../../global/redux/user/interface';
+import { useUserState } from '../../../stores/redux/user';
+import { USER_ACTION_TYPES } from '../../../stores/redux/user/interface';
 
 export const useLoginPage = () => {
     const { schema } = useLoginSchema();

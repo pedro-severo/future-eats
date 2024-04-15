@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import GlobalStateProvider from './global';
+import GlobalStateProvider from './stores';
 import './global.css';
 import APIProvider from './services/api';
 

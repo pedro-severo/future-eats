@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { HeaderView } from '../view';
-import * as NavigationHeaderContext from '../../../../global/navigationHeader';
+import * as NavigationHeaderContext from '../../../../stores/navigationHeader';
 import { HeaderWrapper } from '../styles';
 import { shallow } from 'enzyme';
 import 'jest-styled-components';
