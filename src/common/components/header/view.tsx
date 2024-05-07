@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderTitle, HeaderWrapper, IconWrapper } from './styles';
-import { useNavigationHeaderState } from '../../../global/navigationHeader';
+import { useNavigationHeaderState } from '../../../stores/navigationHeader';
 import { usePagesNavigation } from '../../../hooks/usePagesNavigation';
 import designSystem from '../../../designSystem';
 

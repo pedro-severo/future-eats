@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { usePagesNavigation } from '../usePagesNavigation';
 import PATH from '../../router/interfaces';
-import * as NavigationHeaderContext from '../../global/navigationHeader';
-import { navigationHeaderInitialState } from '../../global/navigationHeader';
+import * as NavigationHeaderContext from '../../stores/navigationHeader';
+import { navigationHeaderInitialState } from '../../stores/navigationHeader';
 
 const mockNavigate = jest.fn();
 

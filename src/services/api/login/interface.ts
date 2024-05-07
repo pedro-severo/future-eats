@@ -1,4 +1,4 @@
-import { User } from '../../../global/redux/user/interface';
+import { User } from '../../../stores/redux/user/interface';
 
 export interface LoginInput {
     email: string;
