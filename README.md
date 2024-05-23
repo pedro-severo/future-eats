@@ -1,4 +1,4 @@
-# Future Eats
+# Future Eats UI
 
 ## Getting Started
 
@@ -10,8 +10,6 @@ Before you begin, make sure you have the following installed:
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Node.js and npm](https://nodejs.org/) - v.20
-
-<br>
 
 ### Setup
 
@@ -66,8 +64,6 @@ The backend project is not deployed yet, so, to run and test the api connection 
 
 [Future Eats Service](https://github.com/pedro-severo/future-eats-service)
 
-Sorry by the (no) Readme, the work is in progress there, but to run the future-eats-service is just to run `npm (or yarn) install` + `npm run (or yarn) start`
-
 <br>
 
 ### Tests and coverage
@@ -108,10 +104,6 @@ Sorry by the (no) Readme, the work is in progress there, but to run the future-e
 
 <br>
 
-### Another coomands:
-
-TODO: list all comands of the project
-
 ## A brief description of the project choices 
 
 ### Main technologies used
@@ -120,7 +112,7 @@ TODO: list all comands of the project
 - [Typescript](https://www.typescriptlang.org/)
 - [MaterialUI](https://mui.com/) - DesignSystem
 - [Styled-components](https://styled-components.com/) - CSS
-- React Context and useReducer - Global State
+- [React Context](https://legacy.reactjs.org/docs/context.html) and [useReducer](https://react.dev/reference/react/useReducer) - Global State
 - [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - Router
 - [Graphql](https://graphql.org/)
 - [Jest](https://jestjs.io/) and [Enzyme](https://enzymejs.github.io/enzyme/) - Tests
