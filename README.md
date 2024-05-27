@@ -1,6 +1,13 @@
 # Future Eats UI
 
-## Getting Started
+Future Eats is a app to order foods and drinks from bar and restaurants. It is a Reeact project built in typescript. The project is fully tested with Jest and Enzyme, also with a coverage checking (100%) to push new changes
+
+# Summary
+
+* [Getting Started](#getting-started)
+* [Project Description](#project-description)
+
+# <a name="getting-started">Getting Started</a>
 
 Follow these steps to set up and run Future Eats on your local machine.
 
@@ -104,7 +111,7 @@ The backend project is not deployed yet, so, to run and test the api connection 
 
 <br>
 
-## A brief description of the project choices 
+# <a name="project-description">Project Description</a> 
 
 ### Main technologies used
 
@@ -116,10 +123,4 @@ The backend project is not deployed yet, so, to run and test the api connection 
 - [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - Router
 - [Graphql](https://graphql.org/)
 - [Jest](https://jestjs.io/) and [Enzyme](https://enzymejs.github.io/enzyme/) - Tests
-
-### A description of the architecture
-
-// TODO
-
-
 
