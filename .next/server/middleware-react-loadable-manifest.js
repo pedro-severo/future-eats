@@ -1,2 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST =
-    '{"../node_modules/next/dist/client/index.js -> ../pages/_app":{"id":8996,"files":["static/chunks/996.bdc6e210e8ec942a.js"]},"../node_modules/next/dist/client/index.js -> ../pages/_error":{"id":3997,"files":["static/chunks/997.04aa9eafd0fc5a60.js"]},"app/common/components/header/index.tsx -> ./view":{"id":7531,"files":["static/chunks/531.2810c4a5625c829f.js"]},"app/common/components/mainLogo/index.tsx -> ./view":{"id":4967,"files":["static/chunks/315.c7c321a8fb4910e1.js","static/chunks/967.2171a9c90e660f38.js"]}}';
