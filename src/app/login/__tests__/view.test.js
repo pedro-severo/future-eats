@@ -3,11 +3,15 @@ import { LoginPageView } from '../view';
 import { shallow } from 'enzyme';
 import { LoginForm } from '../styles';
 import designSystem from '../../shared/designSystem';
+import { CallToSignup } from '../components/callToSignup';
+import PATH from '../../shared/constants/pathsEnum';
+
+const mockPush = jest.fn();
 
 jest.mock('next/navigation', () => ({
     useRouter() {
         return {
-            push: jest.fn(),
+            push: mockPush,
         };
     },
 }));
@@ -34,6 +38,11 @@ describe('LoginPageView', () => {
         const loginForm = wrapper.find(LoginForm);
         loginForm.simulate('submit');
         expect(mockOnSubmit).toBeCalledTimes(1);
+    });
+    it('should call CallToSignup action with the correct parameter', () => {
+        const callToSignup = wrapper.find(CallToSignup);
+        callToSignup.props().action();
+        expect(mockPush).toBeCalledWith(PATH.SIGNUP);
     });
     it('should render Alert component', () => {
         wrapper = shallow(
