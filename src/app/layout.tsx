@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './shared/components/header';
 import ThemeUsage from './shared/designSystem/themeUsage';
 import { yupCustomValidationsSetup } from './shared/services/yup';
@@ -13,8 +13,9 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    // TODO: see if yupCustomValidationsSetup is running just once
-    yupCustomValidationsSetup();
+    useEffect(() => {
+        yupCustomValidationsSetup();
+    }, []);
     return (
         <html lang="en">
             <body>
