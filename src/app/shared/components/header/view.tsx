@@ -13,7 +13,6 @@ export const HeaderView = () => {
             data-testid="HeaderWrapper"
             shouldRenderHeader={shouldRenderHeader}
         >
-            {/* TODO: add route: go back */}
             <IconWrapper onClick={() => router.back()}>
                 <designSystem.arrowBackIcon />
             </IconWrapper>

@@ -3,7 +3,6 @@ import { errorMessages } from '../../constants/errorMessages';
 import { cpfValidation } from './customValidations';
 
 export function yupCustomValidationsSetup() {
-    console.log('OLAAAR');
     yup.addMethod(yup.string, 'cpf', cpf);
 }
 
