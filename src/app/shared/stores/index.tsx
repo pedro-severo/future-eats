@@ -19,9 +19,13 @@ const GlobalStateProvider = ({
     const [navigationHeader, setNavigationHeader] =
         useState<NavigationHeaderState>(navigationHeaderInitialState);
     return (
-        <UserStateContext.Provider value={{ userState, userDispatch }}>
+        <UserStateContext.Provider
+            data-testid="user-state-context"
+            value={{ userState, userDispatch }}
+        >
             <NavigationHeaderStateContext.Provider
                 value={{ navigationHeader, setNavigationHeader }}
+                data-testid="navigation-state-context"
             >
                 {children}
             </NavigationHeaderStateContext.Provider>

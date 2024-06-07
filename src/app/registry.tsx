@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
+// istanbul ignore next
 export default function StyledComponentsRegistry({
     children,
 }: {
