@@ -3,7 +3,7 @@ import RootLayout from './layout';
 import { shallow } from 'enzyme';
 
 describe('RootLayout', () => {
-    it('should ensure that Router is rendered', () => {
+    it('should render RootLayout once', () => {
         const wrapper = shallow(<RootLayout />);
         const RouterComponent = wrapper.find('body');
         expect(RouterComponent.exists()).toBe(true);

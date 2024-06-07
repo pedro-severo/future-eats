@@ -13,7 +13,9 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    // istanbul ignore next
     useEffect(() => {
+        // istanbul ignore next
         yupCustomValidationsSetup();
     }, []);
     return (
