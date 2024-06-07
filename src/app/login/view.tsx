@@ -1,12 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 import { LoginForm, LoginPageWrapper } from './styles';
-import designSystem from '../designSystem';
+import designSystem from '../shared/designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { LoginInputNames } from './hooks/useLoginSchema';
-import { theme } from '../designSystem/themeProvider';
-import { MainLogo } from '../common/components/mainLogo';
+import { theme } from '../shared/designSystem/themeProvider';
+import { MainLogo } from '../shared/components/mainLogo';
 import { CallToSignup } from './components/callToSignup';
+import { useRouter } from 'next/navigation';
+import PATH from '../shared/constants/pathsEnum';
 
 interface ILoginPageView {
     onSubmit: () => void;
@@ -25,6 +27,7 @@ export const LoginPageView = ({
     alertMessage,
 }: ILoginPageView) => {
     const [showPassword, setShowPassword] = useState(false);
+    const router = useRouter();
     return (
         <LoginPageWrapper>
             <designSystem.alert
@@ -110,7 +113,7 @@ export const LoginPageView = ({
                 </designSystem.button>
             </LoginForm>
             <CallToSignup
-                action={() => null}
+                action={() => router.push(PATH.SIGNUP)}
                 callToActionLinkColor={theme.palette.text.hint}
             />
         </LoginPageWrapper>

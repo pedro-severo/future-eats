@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import * as yup from 'yup';
-import { errorMessages } from '../../common/constants/errorMessages';
+import { errorMessages } from '../../shared/constants/errorMessages';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 
 interface IUseSchemaResponse {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import designSystem from '../../../designSystem';
+import designSystem from '../../designSystem';
 import React from 'react';
 
 export const HeaderWrapper = React.memo(styled('div')<{

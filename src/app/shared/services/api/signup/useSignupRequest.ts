@@ -5,10 +5,13 @@ import { USER_ACTION_TYPES } from '../../../stores/redux/user/interface';
 import { SignupInput } from './interface';
 import { SIGNUP } from './schema';
 import { ApolloError, useMutation } from '@apollo/client';
+import { useRouter } from 'next/navigation';
+import PATH from '../../../constants/pathsEnum';
 
 export const useSignupRequest = () => {
     const { userDispatch } = useUserState();
     const [signup, { loading }] = useMutation(SIGNUP);
+    const router = useRouter();
 
     useEffect(() => {
         if (loading)
@@ -28,7 +31,7 @@ export const useSignupRequest = () => {
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
                     payload: response?.data?.signup?.data?.user,
                 });
-                // TODO: add route func: go to home page
+                router.push(PATH.HOME);
             } catch (e) {
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,

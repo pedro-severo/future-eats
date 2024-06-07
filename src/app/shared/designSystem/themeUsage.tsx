@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from './themeProvider';

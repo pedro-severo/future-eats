@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeaderTitle, HeaderWrapper, IconWrapper } from './styles';
-import { useNavigationHeaderState } from '../../../stores/navigationHeader';
-import designSystem from '../../../designSystem';
+import { useNavigationHeaderState } from '../../stores/navigationHeader';
+import designSystem from '../../designSystem';
 
 export const HeaderView = () => {
     const { title, shouldRenderHeader } =

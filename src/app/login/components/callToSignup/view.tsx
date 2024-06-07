@@ -1,5 +1,5 @@
 import React from 'react';
-import designSystem from '../../../designSystem';
+import designSystem from '../../../shared/designSystem';
 
 interface ICallToSignupView {
     action: () => void;

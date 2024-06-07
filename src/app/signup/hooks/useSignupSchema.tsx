@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import * as yup from 'yup';
 import { IFormInputNames } from '../interfaces/FormInputNames';
-import { errorMessages } from '../../common/constants/errorMessages';
+import { errorMessages } from '../../shared/constants/errorMessages';
 
 interface IUseSchemaResponse {
     schema: yup.ObjectSchema<IFormInputNames>;

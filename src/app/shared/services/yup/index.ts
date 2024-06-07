@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { errorMessages } from '../../common/constants/errorMessages';
+import { errorMessages } from '../../constants/errorMessages';
 import { cpfValidation } from './customValidations';
 
 export function yupCustomValidationsSetup() {

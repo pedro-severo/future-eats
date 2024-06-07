@@ -2,11 +2,11 @@
 import { useForm } from 'react-hook-form';
 import { useSignupSchema } from './useSignupSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSignupRequest } from '../../services/api/signup/useSignupRequest';
-import { SignupInput } from '../../services/api/signup/interface';
+import { useSignupRequest } from '../../shared/services/api/signup/useSignupRequest';
+import { SignupInput } from '../../shared/services/api/signup/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
-import { USER_ACTION_TYPES } from '../../stores/redux/user/interface';
-import { useUserState } from '../../stores/redux/user';
+import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
+import { useUserState } from '../../shared/stores/redux/user';
 
 export const useSignupPage = () => {
     const { schema } = useSignupSchema();

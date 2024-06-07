@@ -1,12 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { SignupForm, SignupPageWrapper } from './styles';
-import designSystem from '../designSystem';
+import designSystem from '../shared/designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { SignupInputNames } from './hooks/useSignupSchema';
-import { theme } from '../designSystem/themeProvider';
+import { theme } from '../shared/designSystem/themeProvider';
 import { inputProperties } from './constants/inputProperties';
-import { MainLogo } from '../common/components/mainLogo';
+import { MainLogo } from '../shared/components/mainLogo';
 
 interface ISignupPageView {
     onSubmit: () => void;
@@ -197,6 +197,7 @@ export const SignupPageView = ({
                 >
                     Criar
                 </designSystem.button>
+                {/* TODO: Create a go to login button */}
             </SignupForm>
         </SignupPageWrapper>
     );
