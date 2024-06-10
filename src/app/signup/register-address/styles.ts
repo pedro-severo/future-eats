@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginPageWrapper = styled.div`
+export const RegisterAddressWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,7 @@ export const LoginPageWrapper = styled.div`
     padding: 0 16px;
 `;
 
-export const LoginForm = styled.form`
+export const RegisterAddressForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;

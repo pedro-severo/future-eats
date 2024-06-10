@@ -9,7 +9,6 @@ export const navigationHeaderInitialState: NavigationHeaderState = {
     title: '',
     hasTitle: false,
     shouldRenderHeader: false,
-    navigationHistory: [],
 };
 
 export const NavigationHeaderStateContext =

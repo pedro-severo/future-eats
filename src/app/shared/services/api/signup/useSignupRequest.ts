@@ -31,7 +31,7 @@ export const useSignupRequest = () => {
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
                     payload: response?.data?.signup?.data?.user,
                 });
-                router.push(PATH.HOME);
+                router.push(`${PATH.SIGNUP}/${PATH.REGISTER_ADDRESS}`);
             } catch (e) {
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,
