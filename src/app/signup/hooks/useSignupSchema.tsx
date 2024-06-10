@@ -47,6 +47,5 @@ export const useSignupSchema = (): IUseSchemaResponse => {
         });
     }, [yup]);
 
-    // @ts-expect-error schema with a custom validation method
     return { schema };
 };

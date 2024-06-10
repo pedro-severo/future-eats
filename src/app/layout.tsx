@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Header } from './shared/components/header';
 import ThemeUsage from './shared/designSystem/themeUsage';
 import { yupCustomValidationsSetup } from './shared/services/yup';
@@ -13,11 +13,9 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    // istanbul ignore next
-    useEffect(() => {
-        // istanbul ignore next
-        yupCustomValidationsSetup();
-    }, []);
+    // Call inside useEffect is broking application on cpf validation of useSignupSchema hook:
+    // yup.string().cpf() => cpf is not a function
+    yupCustomValidationsSetup();
     return (
         <html lang="en">
             <body>
