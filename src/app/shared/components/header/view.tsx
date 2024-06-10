@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 export const HeaderView = () => {
     const { title, shouldRenderHeader } =
         useNavigationHeaderState().navigationHeader;
-    console.log('🚀 ~ HeaderView ~ shouldRenderHeader:', shouldRenderHeader);
     const router = useRouter();
     return (
         <HeaderWrapper
