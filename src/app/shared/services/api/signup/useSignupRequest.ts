@@ -28,6 +28,7 @@ export const useSignupRequest = () => {
                 const response = await signup({
                     variables: { email, password, cpf, name },
                 });
+                // TODO: see which props from response is used now and update schema to query just this used props
                 const user = mapUserDTOToUser(
                     response?.data?.signup?.data?.user
                 );
@@ -35,6 +36,10 @@ export const useSignupRequest = () => {
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
                     payload: user,
                 });
+                localStorage.setItem(
+                    'token',
+                    response?.data?.signup?.data?.token
+                );
                 router.push(`${PATH.SIGNUP}/${PATH.REGISTER_ADDRESS}`);
             } catch (e) {
                 userDispatch({
@@ -43,7 +48,7 @@ export const useSignupRequest = () => {
                 });
             }
         },
-        [userDispatch, signup]
+        [signup, userDispatch, router]
     );
 
     return { handleSignup };

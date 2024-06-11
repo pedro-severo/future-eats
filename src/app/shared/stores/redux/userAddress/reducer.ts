@@ -24,21 +24,21 @@ export const userAddressReducer = (
     action: UserAddressAction
 ): UserAddressState => {
     switch (action.type) {
-        case USER_ADDRESS_ACTION_TYPES.REGISTER_ADDRESS_SUCCESS: {
+        case USER_ADDRESS_ACTION_TYPES.SUCCESS: {
             return {
                 userAddress: { ...state.userAddress, ...action.payload },
                 isLoading: false,
                 hasError: false,
             };
         }
-        case USER_ADDRESS_ACTION_TYPES.USER_ADDRESS_LOADING: {
+        case USER_ADDRESS_ACTION_TYPES.LOADING: {
             return {
                 ...state,
                 isLoading: true,
                 hasError: false,
             };
         }
-        case USER_ADDRESS_ACTION_TYPES.USER_ADDRESS_FAILURE: {
+        case USER_ADDRESS_ACTION_TYPES.FAILURE: {
             return {
                 ...state,
                 isLoading: false,

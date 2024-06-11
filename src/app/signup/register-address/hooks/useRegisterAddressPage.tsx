@@ -11,6 +11,11 @@ import { useUserAddressState } from '../../../shared/stores/redux/userAddress';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../shared/stores/redux/userAddress/interface';
 import { useHeader } from '../../../shared/hooks/useHeader';
 import { useUserState } from '../../../shared/stores/redux/user';
+import { RegisterAddressInput } from '../../../shared/services/api/registerAddress/interfaces';
+import { useRegisterAddressRequest } from '../../../shared/services/api/registerAddress/useRegisterAddressRequest';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import PATH from '../../../shared/constants/pathsEnum';
 
 export const useRegisterAddressPage = () => {
     useHeader({
@@ -18,6 +23,7 @@ export const useRegisterAddressPage = () => {
         hasTitle: false,
         shouldRenderHeader: true,
     });
+    const router = useRouter();
     const { schema } = useRegisterAddressSchema();
     const { control, handleSubmit } = useForm<IRegisterAddressInputNames>({
         // @ts-expect-error yup expected error
@@ -31,18 +37,23 @@ export const useRegisterAddressPage = () => {
         userState: { user },
     } = useUserState();
 
+    useEffect(() => {
+        if (!user.id) router.push(PATH.SIGNUP);
+    }, [user, router]);
+
+    const { handleRegisterAddress } = useRegisterAddressRequest();
+
     const onSubmit = (data: IRegisterAddressInputNames) => {
-        // TODO: type according input of endpoint
-        const registerAddressInput = {
+        const registerAddressInput: RegisterAddressInput = {
             city: data.city,
-            complement: data.complement,
+            complement: data.complement || undefined,
             state: data.state,
             streetName: data.streetName,
             streetNumber: data.streetNumber,
             zone: data.zone,
-            id: user.id,
+            userId: user.id,
         };
-        console.log('=======>', registerAddressInput);
+        handleRegisterAddress(registerAddressInput);
     };
 
     const onCloseAlert = () => {

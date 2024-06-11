@@ -27,10 +27,16 @@ export const useLoginRequest = () => {
                 const response = await login({
                     variables: { email, password },
                 });
+                // TODO: create a map function to map response before save in sate
+                // TODO: see which props from response is used now and update schema to query just this used props
                 userDispatch({
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
                     payload: response?.data?.login?.data?.user,
                 });
+                localStorage.setItem(
+                    'token',
+                    response?.data?.login?.data?.token
+                );
                 router.push(PATH.HOME);
             } catch (e) {
                 userDispatch({
@@ -39,7 +45,7 @@ export const useLoginRequest = () => {
                 });
             }
         },
-        [userDispatch, login]
+        [login, userDispatch, router]
     );
 
     return { handleLogin };
