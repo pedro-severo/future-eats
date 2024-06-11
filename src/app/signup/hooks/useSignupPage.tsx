@@ -7,12 +7,17 @@ import { SignupInput } from '../../shared/services/api/signup/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
 import { useUserState } from '../../shared/stores/redux/user';
-import { useEffect } from 'react';
-import { useNavigationHeaderState } from '../../shared/stores/navigationHeader';
+import { useHeader } from '../../shared/hooks/useHeader';
 
 export const useSignupPage = () => {
+    useHeader({
+        title: '',
+        hasTitle: false,
+        shouldRenderHeader: true,
+    });
     const { schema } = useSignupSchema();
     const { control, handleSubmit } = useForm<IFormInputNames>({
+        // @ts-expect-error yup expected error
         resolver: yupResolver(schema),
     });
     const { handleSignup } = useSignupRequest();
@@ -20,7 +25,6 @@ export const useSignupPage = () => {
         userState: { hasError, alertMessage },
         userDispatch,
     } = useUserState();
-    const { setNavigationHeader } = useNavigationHeaderState();
 
     const onSubmit = (data: IFormInputNames) => {
         const signupInput: SignupInput = {
@@ -37,13 +41,6 @@ export const useSignupPage = () => {
     };
 
     // TODO: See vscode tool who says which dependencies you should put on dependencies
-    useEffect(() => {
-        setNavigationHeader({
-            title: '',
-            hasTitle: false,
-            shouldRenderHeader: true,
-        });
-    }, [setNavigationHeader]);
 
     return {
         onSubmitForm: onSubmit,

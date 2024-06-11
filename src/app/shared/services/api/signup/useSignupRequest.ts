@@ -7,6 +7,7 @@ import { SIGNUP } from './schema';
 import { ApolloError, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../constants/pathsEnum';
+import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
 
 export const useSignupRequest = () => {
     const { userDispatch } = useUserState();
@@ -27,9 +28,12 @@ export const useSignupRequest = () => {
                 const response = await signup({
                     variables: { email, password, cpf, name },
                 });
+                const user = mapUserDTOToUser(
+                    response?.data?.signup?.data?.user
+                );
                 userDispatch({
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
-                    payload: response?.data?.signup?.data?.user,
+                    payload: user,
                 });
                 router.push(`${PATH.SIGNUP}/${PATH.REGISTER_ADDRESS}`);
             } catch (e) {

@@ -17,6 +17,9 @@ export const SIGNUP = gql`
         ) {
             data {
                 token
+                user {
+                    id
+                }
             }
         }
     }
