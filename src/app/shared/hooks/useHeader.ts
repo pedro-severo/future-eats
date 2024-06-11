@@ -5,7 +5,7 @@ import { NavigationHeaderState } from '../stores/navigationHeader/interface';
 export const useHeader = (headerProps: NavigationHeaderState) => {
     const { setNavigationHeader } = useNavigationHeaderState();
     useEffect(() => {
-        console.log('oi');
         setNavigationHeader(headerProps);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setNavigationHeader]);
 };
