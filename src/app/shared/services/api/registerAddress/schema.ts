@@ -22,6 +22,9 @@ export const REGISTER_ADDRESS = gql`
             }
         ) {
             status
+            data {
+                id
+            }
         }
     }
 `;
