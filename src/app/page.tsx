@@ -3,12 +3,12 @@
 // TODO: fix warnings of devtools console
 
 import React from 'react';
-import { useAuthChecking } from './shared/hooks/useAuthChecking';
+import { useProtectedPage } from './shared/hooks/useProtectedPage';
 
 // TODO: Remove istanbul ignore and test file
 // istanbul ignore next
 const Home = () => {
-    useAuthChecking();
+    useProtectedPage();
     return <div />;
 };
 

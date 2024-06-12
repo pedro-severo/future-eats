@@ -8,8 +8,10 @@ import { IFormInputNames } from '../interfaces/FormInputNames';
 import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
 import { useUserState } from '../../shared/stores/redux/user';
 import { useHeader } from '../../shared/hooks/useHeader';
+import { useUnprotectedPage } from '../../shared/hooks/useUnprotectedPage';
 
 export const useSignupPage = () => {
+    useUnprotectedPage();
     useHeader({
         title: '',
         hasTitle: false,

@@ -2,13 +2,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import PATH from '../constants/pathsEnum';
 
-export const useAuthChecking = () => {
+export const useProtectedPage = () => {
     const router = useRouter();
     const token = useMemo(() => {
         return localStorage.getItem('token ');
     }, []);
 
     useEffect(() => {
+        // TODO: check token data to compare with user infos
         if (!token) router.push(PATH.LOGIN);
     }, [router, token]);
 };
