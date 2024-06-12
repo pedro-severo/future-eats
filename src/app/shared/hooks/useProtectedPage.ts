@@ -5,7 +5,7 @@ import PATH from '../constants/pathsEnum';
 export const useProtectedPage = () => {
     const router = useRouter();
     const token = useMemo(() => {
-        return localStorage.getItem('token ');
+        return localStorage.getItem('token');
     }, []);
 
     useEffect(() => {
