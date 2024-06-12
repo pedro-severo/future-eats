@@ -28,7 +28,6 @@ export const useSignupRequest = () => {
                 const response = await signup({
                     variables: { email, password, cpf, name },
                 });
-                // TODO: see which props from response is used now and update schema to query just this used props
                 const user = mapUserDTOToUser(
                     response?.data?.signup?.data?.user
                 );

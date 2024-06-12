@@ -6,7 +6,7 @@ import {
 
 export const userAddressInitialState: UserAddressState = {
     userAddress: {
-        userId: '',
+        id: '',
         city: '',
         complement: '',
         state: '',

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../stores/redux/userAddress/interface';
 import { RegisterAddressInput } from './interfaces';
 import PATH from '../../../constants/pathsEnum';
+import { mapUserAddressDTOToUserAddress } from '../shared/user/mapUserAddressDTOToUserAddress';
 
 export const useRegisterAddressRequest = () => {
     const { userAddressDispatch } = useUserAddressState();
@@ -27,11 +28,12 @@ export const useRegisterAddressRequest = () => {
                 const response = await registerAddress({
                     variables: registerAddressInput,
                 });
-                // TODO: create a map function to map response before save in sate
-                // TODO: see which props from response is used now and update schema to query just this used props
+                const userAddress = mapUserAddressDTOToUserAddress(
+                    response.data?.registerAddress?.data
+                );
                 userAddressDispatch({
                     type: USER_ADDRESS_ACTION_TYPES.SUCCESS,
-                    payload: response.data?.registerAddress?.data,
+                    payload: userAddress,
                 });
                 router.push(PATH.HOME);
             } catch (e) {

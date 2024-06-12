@@ -16,8 +16,10 @@ import { useRegisterAddressRequest } from '../../../shared/services/api/register
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../shared/constants/pathsEnum';
+import { useAuthChecking } from '../../../shared/hooks/useAuthChecking';
 
 export const useRegisterAddressPage = () => {
+    useAuthChecking();
     useHeader({
         title: '',
         hasTitle: false,

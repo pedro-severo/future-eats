@@ -1,5 +1,5 @@
 export interface UserAddress {
-    userId: string;
+    id: string;
     city: string;
     complement: string;
     state: string;

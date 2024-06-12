@@ -22,15 +22,6 @@ export const REGISTER_ADDRESS = gql`
             }
         ) {
             status
-            data {
-                city
-                complement
-                state
-                streetNumber
-                zone
-                streetName
-                id
-            }
         }
     }
 `;
