@@ -15,6 +15,8 @@ jest.mock('next/navigation', () => ({
     },
 }));
 
+jest.mock('../../shared/user/mapUserDTOToUser');
+
 const mockSignupInput = {
     name: 'string',
     email: 'string',

@@ -11,7 +11,7 @@ export const HeaderView = () => {
     return (
         <HeaderWrapper
             data-testid="HeaderWrapper"
-            shouldRenderHeader={shouldRenderHeader}
+            $shouldRenderHeader={shouldRenderHeader}
         >
             <IconWrapper onClick={() => router.back()}>
                 <designSystem.arrowBackIcon />

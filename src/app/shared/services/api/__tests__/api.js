@@ -19,6 +19,13 @@ jest.mock('@apollo/client', () => ({
     InMemoryCache: jest.fn(),
     // eslint-disable-next-line react/prop-types
     ApolloProvider: ({ children }) => <>{children}</>,
+    createHttpLink: jest.fn(),
+}));
+
+jest.mock('@apollo/client/link/context', () => ({
+    setContext: jest.fn().mockImplementation(() => ({
+        concat: jest.fn(),
+    })),
 }));
 
 describe('APIProvider component', () => {

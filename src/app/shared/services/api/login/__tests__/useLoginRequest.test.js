@@ -13,6 +13,8 @@ jest.mock('next/navigation', () => ({
     },
 }));
 
+jest.mock('../../shared/user/mapUserDTOToUser');
+
 const mockUserDispatch = jest.fn();
 const mockLogin = jest.fn();
 

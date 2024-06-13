@@ -15,6 +15,9 @@ jest.mock('../../../shared/services/api/signup/useSignupRequest', () => ({
     useSignupRequest: () => ({ handleSignup: mockHandleSignup }),
 }));
 
+jest.mock('../../../shared/hooks/useHeader');
+jest.mock('../../../shared/hooks/useUnprotectedPage');
+
 const mockUserDispatch = jest.fn();
 
 describe('useSignupPage', () => {

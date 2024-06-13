@@ -3,7 +3,7 @@ import designSystem from '../../designSystem';
 import React from 'react';
 
 export const HeaderWrapper = React.memo(styled('div')<{
-    shouldRenderHeader: boolean;
+    $shouldRenderHeader: boolean;
 }>`
     width: 100%;
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
@@ -12,7 +12,7 @@ export const HeaderWrapper = React.memo(styled('div')<{
     height: 64px;
     display: flex;
     align-items: end;
-    visibility: ${(props) => (props.shouldRenderHeader ? `none` : `hidden`)};
+    visibility: ${(props) => (props.$shouldRenderHeader ? `none` : `hidden`)};
 `);
 
 export const IconWrapper = styled.div`

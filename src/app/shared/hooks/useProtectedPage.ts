@@ -4,8 +4,11 @@ import PATH from '../constants/pathsEnum';
 
 export const useProtectedPage = () => {
     const router = useRouter();
-    const token = useMemo(() => {
-        return localStorage.getItem('token');
+    const token = useMemo<string | undefined>(() => {
+        // istanbul ignore else
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('token');
+        }
     }, []);
 
     useEffect(() => {
