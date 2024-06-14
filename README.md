@@ -162,8 +162,8 @@ The project is built in App Router from NextJS framework. So, all folders with a
 │   │      ├── services/
 │   │      ├── stores/ (global state)
 │   │      ├── utils/
-|   |   ├── layout.tsx  (common layout of whole project)
-|   |   ├── page.tsx (page: https://base-url)
+|   |   ├── layout.tsx  (common layout of whole project. See next doc to know more about layout file)
+|   |   ├── page.tsx (page: https://base-url. See next doc to know more about page file)
 |   |   ├── registry.tsx (styles setup file)
 ```
 

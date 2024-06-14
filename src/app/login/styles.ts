@@ -5,7 +5,7 @@ export const LoginPageWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     height: 100%;
-    padding: 88px 16px 0;
+    padding: 0 16px;
 `;
 
 export const LoginForm = styled.form`

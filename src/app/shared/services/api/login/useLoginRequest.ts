@@ -7,6 +7,7 @@ import { ApolloError, useMutation } from '@apollo/client';
 import { LOGIN } from './schema';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../constants/pathsEnum';
+import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
 
 export const useLoginRequest = () => {
     const { userDispatch } = useUserState();
@@ -27,10 +28,17 @@ export const useLoginRequest = () => {
                 const response = await login({
                     variables: { email, password },
                 });
+                const user = mapUserDTOToUser(
+                    response?.data?.login?.data?.user
+                );
                 userDispatch({
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
-                    payload: response?.data?.login?.data?.user,
+                    payload: user,
                 });
+                localStorage.setItem(
+                    'token',
+                    response?.data?.login?.data?.token
+                );
                 router.push(PATH.HOME);
             } catch (e) {
                 userDispatch({
@@ -39,7 +47,7 @@ export const useLoginRequest = () => {
                 });
             }
         },
-        [userDispatch, login]
+        [login, userDispatch, router]
     );
 
     return { handleLogin };

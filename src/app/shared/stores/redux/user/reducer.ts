@@ -5,7 +5,6 @@ export const userInitialState: UserState = {
         id: '',
         name: '',
         email: '',
-        password: '',
         cpf: '',
         hasAddress: false,
     },

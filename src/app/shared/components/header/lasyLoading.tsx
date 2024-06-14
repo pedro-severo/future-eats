@@ -5,7 +5,7 @@ import { HeaderWrapper } from './styles';
 export const LazyHeaderLoading = () => {
     return (
         <HeaderWrapper
-            shouldRenderHeader={false}
+            $shouldRenderHeader={false}
             data-testid="lazy-header-loading"
         />
     );

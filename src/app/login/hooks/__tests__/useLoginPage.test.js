@@ -17,6 +17,18 @@ jest.mock('../../../shared/services/api/login/useLoginRequest', () => ({
 
 const mockUserDispatch = jest.fn();
 
+const mockNavigate = jest.fn();
+
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            push: mockNavigate,
+        };
+    },
+}));
+
+jest.mock('../../../shared/hooks/useHeader');
+
 describe('useLoginPage', () => {
     beforeEach(() => {
         jest.spyOn(useCustomHook, 'useLoginSchema').mockImplementation(() => {

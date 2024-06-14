@@ -7,6 +7,11 @@ import {
     navigationHeaderInitialState,
 } from './navigationHeader';
 import { NavigationHeaderState } from './navigationHeader/interface';
+import {
+    userAddressInitialState,
+    userAddressReducer,
+} from './redux/userAddress/reducer';
+import { UserAddressStateContext } from './redux/userAddress';
 
 type GlobalStateProviderProps = {
     children: JSX.Element | JSX.Element[];
@@ -16,6 +21,10 @@ const GlobalStateProvider = ({
     children,
 }: GlobalStateProviderProps): ReactElement => {
     const [userState, userDispatch] = useReducer(userReducer, userInitialState);
+    const [userAddressState, userAddressDispatch] = useReducer(
+        userAddressReducer,
+        userAddressInitialState
+    );
     const [navigationHeader, setNavigationHeader] =
         useState<NavigationHeaderState>(navigationHeaderInitialState);
     return (
@@ -23,12 +32,17 @@ const GlobalStateProvider = ({
             data-testid="user-state-context"
             value={{ userState, userDispatch }}
         >
-            <NavigationHeaderStateContext.Provider
-                value={{ navigationHeader, setNavigationHeader }}
-                data-testid="navigation-state-context"
+            <UserAddressStateContext.Provider
+                data-testid="user-address-state-context"
+                value={{ userAddressState, userAddressDispatch }}
             >
-                {children}
-            </NavigationHeaderStateContext.Provider>
+                <NavigationHeaderStateContext.Provider
+                    value={{ navigationHeader, setNavigationHeader }}
+                    data-testid="navigation-state-context"
+                >
+                    {children}
+                </NavigationHeaderStateContext.Provider>
+            </UserAddressStateContext.Provider>
         </UserStateContext.Provider>
     );
 };

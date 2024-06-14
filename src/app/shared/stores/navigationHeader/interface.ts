@@ -4,7 +4,6 @@ export interface NavigationHeaderState {
     title: string;
     hasTitle: boolean;
     shouldRenderHeader: boolean;
-    navigationHistory: NavigationHeaderState[];
 }
 
 export interface NavigationHeaderStateReturn {

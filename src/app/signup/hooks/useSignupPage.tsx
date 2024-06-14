@@ -7,10 +7,19 @@ import { SignupInput } from '../../shared/services/api/signup/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
 import { useUserState } from '../../shared/stores/redux/user';
+import { useHeader } from '../../shared/hooks/useHeader';
+import { useUnprotectedPage } from '../../shared/hooks/useUnprotectedPage';
 
 export const useSignupPage = () => {
+    useUnprotectedPage();
+    useHeader({
+        title: '',
+        hasTitle: false,
+        shouldRenderHeader: true,
+    });
     const { schema } = useSignupSchema();
     const { control, handleSubmit } = useForm<IFormInputNames>({
+        // @ts-expect-error yup expected error
         resolver: yupResolver(schema),
     });
     const { handleSignup } = useSignupRequest();
@@ -32,6 +41,8 @@ export const useSignupPage = () => {
     const onCloseAlert = () => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
     };
+
+    // TODO: See vscode tool who says which dependencies you should put on dependencies
 
     return {
         onSubmitForm: onSubmit,
