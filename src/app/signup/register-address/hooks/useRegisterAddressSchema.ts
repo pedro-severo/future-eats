@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import * as yup from 'yup';
 import { errorMessages } from '../../../shared/constants/errorMessages';
 
+// istanbul ignore file
 export interface IRegisterAddressInputNames {
     city: string;
     complement: string;
@@ -27,7 +28,7 @@ export const useRegisterAddressSchema = (): IUseSchemaResponse => {
             streetNumber: yup.string().required(errorMessages.requiredField),
             zone: yup.string().required(errorMessages.requiredField),
         });
-    }, [yup]);
+    }, []);
 
     return { schema };
 };

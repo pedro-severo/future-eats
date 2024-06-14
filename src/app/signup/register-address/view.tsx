@@ -24,14 +24,18 @@ export const RegisterAddressView = ({
     onCloseAlert,
 }: IRegisterAddressView) => {
     return (
-        <RegisterAddressWrapper>
+        <RegisterAddressWrapper data-testid="RegisterAddressWrapper">
             <designSystem.alert
+                data-testid="designSystem.alert"
                 severity="error"
                 isOpen={hasError}
                 message={alertMessage}
                 onClose={onCloseAlert}
             />
-            <RegisterAddressForm onSubmit={onSubmit}>
+            <RegisterAddressForm
+                data-testid="RegisterAddressForm"
+                onSubmit={onSubmit}
+            >
                 <designSystem.typography variant="h2">
                     Registrar endereço
                 </designSystem.typography>

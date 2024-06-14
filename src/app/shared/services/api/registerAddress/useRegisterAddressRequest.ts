@@ -29,7 +29,7 @@ export const useRegisterAddressRequest = () => {
                     variables: registerAddressInput,
                 });
                 const userAddress = mapUserAddressDTOToUserAddress(
-                    response.data?.registerAddress?.data
+                    response?.data?.registerAddress?.data
                 );
                 userAddressDispatch({
                     type: USER_ADDRESS_ACTION_TYPES.SUCCESS,
