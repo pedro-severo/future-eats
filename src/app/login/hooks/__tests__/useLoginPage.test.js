@@ -3,7 +3,6 @@ import { useLoginPage } from '../useLoginPage';
 import * as useUserState from '../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../shared/stores/redux/user/interface';
 import { renderHook } from '@testing-library/react-hooks';
-import * as NavigationHeaderContext from '../../../shared/stores/navigationHeader';
 
 const schemaMock = {
     password: 'password',
@@ -28,7 +27,7 @@ jest.mock('next/navigation', () => ({
     },
 }));
 
-const mockSetNavigationHeader = jest.fn();
+jest.mock('../../../shared/hooks/useHeader');
 
 describe('useLoginPage', () => {
     beforeEach(() => {
@@ -45,12 +44,6 @@ describe('useLoginPage', () => {
                 },
             };
         });
-        jest.spyOn(
-            NavigationHeaderContext,
-            'useNavigationHeaderState'
-        ).mockImplementation(() => ({
-            setNavigationHeader: mockSetNavigationHeader,
-        }));
     });
     it('call onSubmit correctly', async () => {
         const { result } = renderHook(() => useLoginPage());
