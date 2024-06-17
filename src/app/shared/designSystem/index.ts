@@ -9,19 +9,27 @@ import { InputAdornment } from './components/InputAdornment';
 import { Typography } from './components/Typography';
 import { Alert } from './components/Alert';
 import { CircularProgressIndeterminate } from './components/CircularProgress';
+import Cart from './icons/Cart';
+import Profile from './icons/Profile';
+import Home from './icons/Home';
 // istanbul ignore file
 
 type DesignSystem = {
-    textFieldInput: typeof TextFieldInput;
-    button: typeof Button;
-    arrowBackIcon: typeof ArrowBackIos;
-    visibilityIcon: typeof VisibilityIcon;
-    visibilityOffIcon: typeof VisibilityOffIcon;
-    iconButton: typeof IconButton;
-    inputAdornment: typeof InputAdornment;
-    typography: typeof Typography;
-    alert: typeof Alert;
-    circularProgressIndeterminate: typeof CircularProgressIndeterminate;
+    textFieldInput: typeof TextFieldInput | typeof EmptyComponent;
+    button: typeof Button | typeof EmptyComponent;
+    arrowBackIcon: typeof ArrowBackIos | typeof EmptyComponent;
+    visibilityIcon: typeof VisibilityIcon | typeof EmptyComponent;
+    visibilityOffIcon: typeof VisibilityOffIcon | typeof EmptyComponent;
+    iconButton: typeof IconButton | typeof EmptyComponent;
+    inputAdornment: typeof InputAdornment | typeof EmptyComponent;
+    typography: typeof Typography | typeof EmptyComponent;
+    alert: typeof Alert | typeof EmptyComponent;
+    circularProgressIndeterminate:
+        | typeof CircularProgressIndeterminate
+        | typeof EmptyComponent;
+    cart: typeof Cart | typeof EmptyComponent;
+    home: typeof Home | typeof EmptyComponent;
+    profile: typeof Profile | typeof EmptyComponent;
 };
 
 const designSystem: DesignSystem = {
@@ -30,12 +38,15 @@ const designSystem: DesignSystem = {
     arrowBackIcon: ArrowBackIos || EmptyComponent,
     visibilityIcon: VisibilityIcon || EmptyComponent,
     visibilityOffIcon: VisibilityOffIcon || EmptyComponent,
+    typography: Typography || EmptyComponent,
     iconButton: IconButton || EmptyComponent,
     inputAdornment: InputAdornment || EmptyComponent,
-    typography: Typography || EmptyComponent,
     alert: Alert || EmptyComponent,
     circularProgressIndeterminate:
         CircularProgressIndeterminate || EmptyComponent,
+    cart: Cart || EmptyComponent,
+    home: Home || EmptyComponent,
+    profile: Profile || EmptyComponent,
 };
 
 export default designSystem;

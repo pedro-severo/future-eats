@@ -26,7 +26,7 @@ describe('useUnprotectedPage tests suite', () => {
         }));
         renderHook(() => useUnprotectedPage());
         expect(mockPush).toBeCalled();
-        expect(mockPush).toBeCalledWith(PATH.HOME);
+        expect(mockPush).toBeCalledWith(PATH.DASHBOARD);
     });
     it("shouldn't call push function and stay on the same page", () => {
         jest.spyOn(window, 'localStorage', 'get').mockImplementation(() => ({

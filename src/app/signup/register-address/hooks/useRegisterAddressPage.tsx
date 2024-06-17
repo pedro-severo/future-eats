@@ -23,7 +23,6 @@ export const useRegisterAddressPage = () => {
     useProtectedPage();
     useHeader({
         title: '',
-        hasTitle: false,
         shouldRenderHeader: true,
     });
     const router = useRouter();

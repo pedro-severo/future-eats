@@ -35,7 +35,7 @@ export const useRegisterAddressRequest = () => {
                     type: USER_ADDRESS_ACTION_TYPES.SUCCESS,
                     payload: userAddress,
                 });
-                router.push(PATH.HOME);
+                router.push(PATH.DASHBOARD);
             } catch (e) {
                 userAddressDispatch({
                     type: USER_ADDRESS_ACTION_TYPES.FAILURE,

@@ -14,7 +14,6 @@ export const useLoginPage = () => {
     useUnprotectedPage();
     useHeader({
         title: '',
-        hasTitle: false,
         shouldRenderHeader: false,
     });
     const { schema } = useLoginSchema();

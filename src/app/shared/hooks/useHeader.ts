@@ -1,13 +1,26 @@
 import { useEffect } from 'react';
 import { useNavigationHeaderState } from '../stores/navigationHeader';
-import { NavigationHeaderState } from '../stores/navigationHeader/interface';
 
 // istanbul ignore file
 
-export const useHeader = (headerProps: NavigationHeaderState) => {
+interface IUseHeader {
+    title: string;
+    shouldRenderHeader: boolean;
+    shouldRenderBackIcon?: boolean;
+}
+
+export const useHeader = ({
+    shouldRenderBackIcon = true,
+    shouldRenderHeader,
+    title,
+}: IUseHeader) => {
     const { setNavigationHeader } = useNavigationHeaderState();
     useEffect(() => {
-        setNavigationHeader(headerProps);
+        setNavigationHeader({
+            shouldRenderBackIcon,
+            shouldRenderHeader,
+            title,
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setNavigationHeader]);
 };

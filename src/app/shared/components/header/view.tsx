@@ -5,7 +5,7 @@ import designSystem from '../../designSystem';
 import { useRouter } from 'next/navigation';
 
 export const HeaderView = () => {
-    const { title, shouldRenderHeader } =
+    const { title, shouldRenderHeader, shouldRenderBackIcon } =
         useNavigationHeaderState().navigationHeader;
     const router = useRouter();
     return (
@@ -13,9 +13,11 @@ export const HeaderView = () => {
             data-testid="HeaderWrapper"
             $shouldRenderHeader={shouldRenderHeader}
         >
-            <IconWrapper onClick={() => router.back()}>
-                <designSystem.arrowBackIcon />
-            </IconWrapper>
+            {shouldRenderBackIcon && (
+                <IconWrapper onClick={() => router.back()}>
+                    <designSystem.arrowBackIcon />
+                </IconWrapper>
+            )}
             <HeaderTitle>{title}</HeaderTitle>
         </HeaderWrapper>
     );
