@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useLoginRequest } from '../useLoginRequest';
 import * as useUserState from '../../../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../../../shared/stores/redux/user/interface';
+import PATH from '../../../../constants/pathsEnum';
 
 const mockNavigate = jest.fn();
 
@@ -52,7 +53,7 @@ describe('useLoginRequest', () => {
         expect(mockUserDispatch).not.toBeCalledWith({
             type: USER_ACTION_TYPES.USER_FAILURE,
         });
-        expect(mockNavigate).toBeCalledTimes(1);
+        expect(mockNavigate).toBeCalledWith(PATH.DASHBOARD);
     });
     it('should call handleLogin with error', async () => {
         const mockError = jest.fn().mockRejectedValueOnce(new Error('foo'));

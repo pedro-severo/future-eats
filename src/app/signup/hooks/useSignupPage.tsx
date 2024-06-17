@@ -14,7 +14,6 @@ export const useSignupPage = () => {
     useUnprotectedPage();
     useHeader({
         title: '',
-        hasTitle: false,
         shouldRenderHeader: true,
     });
     const { schema } = useSignupSchema();

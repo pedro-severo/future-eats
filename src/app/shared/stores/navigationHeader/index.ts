@@ -7,8 +7,8 @@ import {
 
 export const navigationHeaderInitialState: NavigationHeaderState = {
     title: '',
-    hasTitle: false,
     shouldRenderHeader: false,
+    shouldRenderBackIcon: true,
 };
 
 export const NavigationHeaderStateContext =

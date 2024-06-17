@@ -13,6 +13,6 @@ export const useUnprotectedPage = () => {
 
     useEffect(() => {
         // TODO: check token data to compare with user infos before send client to protected page
-        if (token) router.push(PATH.HOME);
+        if (token) router.push(PATH.DASHBOARD);
     }, [router, token]);
 };

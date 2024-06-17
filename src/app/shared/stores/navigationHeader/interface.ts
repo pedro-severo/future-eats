@@ -2,8 +2,8 @@ import { SetStateAction } from 'react';
 
 export interface NavigationHeaderState {
     title: string;
-    hasTitle: boolean;
     shouldRenderHeader: boolean;
+    shouldRenderBackIcon: boolean;
 }
 
 export interface NavigationHeaderStateReturn {

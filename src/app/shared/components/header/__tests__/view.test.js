@@ -20,7 +20,7 @@ describe('Header View', () => {
     const mockNavigationHeaderState = {
         title: 'headerTitle',
         shouldRenderHeader: true,
-        navigationHistory: [],
+        shouldRenderBackIcon: true,
     };
     const mockNavigationHeaderDispatch = jest.fn();
     const mockUseNavigationHeaderStateReturn = {

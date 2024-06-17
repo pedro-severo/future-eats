@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useRegisterAddressRequest } from '../useRegisterAddressRequest';
 import * as useUserAddressState from '../../../../../shared/stores/redux/userAddress';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../../stores/redux/userAddress/interface';
+import PATH from '../../../../constants/pathsEnum';
 
 jest.mock('../../shared/user/mapUserAddressDTOToUserAddress');
 
@@ -69,6 +70,7 @@ describe('useRegisterAddressRequest', () => {
             type: USER_ADDRESS_ACTION_TYPES.SUCCESS,
             payload: undefined,
         });
+        expect(mockPush).toBeCalledWith(PATH.DASHBOARD);
     });
     it('should run handleRegisterAddress with error', async () => {
         const mockError = jest.fn().mockRejectedValueOnce(new Error('foo'));

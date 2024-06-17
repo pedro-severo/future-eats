@@ -39,7 +39,7 @@ export const useLoginRequest = () => {
                     'token',
                     response?.data?.login?.data?.token
                 );
-                router.push(PATH.HOME);
+                router.push(PATH.DASHBOARD);
             } catch (e) {
                 userDispatch({
                     type: USER_ACTION_TYPES.USER_FAILURE,
