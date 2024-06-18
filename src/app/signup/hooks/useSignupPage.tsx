@@ -23,7 +23,7 @@ export const useSignupPage = () => {
     });
     const { handleSignup } = useSignupRequest();
     const {
-        userState: { hasError, alertMessage },
+        userState: { hasError, alertMessage, isLoading },
         userDispatch,
     } = useUserState();
 
@@ -41,8 +41,6 @@ export const useSignupPage = () => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
     };
 
-    // TODO: See vscode tool who says which dependencies you should put on dependencies
-
     return {
         onSubmitForm: onSubmit,
         control,
@@ -50,5 +48,6 @@ export const useSignupPage = () => {
         hasSignupError: hasError,
         alertMessage,
         onCloseAlert,
+        isLoading,
     };
 };

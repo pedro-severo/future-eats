@@ -12,6 +12,7 @@ interface IRegisterAddressView {
     control: Control<any, any>;
     hasError: boolean;
     onCloseAlert: () => void;
+    isLoading: boolean;
     alertMessage?: string;
 }
 
@@ -22,6 +23,7 @@ export const RegisterAddressView = ({
     hasError,
     alertMessage,
     onCloseAlert,
+    isLoading,
 }: IRegisterAddressView) => {
     return (
         <RegisterAddressWrapper data-testid="RegisterAddressWrapper">
@@ -50,6 +52,7 @@ export const RegisterAddressView = ({
                                 ({ field, fieldState: { error } }) => (
                                     <designSystem.textFieldInput
                                         {...field}
+                                        disabled={isLoading}
                                         placeholder={inputProp.placeholder}
                                         label={inputProp.label}
                                         error={!!error}
@@ -65,11 +68,13 @@ export const RegisterAddressView = ({
                     type="submit"
                     color="primary"
                     variant="contained"
+                    disabled={isLoading}
                     fullWidth={true}
                 >
-                    Salvar
+                    {isLoading ?
+                        <designSystem.circularProgressIndeterminate color="primary" />
+                    :   <span>Salvar</span>}
                 </designSystem.button>
-                {/* TODO: Create a go to login button */}
             </RegisterAddressForm>
         </RegisterAddressWrapper>
     );

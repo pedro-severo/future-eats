@@ -19,7 +19,6 @@ import PATH from '../../../shared/constants/pathsEnum';
 import { useProtectedPage } from '../../../shared/hooks/useProtectedPage';
 
 export const useRegisterAddressPage = () => {
-    // TODO: fix useUnprotectedPage calling in Signup page is overridden useProtectedPage calling here
     useProtectedPage();
     useHeader({
         title: '',
@@ -32,7 +31,7 @@ export const useRegisterAddressPage = () => {
         resolver: yupResolver(schema),
     });
     const {
-        userAddressState: { hasError, alertMessage },
+        userAddressState: { hasError, alertMessage, isLoading },
         userAddressDispatch,
     } = useUserAddressState();
     const {
@@ -70,5 +69,6 @@ export const useRegisterAddressPage = () => {
         hasError,
         alertMessage,
         onCloseAlert,
+        isLoading,
     };
 };

@@ -16,6 +16,7 @@ interface ILoginPageView {
     control: Control<any, any>;
     hasLoginError: boolean;
     closeAlert: () => void;
+    isLoading: boolean;
     alertMessage?: string;
 }
 
@@ -25,6 +26,7 @@ export const LoginPageView = ({
     hasLoginError,
     closeAlert,
     alertMessage,
+    isLoading,
 }: ILoginPageView) => {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
@@ -53,6 +55,7 @@ export const LoginPageView = ({
                                 label="E-mail"
                                 error={!!error}
                                 helperText={error?.message}
+                                disabled={isLoading}
                             />
                         )
                     }
@@ -70,6 +73,7 @@ export const LoginPageView = ({
                                 label="Senha"
                                 error={!!error}
                                 helperText={error?.message}
+                                disabled={isLoading}
                                 InputProps={{
                                     endAdornment: (
                                         <designSystem.inputAdornment position="start">
@@ -108,8 +112,11 @@ export const LoginPageView = ({
                     color="primary"
                     variant="contained"
                     fullWidth={true}
+                    disabled={isLoading}
                 >
-                    Entrar
+                    {isLoading ?
+                        <designSystem.circularProgressIndeterminate color="primary" />
+                    :   <span>Entrar</span>}
                 </designSystem.button>
             </LoginForm>
             <CallToSignup

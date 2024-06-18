@@ -12,6 +12,7 @@ const RegisterAddress = () => {
         hasError,
         alertMessage,
         onCloseAlert,
+        isLoading,
     } = useRegisterAddressPage();
     return (
         <RegisterAddressView
@@ -21,6 +22,7 @@ const RegisterAddress = () => {
             alertMessage={alertMessage}
             inputProperties={inputProperties}
             onCloseAlert={onCloseAlert}
+            isLoading={isLoading}
         />
     );
 };

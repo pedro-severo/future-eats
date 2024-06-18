@@ -11,6 +11,7 @@ const Signup = () => {
         hasSignupError,
         onCloseAlert,
         alertMessage,
+        isLoading,
     } = useSignupPage();
 
     return (
@@ -20,6 +21,7 @@ const Signup = () => {
             hasSignupError={hasSignupError}
             closeAlert={onCloseAlert}
             alertMessage={alertMessage}
+            isLoading={isLoading}
         />
     );
 };

@@ -35,6 +35,7 @@ export const useLoginRequest = () => {
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
                     payload: user,
                 });
+                console.log('OLAR');
                 localStorage.setItem(
                     'token',
                     response?.data?.login?.data?.token

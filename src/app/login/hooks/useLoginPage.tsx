@@ -23,7 +23,7 @@ export const useLoginPage = () => {
     });
     const { handleLogin } = useLoginRequest();
     const {
-        userState: { hasError, alertMessage },
+        userState: { hasError, alertMessage, isLoading },
         userDispatch,
     } = useUserState();
 
@@ -42,5 +42,6 @@ export const useLoginPage = () => {
         hasLoginError: hasError,
         onCloseAlert,
         alertMessage,
+        isLoading,
     };
 };
