@@ -23,7 +23,11 @@ describe('LoginPageView', () => {
     const mockControl = {};
     beforeEach(() => {
         wrapper = shallow(
-            <LoginPageView onSubmit={mockOnSubmit} control={mockControl} />
+            <LoginPageView
+                onSubmit={mockOnSubmit}
+                control={mockControl}
+                isLoading={false}
+            />
         );
         jest.spyOn(React, 'useState').mockImplementation(() => [
             false,
@@ -59,5 +63,22 @@ describe('LoginPageView', () => {
         );
         expect(alertComponent.props().isOpen).toBe(true);
         expect(alertComponent.props().severity).toBe('error');
+    });
+    it('should render save button', () => {
+        expect(
+            wrapper.find({ 'data-testid': 'submit-login-button' }).exists()
+        ).toBeTruthy();
+    });
+    it('should render loading button', () => {
+        wrapper = shallow(
+            <LoginPageView
+                onSubmit={mockOnSubmit}
+                control={mockControl}
+                isLoading={true}
+            />
+        );
+        expect(
+            wrapper.find({ 'data-testid': 'loading' }).exists()
+        ).toBeTruthy();
     });
 });

@@ -14,6 +14,7 @@ interface ISignupPageView {
     control: Control<any, any>;
     hasSignupError: boolean;
     closeAlert: () => void;
+    isLoading: boolean;
     alertMessage?: string;
 }
 
@@ -23,6 +24,7 @@ export const SignupPageView = ({
     hasSignupError,
     closeAlert,
     alertMessage,
+    isLoading,
 }: ISignupPageView) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] =
@@ -48,6 +50,7 @@ export const SignupPageView = ({
                         ({ field, fieldState: { error } }) => (
                             <designSystem.textFieldInput
                                 {...field}
+                                disabled={isLoading}
                                 placeholder={inputProperties.name.placeholder}
                                 label={inputProperties.name.label}
                                 error={!!error}
@@ -64,6 +67,7 @@ export const SignupPageView = ({
                         ({ field, fieldState: { error } }) => (
                             <designSystem.textFieldInput
                                 {...field}
+                                disabled={isLoading}
                                 placeholder={inputProperties.email.placeholder}
                                 label={inputProperties.email.label}
                                 error={!!error}
@@ -80,6 +84,7 @@ export const SignupPageView = ({
                         ({ field, fieldState: { error } }) => (
                             <designSystem.textFieldInput
                                 {...field}
+                                disabled={isLoading}
                                 placeholder={inputProperties.cpf.placeholder}
                                 label={inputProperties.cpf.label}
                                 error={!!error}
@@ -96,6 +101,7 @@ export const SignupPageView = ({
                         ({ field, fieldState: { error } }) => (
                             <designSystem.textFieldInput
                                 {...field}
+                                disabled={isLoading}
                                 placeholder={
                                     inputProperties.password.placeholder
                                 }
@@ -143,6 +149,7 @@ export const SignupPageView = ({
                         ({ field, fieldState: { error } }) => (
                             <designSystem.textFieldInput
                                 {...field}
+                                disabled={isLoading}
                                 placeholder={
                                     inputProperties.passwordConfirmation
                                         .placeholder
@@ -194,8 +201,17 @@ export const SignupPageView = ({
                     color="primary"
                     variant="contained"
                     fullWidth={true}
+                    disabled={isLoading}
                 >
-                    Criar
+                    {isLoading ?
+                        <designSystem.circularProgressIndeterminate
+                            color="primary"
+                            data-testid="loading"
+                        />
+                    :   <span data-testid="submit-signup-button">
+                            Registrar
+                        </span>
+                    }
                 </designSystem.button>
                 {/* TODO: Create a go to login button */}
             </SignupForm>

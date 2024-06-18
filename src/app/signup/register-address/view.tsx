@@ -12,6 +12,7 @@ interface IRegisterAddressView {
     control: Control<any, any>;
     hasError: boolean;
     onCloseAlert: () => void;
+    isLoading: boolean;
     alertMessage?: string;
 }
 
@@ -22,18 +23,19 @@ export const RegisterAddressView = ({
     hasError,
     alertMessage,
     onCloseAlert,
+    isLoading,
 }: IRegisterAddressView) => {
     return (
-        <RegisterAddressWrapper data-testid="RegisterAddressWrapper">
+        <RegisterAddressWrapper data-testid="register-address-wrapper">
             <designSystem.alert
-                data-testid="designSystem.alert"
+                data-testid="designSystem-alert"
                 severity="error"
                 isOpen={hasError}
                 message={alertMessage}
                 onClose={onCloseAlert}
             />
             <RegisterAddressForm
-                data-testid="RegisterAddressForm"
+                data-testid="register-address-form"
                 onSubmit={onSubmit}
             >
                 <designSystem.typography variant="h2">
@@ -50,6 +52,7 @@ export const RegisterAddressView = ({
                                 ({ field, fieldState: { error } }) => (
                                     <designSystem.textFieldInput
                                         {...field}
+                                        disabled={isLoading}
                                         placeholder={inputProp.placeholder}
                                         label={inputProp.label}
                                         error={!!error}
@@ -65,11 +68,16 @@ export const RegisterAddressView = ({
                     type="submit"
                     color="primary"
                     variant="contained"
+                    disabled={isLoading}
                     fullWidth={true}
                 >
-                    Salvar
+                    {isLoading ?
+                        <designSystem.circularProgressIndeterminate
+                            color="primary"
+                            data-testid="loading"
+                        />
+                    :   <span data-testid="submit-address-button">Salvar</span>}
                 </designSystem.button>
-                {/* TODO: Create a go to login button */}
             </RegisterAddressForm>
         </RegisterAddressWrapper>
     );

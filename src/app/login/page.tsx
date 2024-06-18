@@ -11,6 +11,7 @@ const Login = () => {
         hasLoginError,
         onCloseAlert,
         alertMessage,
+        isLoading,
     } = useLoginPage();
     return (
         <LoginPageView
@@ -19,6 +20,7 @@ const Login = () => {
             hasLoginError={hasLoginError}
             closeAlert={onCloseAlert}
             alertMessage={alertMessage}
+            isLoading={isLoading}
         />
     );
 };

@@ -11,7 +11,11 @@ describe('SignupView', () => {
     const mockControl = {};
     beforeEach(() => {
         wrapper = shallow(
-            <SignupPageView onSubmit={mockOnSubmit} control={mockControl} />
+            <SignupPageView
+                onSubmit={mockOnSubmit}
+                control={mockControl}
+                isLoading={false}
+            />
         );
         jest.spyOn(React, 'useState').mockImplementation(() => [
             false,
@@ -30,5 +34,22 @@ describe('SignupView', () => {
         const signupForm = wrapper.find(SignupForm);
         signupForm.simulate('submit');
         expect(mockOnSubmit).toBeCalledTimes(1);
+    });
+    it('should render save button', () => {
+        expect(
+            wrapper.find({ 'data-testid': 'submit-signup-button' }).exists()
+        ).toBeTruthy();
+    });
+    it('should render loading button', () => {
+        wrapper = shallow(
+            <SignupPageView
+                onSubmit={mockOnSubmit}
+                control={mockControl}
+                isLoading={true}
+            />
+        );
+        expect(
+            wrapper.find({ 'data-testid': 'loading' }).exists()
+        ).toBeTruthy();
     });
 });

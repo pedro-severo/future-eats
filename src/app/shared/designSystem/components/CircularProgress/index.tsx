@@ -1,7 +1,9 @@
 import * as React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import { CircularProgressProps } from '@material-ui/core';
+import {
+    Box,
+    CircularProgressProps,
+    CircularProgress,
+} from '@material-ui/core';
 
 interface ICircularProgressIndeterminate extends CircularProgressProps {
     dataTestId?: string;
