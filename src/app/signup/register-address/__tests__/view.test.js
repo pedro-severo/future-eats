@@ -15,23 +15,44 @@ describe('RegisterAddressView', () => {
                 control={{}}
                 hasError={false}
                 inputProperties={registerAddressInputProperties}
+                isLoading={false}
             />
         );
     });
     it('should render RegisterAddressView correctly', () => {
         expect(
-            wrapper.find({ 'data-testid': 'RegisterAddressWrapper' }).exists()
+            wrapper.find({ 'data-testid': 'register-address-wrapper' }).exists()
         ).toBeTruthy();
         expect(
-            wrapper.find({ 'data-testid': 'designSystem.alert' }).exists()
+            wrapper.find({ 'data-testid': 'designSystem-alert' }).exists()
         ).toBeTruthy();
         expect(
-            wrapper.find({ 'data-testid': 'RegisterAddressForm' }).exists()
+            wrapper.find({ 'data-testid': 'register-address-form' }).exists()
         ).toBeTruthy();
     });
     it('should submit form correctly', () => {
-        const form = wrapper.find({ 'data-testid': 'RegisterAddressForm' });
+        const form = wrapper.find({ 'data-testid': 'register-address-form' });
         form.simulate('submit');
         expect(mockOnSubmit).toBeCalledTimes(1);
+    });
+    it('should render save button', () => {
+        expect(
+            wrapper.find({ 'data-testid': 'submit-address-button' }).exists()
+        ).toBeTruthy();
+    });
+    it('should render loading button', () => {
+        wrapper = shallow(
+            <RegisterAddressView
+                onSubmit={mockOnSubmit}
+                onCloseAlert={jest.fn()}
+                control={{}}
+                hasError={false}
+                inputProperties={registerAddressInputProperties}
+                isLoading={true}
+            />
+        );
+        expect(
+            wrapper.find({ 'data-testid': 'loading' }).exists()
+        ).toBeTruthy();
     });
 });

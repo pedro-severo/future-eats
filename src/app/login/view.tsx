@@ -115,8 +115,11 @@ export const LoginPageView = ({
                     disabled={isLoading}
                 >
                     {isLoading ?
-                        <designSystem.circularProgressIndeterminate color="primary" />
-                    :   <span>Entrar</span>}
+                        <designSystem.circularProgressIndeterminate
+                            color="primary"
+                            data-testid="loading"
+                        />
+                    :   <span data-testid="submit-login-button">Entrar</span>}
                 </designSystem.button>
             </LoginForm>
             <CallToSignup

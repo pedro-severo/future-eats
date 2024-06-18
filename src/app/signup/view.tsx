@@ -204,8 +204,14 @@ export const SignupPageView = ({
                     disabled={isLoading}
                 >
                     {isLoading ?
-                        <designSystem.circularProgressIndeterminate color="primary" />
-                    :   <span>Registrar</span>}
+                        <designSystem.circularProgressIndeterminate
+                            color="primary"
+                            data-testid="loading"
+                        />
+                    :   <span data-testid="submit-signup-button">
+                            Registrar
+                        </span>
+                    }
                 </designSystem.button>
                 {/* TODO: Create a go to login button */}
             </SignupForm>

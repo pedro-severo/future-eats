@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CircularProgressIndeterminate } from '.';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-
+import { Box, CircularProgress } from '@material-ui/core';
 describe('CircularProgress Component', () => {
     it('should render CircularProgress correctly', () => {
         const wrapper = shallow(<CircularProgressIndeterminate />);

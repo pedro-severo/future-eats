@@ -26,16 +26,16 @@ export const RegisterAddressView = ({
     isLoading,
 }: IRegisterAddressView) => {
     return (
-        <RegisterAddressWrapper data-testid="RegisterAddressWrapper">
+        <RegisterAddressWrapper data-testid="register-address-wrapper">
             <designSystem.alert
-                data-testid="designSystem.alert"
+                data-testid="designSystem-alert"
                 severity="error"
                 isOpen={hasError}
                 message={alertMessage}
                 onClose={onCloseAlert}
             />
             <RegisterAddressForm
-                data-testid="RegisterAddressForm"
+                data-testid="register-address-form"
                 onSubmit={onSubmit}
             >
                 <designSystem.typography variant="h2">
@@ -72,8 +72,11 @@ export const RegisterAddressView = ({
                     fullWidth={true}
                 >
                     {isLoading ?
-                        <designSystem.circularProgressIndeterminate color="primary" />
-                    :   <span>Salvar</span>}
+                        <designSystem.circularProgressIndeterminate
+                            color="primary"
+                            data-testid="loading"
+                        />
+                    :   <span data-testid="submit-address-button">Salvar</span>}
                 </designSystem.button>
             </RegisterAddressForm>
         </RegisterAddressWrapper>
