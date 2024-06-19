@@ -14,6 +14,9 @@ jest.mock('next/navigation', () => ({
             back: mockBack,
         };
     },
+    usePathname() {
+        return '/';
+    },
 }));
 
 describe('Header View', () => {
