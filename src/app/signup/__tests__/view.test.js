@@ -2,6 +2,17 @@ import React from 'react';
 import { SignupPageView } from '../view';
 import { shallow } from 'enzyme';
 import { SignupForm } from '../styles';
+import PATH from '../../shared/constants/pathsEnum';
+
+const mockPush = jest.fn();
+
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            push: mockPush,
+        };
+    },
+}));
 
 describe('SignupView', () => {
     let wrapper;
@@ -40,16 +51,12 @@ describe('SignupView', () => {
             wrapper.find({ 'data-testid': 'submit-signup-button' }).exists()
         ).toBeTruthy();
     });
-    it('should render loading button', () => {
-        wrapper = shallow(
-            <SignupPageView
-                onSubmit={mockOnSubmit}
-                control={mockControl}
-                isLoading={true}
-            />
-        );
-        expect(
-            wrapper.find({ 'data-testid': 'loading' }).exists()
-        ).toBeTruthy();
+    it('should render goToLogin button and call onClick callback of the component', () => {
+        const goToLoginButton = wrapper.find({
+            'data-testid': 'go-to-login-button',
+        });
+        goToLoginButton.simulate('click');
+        expect(goToLoginButton.exists()).toBeTruthy();
+        expect(mockPush).toBeCalledWith(PATH.LOGIN);
     });
 });
