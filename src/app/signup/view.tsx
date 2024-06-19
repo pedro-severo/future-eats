@@ -210,16 +210,16 @@ export const SignupPageView = ({
                     label="Registrar"
                     data-testid="submit-signup-button"
                 />
-                <CustomButton
-                    type="button"
-                    buttonColor="primary"
-                    variant="outlined"
-                    fullWidth={true}
-                    label="Voltar para Login"
-                    data-testid="go-to-login-button"
-                    onClick={() => router.push(PATH.LOGIN)}
-                />
             </SignupForm>
+            <CustomButton
+                type="button"
+                buttonColor="primary"
+                variant="outlined"
+                fullWidth={true}
+                label="Voltar para Login"
+                data-testid="go-to-login-button"
+                onClick={() => router.push(PATH.LOGIN)}
+            />
         </SignupPageWrapper>
     );
 };
