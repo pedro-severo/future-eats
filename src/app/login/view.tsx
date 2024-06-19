@@ -9,6 +9,7 @@ import { MainLogo } from '../shared/components/mainLogo';
 import { CallToSignup } from './components/callToSignup';
 import { useRouter } from 'next/navigation';
 import PATH from '../shared/constants/pathsEnum';
+import { CustomButton } from '../shared/components/customButton';
 
 interface ILoginPageView {
     onSubmit: () => void;
@@ -107,20 +108,16 @@ export const LoginPageView = ({
                         )
                     }
                 />
-                <designSystem.button
+                <CustomButton
                     type="submit"
-                    color="primary"
+                    buttonColor="primary"
                     variant="contained"
                     fullWidth={true}
                     disabled={isLoading}
-                >
-                    {isLoading ?
-                        <designSystem.circularProgressIndeterminate
-                            color="primary"
-                            data-testid="loading"
-                        />
-                    :   <span data-testid="submit-login-button">Entrar</span>}
-                </designSystem.button>
+                    circularProgressColor="primary"
+                    label="Entrar"
+                    data-testid="submit-login-button"
+                />
             </LoginForm>
             <CallToSignup
                 action={() => router.push(PATH.SIGNUP)}

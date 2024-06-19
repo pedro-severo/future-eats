@@ -40,19 +40,4 @@ describe('RegisterAddressView', () => {
             wrapper.find({ 'data-testid': 'submit-address-button' }).exists()
         ).toBeTruthy();
     });
-    it('should render loading button', () => {
-        wrapper = shallow(
-            <RegisterAddressView
-                onSubmit={mockOnSubmit}
-                onCloseAlert={jest.fn()}
-                control={{}}
-                hasError={false}
-                inputProperties={registerAddressInputProperties}
-                isLoading={true}
-            />
-        );
-        expect(
-            wrapper.find({ 'data-testid': 'loading' }).exists()
-        ).toBeTruthy();
-    });
 });

@@ -4,6 +4,7 @@ import { RegisterAddressForm, RegisterAddressWrapper } from './styles';
 import designSystem from '../../shared/designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { IInputProp } from './constants/inputProperties';
+import { CustomButton } from '../../shared/components/customButton';
 
 interface IRegisterAddressView {
     inputProperties: Array<IInputProp>;
@@ -63,21 +64,16 @@ export const RegisterAddressView = ({
                         />
                     );
                 })}
-                {/* TODO: Create a custom button on shared components and use it here, on signup and login form */}
-                <designSystem.button
+                <CustomButton
                     type="submit"
-                    color="primary"
+                    buttonColor="primary"
                     variant="contained"
                     disabled={isLoading}
                     fullWidth={true}
-                >
-                    {isLoading ?
-                        <designSystem.circularProgressIndeterminate
-                            color="primary"
-                            data-testid="loading"
-                        />
-                    :   <span data-testid="submit-address-button">Salvar</span>}
-                </designSystem.button>
+                    circularProgressColor="primary"
+                    label="Salvar"
+                    data-testid="submit-address-button"
+                />
             </RegisterAddressForm>
         </RegisterAddressWrapper>
     );

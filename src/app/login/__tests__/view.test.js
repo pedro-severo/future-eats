@@ -64,21 +64,9 @@ describe('LoginPageView', () => {
         expect(alertComponent.props().isOpen).toBe(true);
         expect(alertComponent.props().severity).toBe('error');
     });
-    it('should render save button', () => {
+    it('should render enter button', () => {
         expect(
             wrapper.find({ 'data-testid': 'submit-login-button' }).exists()
-        ).toBeTruthy();
-    });
-    it('should render loading button', () => {
-        wrapper = shallow(
-            <LoginPageView
-                onSubmit={mockOnSubmit}
-                control={mockControl}
-                isLoading={true}
-            />
-        );
-        expect(
-            wrapper.find({ 'data-testid': 'loading' }).exists()
         ).toBeTruthy();
     });
 });

@@ -7,6 +7,9 @@ import { SignupInputNames } from './hooks/useSignupSchema';
 import { theme } from '../shared/designSystem/themeProvider';
 import { inputProperties } from './constants/inputProperties';
 import { MainLogo } from '../shared/components/mainLogo';
+import { CustomButton } from '../shared/components/customButton';
+import { useRouter } from 'next/navigation';
+import PATH from '../shared/constants/pathsEnum';
 
 interface ISignupPageView {
     onSubmit: () => void;
@@ -26,6 +29,7 @@ export const SignupPageView = ({
     alertMessage,
     isLoading,
 }: ISignupPageView) => {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] =
         useState(false);
@@ -196,25 +200,26 @@ export const SignupPageView = ({
                         )
                     }
                 />
-                <designSystem.button
+                <CustomButton
                     type="submit"
-                    color="primary"
+                    buttonColor="primary"
                     variant="contained"
                     fullWidth={true}
                     disabled={isLoading}
-                >
-                    {isLoading ?
-                        <designSystem.circularProgressIndeterminate
-                            color="primary"
-                            data-testid="loading"
-                        />
-                    :   <span data-testid="submit-signup-button">
-                            Registrar
-                        </span>
-                    }
-                </designSystem.button>
-                {/* TODO: Create a go to login button */}
+                    circularProgressColor="primary"
+                    label="Registrar"
+                    data-testid="submit-signup-button"
+                />
             </SignupForm>
+            <CustomButton
+                type="button"
+                buttonColor="primary"
+                variant="outlined"
+                fullWidth={true}
+                label="Voltar para Login"
+                data-testid="go-to-login-button"
+                onClick={() => router.push(PATH.LOGIN)}
+            />
         </SignupPageWrapper>
     );
 };
