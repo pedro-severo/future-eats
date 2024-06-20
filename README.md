@@ -154,6 +154,7 @@ The project is built in App Router from NextJS framework. So, all folders with a
 │   ├── app/
 |   |   ├── login/  (page: https://base-url/login)
 |   |   ├── signup/ (page: https://base-url/signup)
+|   |      |── register-address/ (page: https://base-url/signup/register-address)
 |   |   ├── shared/ (common stuff of the project)
 │   │      ├── assets/ 
 │   │      ├── components/ 
