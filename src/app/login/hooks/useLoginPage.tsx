@@ -1,4 +1,3 @@
-'use client';
 import { useForm } from 'react-hook-form';
 import { useLoginSchema } from './useLoginSchema';
 import { yupResolver } from '@hookform/resolvers/yup';

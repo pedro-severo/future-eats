@@ -1,4 +1,3 @@
-'use client';
 import React, { useState } from 'react';
 import { SignupForm, SignupPageWrapper } from './styles';
 import designSystem from '../shared/designSystem';

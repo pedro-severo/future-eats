@@ -1,4 +1,3 @@
-'use client';
 import { useMemo } from 'react';
 import * as yup from 'yup';
 import { IFormInputNames } from '../interfaces/FormInputNames';
@@ -47,6 +46,5 @@ export const useSignupSchema = (): IUseSchemaResponse => {
         });
     }, [yup]);
 
-    // @ts-expect-error schema with a custom validation method
     return { schema };
 };

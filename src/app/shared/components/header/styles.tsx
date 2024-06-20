@@ -5,7 +5,7 @@ import React from 'react';
 // istanbul ignore next
 export const HeaderWrapper = React.memo(styled('div')<{
     $shouldRenderHeader: boolean;
-    $pathName: string;
+    $pathName?: string;
 }>`
     width: 100%;
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
