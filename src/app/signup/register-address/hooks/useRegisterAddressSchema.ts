@@ -1,5 +1,3 @@
-'use client';
-
 import { useMemo } from 'react';
 import * as yup from 'yup';
 import { errorMessages } from '../../../shared/constants/errorMessages';

@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { RegisterAddressForm, RegisterAddressWrapper } from './styles';
 import designSystem from '../../shared/designSystem';

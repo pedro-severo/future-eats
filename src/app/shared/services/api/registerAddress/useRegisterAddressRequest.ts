@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect } from 'react';
 import { ApolloError, useMutation } from '@apollo/client';
 import { useUserAddressState } from '../../../stores/redux/userAddress';
