@@ -6,6 +6,7 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { COOKIES_LABEL, cookies } from '../cookies';
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:3003/graphql',
@@ -13,7 +14,7 @@ const httpLink = createHttpLink({
 
 // istanbul ignore next
 const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('token');
+    const token = cookies().get(COOKIES_LABEL.TOKEN);
     return {
         headers: {
             ...headers,

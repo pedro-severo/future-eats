@@ -7,6 +7,7 @@ import { ApolloError, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../constants/pathsEnum';
 import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
+import { COOKIES_LABEL, cookies } from '../../cookies';
 
 export const useSignupRequest = () => {
     const { userDispatch } = useUserState();
@@ -34,9 +35,10 @@ export const useSignupRequest = () => {
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
                     payload: user,
                 });
-                localStorage.setItem(
-                    'token',
-                    response?.data?.signup?.data?.token
+                cookies().set(
+                    COOKIES_LABEL.TOKEN,
+                    response?.data?.login?.data?.token,
+                    { expires: 7, secure: true }
                 );
                 router.push(`${PATH.SIGNUP}/${PATH.REGISTER_ADDRESS}`);
             } catch (e) {

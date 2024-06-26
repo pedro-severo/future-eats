@@ -7,6 +7,7 @@ import { LOGIN } from './schema';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../constants/pathsEnum';
 import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
+import { COOKIES_LABEL, cookies } from '../../cookies';
 
 export const useLoginRequest = () => {
     const { userDispatch } = useUserState();
@@ -34,9 +35,10 @@ export const useLoginRequest = () => {
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
                     payload: user,
                 });
-                localStorage.setItem(
-                    'token',
-                    response?.data?.login?.data?.token
+                cookies().set(
+                    COOKIES_LABEL.TOKEN,
+                    response?.data?.login?.data?.token,
+                    { expires: 7, secure: true }
                 );
                 router.push(PATH.DASHBOARD);
             } catch (e) {
