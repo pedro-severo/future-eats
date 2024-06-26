@@ -1,10 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useUnprotectedPage } from '../useUnprotectedPage';
 import PATH from '../../constants/pathsEnum';
-
-const mockGetItem = jest.fn().mockImplementation((token) => {
-    return token;
-});
+import React from 'react';
 
 const mockPush = jest.fn();
 
@@ -17,22 +14,14 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('useUnprotectedPage tests suite', () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
+    it("shouldn't call push function and stay on the same page", () => {
+        renderHook(() => useUnprotectedPage());
+        expect(mockPush).not.toBeCalled();
     });
     it('should call push function and navigate to home', () => {
-        jest.spyOn(window, 'localStorage', 'get').mockImplementation(() => ({
-            getItem: () => mockGetItem('123'),
-        }));
+        jest.spyOn(React, 'useMemo').mockResolvedValue('token');
         renderHook(() => useUnprotectedPage());
         expect(mockPush).toBeCalled();
         expect(mockPush).toBeCalledWith(PATH.DASHBOARD);
-    });
-    it("shouldn't call push function and stay on the same page", () => {
-        jest.spyOn(window, 'localStorage', 'get').mockImplementation(() => ({
-            getItem: () => mockGetItem(undefined),
-        }));
-        renderHook(() => useUnprotectedPage());
-        expect(mockPush).not.toBeCalled();
     });
 });
