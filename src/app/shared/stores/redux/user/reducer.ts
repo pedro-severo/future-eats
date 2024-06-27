@@ -8,6 +8,7 @@ export const userInitialState: UserState = {
         cpf: '',
         hasAddress: false,
     },
+    token: '',
     isLoading: false,
     hasError: false,
     alertMessage: undefined,
@@ -20,14 +21,18 @@ export const userReducer = (
     switch (action.type) {
         case USER_ACTION_TYPES.LOGIN_SUCCESS: {
             return {
-                user: { ...state.user, ...action.payload },
+                ...state,
+                user: { ...state.user, ...action.payload.user },
+                token: action.payload.token,
                 isLoading: false,
                 hasError: false,
             };
         }
         case USER_ACTION_TYPES.SIGNUP_SUCCESS: {
             return {
-                user: { ...state.user, ...action.payload },
+                ...state,
+                user: { ...state.user, ...action.payload.user },
+                token: action.payload.token,
                 isLoading: false,
                 hasError: false,
             };

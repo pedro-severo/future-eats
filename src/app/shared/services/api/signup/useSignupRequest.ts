@@ -31,15 +31,15 @@ export const useSignupRequest = () => {
                 const user = mapUserDTOToUser(
                     response?.data?.signup?.data?.user
                 );
+                const token = response?.data?.signup?.data?.token;
                 userDispatch({
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
-                    payload: user,
+                    payload: { user, token },
                 });
-                cookies().set(
-                    COOKIES_LABEL.TOKEN,
-                    response?.data?.login?.data?.token,
-                    { expires: 7, secure: true }
-                );
+                cookies().set(COOKIES_LABEL.TOKEN, token, {
+                    expires: 7,
+                    secure: true,
+                });
                 router.push(`${PATH.SIGNUP}/${PATH.REGISTER_ADDRESS}`);
             } catch (e) {
                 userDispatch({

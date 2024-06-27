@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import APIProvider from '../index';
+import * as useUserState from '../../../stores/redux/user';
 
 jest.mock('@apollo/client', () => ({
     ApolloClient: jest.fn(() => ({
@@ -28,8 +29,17 @@ jest.mock('@apollo/client/link/context', () => ({
     })),
 }));
 
+jest;
+
 describe('APIProvider component', () => {
     test('renders children', () => {
+        jest.spyOn(useUserState, 'useUserState').mockImplementation(() => {
+            return {
+                userState: {
+                    token: 'token',
+                },
+            };
+        });
         const ChildComponent = () => <div>Child Component</div>;
         const { getByText } = render(
             <APIProvider>

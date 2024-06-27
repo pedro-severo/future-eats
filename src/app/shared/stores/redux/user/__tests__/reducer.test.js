@@ -6,15 +6,23 @@ describe('userReducer', () => {
         const action = {
             type: USER_ACTION_TYPES.LOGIN_SUCCESS,
             payload: {
-                id: '123',
-                name: 'John Doe',
-                email: 'john@example.com',
+                user: {
+                    id: '123',
+                    name: 'John Doe',
+                    email: 'john@example.com',
+                    hasAddress: true,
+                    cpf: '456',
+                },
+                token: 'token',
             },
         };
         const newState = userReducer(userInitialState, action);
         expect(newState.user.id).toEqual('123');
         expect(newState.user.name).toEqual('John Doe');
         expect(newState.user.email).toEqual('john@example.com');
+        expect(newState.user.hasAddress).toEqual(true);
+        expect(newState.user.cpf).toEqual('456');
+        expect(newState.token).toEqual('token');
         expect(newState.isLoading).toEqual(false);
         expect(newState.hasError).toEqual(false);
     });
@@ -23,15 +31,23 @@ describe('userReducer', () => {
         const action = {
             type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
             payload: {
-                id: '456',
-                name: 'Jane Smith',
-                email: 'jane@example.com',
+                user: {
+                    id: '123',
+                    name: 'John Doe',
+                    email: 'john@example.com',
+                    hasAddress: true,
+                    cpf: '456',
+                },
+                token: 'token',
             },
         };
         const newState = userReducer(userInitialState, action);
-        expect(newState.user.id).toEqual('456');
-        expect(newState.user.name).toEqual('Jane Smith');
-        expect(newState.user.email).toEqual('jane@example.com');
+        expect(newState.user.id).toEqual('123');
+        expect(newState.user.name).toEqual('John Doe');
+        expect(newState.user.email).toEqual('john@example.com');
+        expect(newState.user.hasAddress).toEqual(true);
+        expect(newState.user.cpf).toEqual('456');
+        expect(newState.token).toEqual('token');
         expect(newState.isLoading).toEqual(false);
         expect(newState.hasError).toEqual(false);
     });

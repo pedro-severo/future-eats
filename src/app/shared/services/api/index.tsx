@@ -1,4 +1,5 @@
-import React from 'react';
+// istanbul ignore file
+import React, { useMemo } from 'react';
 import {
     ApolloProvider,
     ApolloClient,
@@ -7,28 +8,33 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { COOKIES_LABEL, cookies } from '../cookies';
+import { useUserState } from '../../stores/redux/user';
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:3003/graphql',
 });
 
-// istanbul ignore next
-const authLink = setContext((_, { headers }) => {
-    const token = cookies().get(COOKIES_LABEL.TOKEN);
-    return {
-        headers: {
-            ...headers,
-            authorization: token || '',
-        },
-    };
-});
-
-const client = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
-});
-
 const APIProvider: React.FC<any> = ({ children }) => {
+    const {
+        userState: { token },
+    } = useUserState();
+    const authLink = useMemo(() => {
+        return setContext((_, { headers }) => {
+            const tokenFromCookies = cookies().get(COOKIES_LABEL.TOKEN);
+            return {
+                headers: {
+                    ...headers,
+                    authorization: token || tokenFromCookies || '',
+                },
+            };
+        });
+    }, [token]);
+    const client = useMemo(() => {
+        return new ApolloClient({
+            link: authLink.concat(httpLink),
+            cache: new InMemoryCache(),
+        });
+    }, [authLink]);
     return <ApolloProvider client={client}>{children}</ApolloProvider>;
 };
 
