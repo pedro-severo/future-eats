@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import PATH from '../constants/pathsEnum';
 import { COOKIES_LABEL, cookies } from '../services/cookies';
 
+// TODO: request endpoint to check token data and goes to dashboard, if this is the case
 export const useUnprotectedPage = () => {
     const router = useRouter();
     const token = useMemo(() => {
