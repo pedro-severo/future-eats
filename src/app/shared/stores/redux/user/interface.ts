@@ -8,14 +8,20 @@ export interface User {
 
 export interface UserState {
     user: User;
+    token: string;
     isLoading: boolean;
     hasError: boolean;
     alertMessage?: string;
 }
 
+interface UserPayload {
+    user: User;
+    token: string;
+}
+
 export interface UserReducerAction {
     type: USER_ACTION_TYPES;
-    payload?: User;
+    payload?: UserPayload;
     alertMessage?: string;
 }
 

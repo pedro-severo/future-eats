@@ -14,10 +14,28 @@ jest.mock('next/navigation', () => ({
     },
 }));
 
-jest.mock('../../shared/user/mapUserDTOToUser');
-
 const mockUserDispatch = jest.fn();
-const mockLogin = jest.fn();
+
+const mockUserDto = {
+    id: 'id',
+    cpf: 'cpf',
+    email: 'email',
+    hasAddress: false,
+    name: 'name',
+};
+
+const mockToken = 'mockToken';
+
+const mockLogin = jest.fn().mockImplementation(() => ({
+    data: {
+        login: {
+            data: {
+                user: mockUserDto,
+                token: mockToken,
+            },
+        },
+    },
+}));
 
 const mockLoginInput = {
     email: 'email',
@@ -48,10 +66,10 @@ describe('useLoginRequest', () => {
         expect(mockUserDispatch).toBeCalledTimes(1);
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.LOGIN_SUCCESS,
-            payload: undefined,
-        });
-        expect(mockUserDispatch).not.toBeCalledWith({
-            type: USER_ACTION_TYPES.USER_FAILURE,
+            payload: {
+                user: mockUserDto,
+                token: mockToken,
+            },
         });
         expect(mockNavigate).toBeCalledWith(PATH.DASHBOARD);
     });

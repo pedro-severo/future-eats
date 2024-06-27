@@ -5,6 +5,8 @@ import { COOKIES_LABEL, cookies } from '../services/cookies';
 
 // TODO: When a page is inside another page and these pages are unprotected and protected or vice versa
 //       the hook of the first page is messing the hook of the second
+
+// TODO: request endpoint to check token data and keeps on page, if this is the case
 export const useProtectedPage = () => {
     const router = useRouter();
     const token = useMemo<string | undefined>(() => {

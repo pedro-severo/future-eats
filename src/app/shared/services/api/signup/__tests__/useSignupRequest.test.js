@@ -5,7 +5,26 @@ import { USER_ACTION_TYPES } from '../../../../../shared/stores/redux/user/inter
 
 const mockNavigate = jest.fn();
 const mockUserDispatch = jest.fn();
-const mockSignup = jest.fn();
+const mockSignup = jest.fn().mockImplementation(() => ({
+    data: {
+        signup: {
+            data: {
+                user: mockUserDto,
+                token: mockToken,
+            },
+        },
+    },
+}));
+
+const mockUserDto = {
+    id: 'id',
+    cpf: 'cpf',
+    email: 'email',
+    hasAddress: false,
+    name: 'name',
+};
+
+const mockToken = 'mockToken';
 
 jest.mock('next/navigation', () => ({
     useRouter() {
@@ -14,8 +33,6 @@ jest.mock('next/navigation', () => ({
         };
     },
 }));
-
-jest.mock('../../shared/user/mapUserDTOToUser');
 
 const mockSignupInput = {
     name: 'string',
@@ -48,7 +65,10 @@ describe('useSignupRequest', () => {
         expect(mockUserDispatch).toBeCalledTimes(1);
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
-            payload: undefined,
+            payload: {
+                user: mockUserDto,
+                token: mockToken,
+            },
         });
         expect(mockUserDispatch).not.toBeCalledWith({
             type: USER_ACTION_TYPES.USER_FAILURE,

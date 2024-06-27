@@ -31,15 +31,15 @@ export const useLoginRequest = () => {
                 const user = mapUserDTOToUser(
                     response?.data?.login?.data?.user
                 );
+                const token = response?.data?.login?.data?.token;
                 userDispatch({
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
-                    payload: user,
+                    payload: { user, token },
                 });
-                cookies().set(
-                    COOKIES_LABEL.TOKEN,
-                    response?.data?.login?.data?.token,
-                    { expires: 7, secure: true }
-                );
+                cookies().set(COOKIES_LABEL.TOKEN, token, {
+                    expires: 7,
+                    secure: true,
+                });
                 router.push(PATH.DASHBOARD);
             } catch (e) {
                 userDispatch({

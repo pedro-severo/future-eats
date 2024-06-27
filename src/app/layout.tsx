@@ -23,14 +23,14 @@ export default function RootLayout({
                     options={{ enableCssLayer: true, key: 'css' }}
                 >
                     <StyledJsxRegistry>
-                        <APIProvider>
-                            <GlobalStateProvider>
+                        <GlobalStateProvider>
+                            <APIProvider>
                                 <ThemeUsage>
                                     <Header />
                                     {children}
                                 </ThemeUsage>
-                            </GlobalStateProvider>
-                        </APIProvider>
+                            </APIProvider>
+                        </GlobalStateProvider>
                     </StyledJsxRegistry>
                 </AppRouterCacheProvider>
             </body>
