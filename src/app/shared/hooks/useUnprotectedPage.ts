@@ -2,16 +2,25 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import PATH from '../constants/pathsEnum';
 import { COOKIES_LABEL, cookies } from '../services/cookies';
+import { useUserState } from '../stores/redux/user';
+import { useAuthenticateRequest } from '../services/api/authenticate/useAuthenticateRequest';
 
-// TODO: request endpoint to check token data and goes to dashboard, if this is the case
 export const useUnprotectedPage = () => {
     const router = useRouter();
+    const {
+        userState: { token: tokenFromState, hasError },
+    } = useUserState();
+    const { handleAuthenticate } = useAuthenticateRequest();
+
     const token = useMemo(() => {
-        return cookies().get(COOKIES_LABEL.TOKEN);
-    }, [cookies]);
+        return tokenFromState || cookies().get(COOKIES_LABEL.TOKEN);
+    }, [cookies, tokenFromState]);
 
     useEffect(() => {
-        // TODO: check token data to compare with user infos before send client to protected page
-        if (token) router.push(PATH.DASHBOARD);
-    }, [router, token]);
+        if (token) handleAuthenticate(token);
+    }, [token]);
+
+    useEffect(() => {
+        if (!hasError && tokenFromState) router.push(PATH.DASHBOARD);
+    }, [router, hasError, tokenFromState]);
 };

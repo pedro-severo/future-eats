@@ -7,6 +7,7 @@ export const userInitialState: UserState = {
         email: '',
         cpf: '',
         hasAddress: false,
+        role: undefined,
     },
     token: '',
     isLoading: false,
@@ -50,6 +51,15 @@ export const userReducer = (
                 isLoading: false,
                 hasError: true,
                 alertMessage: action?.alertMessage,
+            };
+        }
+        case USER_ACTION_TYPES.AUTHENTICATE_SUCCESS: {
+            return {
+                ...state,
+                user: { ...state.user, ...action.payload.user },
+                token: action.payload.token,
+                isLoading: false,
+                hasError: false,
             };
         }
         case USER_ACTION_TYPES.RESET_STATE: {

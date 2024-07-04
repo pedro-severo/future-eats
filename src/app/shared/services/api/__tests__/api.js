@@ -29,8 +29,6 @@ jest.mock('@apollo/client/link/context', () => ({
     })),
 }));
 
-jest;
-
 describe('APIProvider component', () => {
     test('renders children', () => {
         jest.spyOn(useUserState, 'useUserState').mockImplementation(() => {
