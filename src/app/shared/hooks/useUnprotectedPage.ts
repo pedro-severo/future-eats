@@ -1,26 +1,26 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import PATH from '../constants/pathsEnum';
-import { COOKIES_LABEL, cookies } from '../services/cookies';
+import { COOKIES_LABEL, useCookies } from '../services/cookies';
 import { useUserState } from '../stores/redux/user';
 import { useAuthenticateRequest } from '../services/api/authenticate/useAuthenticateRequest';
 
 export const useUnprotectedPage = () => {
     const router = useRouter();
     const {
-        userState: { token: tokenFromState, hasError },
+        userState: { token: tokenFromState, isAuthenticated },
     } = useUserState();
-    const { handleAuthenticate } = useAuthenticateRequest();
-
+    const { get } = useCookies();
     const token = useMemo(() => {
-        return tokenFromState || cookies().get(COOKIES_LABEL.TOKEN);
-    }, [cookies, tokenFromState]);
+        return tokenFromState || get(COOKIES_LABEL.TOKEN);
+    }, [get, tokenFromState]);
+    const { handleAuthentication } = useAuthenticateRequest(token);
 
     useEffect(() => {
-        if (token) handleAuthenticate(token);
-    }, [token]);
+        if (token && !isAuthenticated) handleAuthentication();
+    }, [token, isAuthenticated]);
 
     useEffect(() => {
-        if (!hasError && tokenFromState) router.push(PATH.DASHBOARD);
-    }, [router, hasError, tokenFromState]);
+        if (isAuthenticated && tokenFromState) router.push(PATH.DASHBOARD);
+    }, [isAuthenticated, tokenFromState]);
 };

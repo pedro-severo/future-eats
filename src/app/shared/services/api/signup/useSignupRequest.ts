@@ -7,12 +7,13 @@ import { ApolloError, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../constants/pathsEnum';
 import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
-import { COOKIES_LABEL, cookies } from '../../cookies';
+import { COOKIES_LABEL, useCookies } from '../../cookies';
 
 export const useSignupRequest = () => {
     const { userDispatch } = useUserState();
     const [signup, { loading }] = useMutation(SIGNUP);
     const router = useRouter();
+    const { set } = useCookies();
 
     useEffect(() => {
         if (loading)
@@ -28,6 +29,7 @@ export const useSignupRequest = () => {
                 const response = await signup({
                     variables: { email, password, cpf, name },
                 });
+                console.log('oi');
                 const user = mapUserDTOToUser(
                     response?.data?.signup?.data?.user
                 );
@@ -36,7 +38,7 @@ export const useSignupRequest = () => {
                     type: USER_ACTION_TYPES.SIGNUP_SUCCESS,
                     payload: { user, token },
                 });
-                cookies().set(COOKIES_LABEL.TOKEN, token, {
+                set(COOKIES_LABEL.TOKEN, token, {
                     expires: 7,
                     secure: true,
                 });

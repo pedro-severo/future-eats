@@ -13,6 +13,7 @@ export const userInitialState: UserState = {
     isLoading: false,
     hasError: false,
     alertMessage: undefined,
+    isAuthenticated: false,
 };
 
 export const userReducer = (
@@ -25,6 +26,7 @@ export const userReducer = (
                 ...state,
                 user: { ...state.user, ...action.payload.user },
                 token: action.payload.token,
+                isAuthenticated: true,
                 isLoading: false,
                 hasError: false,
             };
@@ -34,6 +36,7 @@ export const userReducer = (
                 ...state,
                 user: { ...state.user, ...action.payload.user },
                 token: action.payload.token,
+                isAuthenticated: true,
                 isLoading: false,
                 hasError: false,
             };
@@ -50,6 +53,7 @@ export const userReducer = (
                 ...state,
                 isLoading: false,
                 hasError: true,
+                isAuthenticated: false,
                 alertMessage: action?.alertMessage,
             };
         }
@@ -58,6 +62,7 @@ export const userReducer = (
                 ...state,
                 user: { ...state.user, ...action.payload.user },
                 token: action.payload.token,
+                isAuthenticated: true,
                 isLoading: false,
                 hasError: false,
             };

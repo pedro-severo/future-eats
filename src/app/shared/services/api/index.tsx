@@ -7,7 +7,7 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { COOKIES_LABEL, cookies } from '../cookies';
+import { COOKIES_LABEL, useCookies } from '../cookies';
 import { useUserState } from '../../stores/redux/user';
 
 const httpLink = createHttpLink({
@@ -18,9 +18,11 @@ const APIProvider: React.FC<any> = ({ children }) => {
     const {
         userState: { token },
     } = useUserState();
+    const { get } = useCookies();
+
     const authLink = useMemo(() => {
         return setContext((_, { headers }) => {
-            const tokenFromCookies = cookies().get(COOKIES_LABEL.TOKEN);
+            const tokenFromCookies = get(COOKIES_LABEL.TOKEN);
             return {
                 headers: {
                     ...headers,
@@ -28,13 +30,15 @@ const APIProvider: React.FC<any> = ({ children }) => {
                 },
             };
         });
-    }, [token]);
+    }, [token, get]);
+
     const client = useMemo(() => {
         return new ApolloClient({
             link: authLink.concat(httpLink),
             cache: new InMemoryCache(),
         });
     }, [authLink]);
+
     return <ApolloProvider client={client}>{children}</ApolloProvider>;
 };
 

@@ -5,8 +5,9 @@ export const AUTHENTICATE = gql`
         authenticate(input: { token: $token }) {
             status
             data {
-                isAuthenticated
-                role
+                user {
+                    id
+                }
             }
         }
     }

@@ -7,12 +7,13 @@ import { LOGIN } from './schema';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../constants/pathsEnum';
 import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
-import { COOKIES_LABEL, cookies } from '../../cookies';
+import { COOKIES_LABEL, useCookies } from '../../cookies';
 
 export const useLoginRequest = () => {
     const { userDispatch } = useUserState();
     const [login, { loading }] = useMutation(LOGIN);
     const router = useRouter();
+    const { set } = useCookies();
 
     useEffect(() => {
         if (loading)
@@ -36,7 +37,7 @@ export const useLoginRequest = () => {
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
                     payload: { user, token },
                 });
-                cookies().set(COOKIES_LABEL.TOKEN, token, {
+                set(COOKIES_LABEL.TOKEN, token, {
                     expires: 7,
                     secure: true,
                 });
@@ -48,7 +49,7 @@ export const useLoginRequest = () => {
                 });
             }
         },
-        [login, userDispatch, router]
+        [set]
     );
 
     return { handleLogin };
