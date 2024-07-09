@@ -10,8 +10,10 @@ import { setContext } from '@apollo/client/link/context';
 import { COOKIES_LABEL, useCookies } from '../cookies';
 import { useUserState } from '../../stores/redux/user';
 
+export const graphqlUri = 'http://localhost:3003/graphql';
+
 const httpLink = createHttpLink({
-    uri: 'http://localhost:3003/graphql',
+    uri: graphqlUri,
 });
 
 const APIProvider: React.FC<any> = ({ children }) => {

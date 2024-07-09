@@ -14,13 +14,14 @@ export const useUnprotectedPage = () => {
     const token = useMemo(() => {
         return tokenFromState || get(COOKIES_LABEL.TOKEN);
     }, [get, tokenFromState]);
-    const { handleAuthentication } = useAuthenticateRequest(token);
+    const { handleAuthentication } = useAuthenticateRequest();
 
     useEffect(() => {
-        if (token && !isAuthenticated) handleAuthentication();
+        console.log('LOGIN');
+        if (token && !isAuthenticated) handleAuthentication(token);
     }, [token, isAuthenticated]);
 
     useEffect(() => {
-        if (isAuthenticated && tokenFromState) router.push(PATH.DASHBOARD);
-    }, [isAuthenticated, tokenFromState]);
+        if (isAuthenticated) router.push(PATH.DASHBOARD);
+    }, [isAuthenticated]);
 };

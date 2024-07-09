@@ -33,6 +33,7 @@ export const useLoginRequest = () => {
                     response?.data?.login?.data?.user
                 );
                 const token = response?.data?.login?.data?.token;
+                console.log('🚀 ~ token:', token);
                 userDispatch({
                     type: USER_ACTION_TYPES.LOGIN_SUCCESS,
                     payload: { user, token },

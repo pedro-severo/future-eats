@@ -29,7 +29,6 @@ export const useSignupRequest = () => {
                 const response = await signup({
                     variables: { email, password, cpf, name },
                 });
-                console.log('oi');
                 const user = mapUserDTOToUser(
                     response?.data?.signup?.data?.user
                 );

@@ -16,13 +16,15 @@ export const useProtectedPage = () => {
     const token = useMemo(() => {
         return tokenFromState || get(COOKIES_LABEL.TOKEN);
     }, [get, tokenFromState]);
-    const { handleAuthentication } = useAuthenticateRequest(token);
+    const { handleAuthentication } = useAuthenticateRequest();
 
     useEffect(() => {
-        if (token && !isAuthenticated) handleAuthentication();
-    }, [token]);
+        if (token && !isAuthenticated) handleAuthentication(token);
+    }, [token, isAuthenticated, handleAuthentication]);
 
     useEffect(() => {
+        // TODO: bug => before handleAuthentication call this condition is matching
+        //       this send the user to login and after back to here
         if (!token || !isAuthenticated) router.push(PATH.LOGIN);
     }, [token, isAuthenticated]);
 };
