@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client';
 import { graphqlUri } from '..';
+import { errorMessages } from '../../../constants/errorMessages';
 
-export const AUTHENTICATE = gql`
+export const AUTHENTICATE = `
     query authenticate($token: String!) {
         authenticate(input: { token: $token }) {
             status
@@ -21,22 +21,17 @@ export const authenticateQuery = async (token: string) =>
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            query: `
-            query authenticate($token: String!) {
-                authenticate(input: { token: $token }) {
-                    status
-                    data {
-                        user {
-                            id
-                        }
-                    }
-                }
-            }
-        `,
+            query: AUTHENTICATE,
             variables: {
                 token,
             },
         }),
     })
         .then((res) => res.json())
-        .then((result) => result.data?.authenticate?.data);
+        .then((result) => {
+            if (result.errors?.length)
+                throw new Error(result.errors[0]?.message);
+            if (!result.data)
+                throw new Error(errorMessages.userNotAuthenticated);
+            return result.data?.authenticate?.data;
+        });

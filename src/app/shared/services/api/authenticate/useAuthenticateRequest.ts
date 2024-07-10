@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useUserState } from '../../../stores/redux/user';
 import { ApolloError } from '@apollo/client';
-import { authenticateQuery } from './schema';
+import { authenticateQuery } from './authenticateQuery';
 import { USER_ACTION_TYPES } from '../../../stores/redux/user/interface';
 import { mapUserDTOToUser } from '../shared/user/mapUserDTOToUser';
 import { COOKIES_LABEL, useCookies } from '../../cookies';

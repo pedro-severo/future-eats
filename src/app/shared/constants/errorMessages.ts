@@ -5,4 +5,5 @@ export const errorMessages = {
     unmatchedPasswordConfirmation: 'As senhas não se correspondem',
     invalidName: 'Este não é um nome válido',
     invalidCPF: 'Este não é um cpf válido',
+    userNotAuthenticated: 'Oooops, precisamos que você faça o login novamente.',
 };
