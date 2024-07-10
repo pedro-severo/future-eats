@@ -17,7 +17,6 @@ export const useUnprotectedPage = () => {
     const { handleAuthentication } = useAuthenticateRequest();
 
     useEffect(() => {
-        console.log('LOGIN');
         if (token && !isAuthenticated) handleAuthentication(token);
     }, [token, isAuthenticated]);
 

@@ -17,7 +17,7 @@ export interface UserState {
     token: string;
     isLoading: boolean;
     hasError: boolean;
-    isAuthenticated: boolean;
+    isAuthenticated?: boolean;
     alertMessage?: string;
 }
 

@@ -13,7 +13,7 @@ export const userInitialState: UserState = {
     isLoading: false,
     hasError: false,
     alertMessage: undefined,
-    isAuthenticated: false,
+    isAuthenticated: undefined,
 };
 
 export const userReducer = (

@@ -23,8 +23,6 @@ export const useProtectedPage = () => {
     }, [token, isAuthenticated, handleAuthentication]);
 
     useEffect(() => {
-        // TODO: bug => before handleAuthentication call this condition is matching
-        //       this send the user to login and after back to here
-        if (!token || !isAuthenticated) router.push(PATH.LOGIN);
-    }, [token, isAuthenticated]);
+        if (isAuthenticated === false) router.push(PATH.LOGIN);
+    }, [isAuthenticated]);
 };
