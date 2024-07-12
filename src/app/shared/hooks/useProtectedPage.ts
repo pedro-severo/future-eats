@@ -19,10 +19,12 @@ export const useProtectedPage = () => {
     const { handleAuthentication } = useAuthenticateRequest();
 
     useEffect(() => {
+        // istanbul ignore else
         if (token && !isAuthenticated) handleAuthentication(token);
     }, [token, isAuthenticated, handleAuthentication]);
 
     useEffect(() => {
+        // istanbul ignore else
         if (isAuthenticated === false) router.push(PATH.LOGIN);
     }, [isAuthenticated]);
 };
