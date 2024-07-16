@@ -7,10 +7,13 @@ export const userInitialState: UserState = {
         email: '',
         cpf: '',
         hasAddress: false,
+        role: undefined,
     },
+    token: '',
     isLoading: false,
     hasError: false,
     alertMessage: undefined,
+    isAuthenticated: undefined,
 };
 
 export const userReducer = (
@@ -20,14 +23,20 @@ export const userReducer = (
     switch (action.type) {
         case USER_ACTION_TYPES.LOGIN_SUCCESS: {
             return {
-                user: { ...state.user, ...action.payload },
+                ...state,
+                user: { ...state.user, ...action.payload.user },
+                token: action.payload.token,
+                isAuthenticated: true,
                 isLoading: false,
                 hasError: false,
             };
         }
         case USER_ACTION_TYPES.SIGNUP_SUCCESS: {
             return {
-                user: { ...state.user, ...action.payload },
+                ...state,
+                user: { ...state.user, ...action.payload.user },
+                token: action.payload.token,
+                isAuthenticated: true,
                 isLoading: false,
                 hasError: false,
             };
@@ -44,7 +53,18 @@ export const userReducer = (
                 ...state,
                 isLoading: false,
                 hasError: true,
+                isAuthenticated: false,
                 alertMessage: action?.alertMessage,
+            };
+        }
+        case USER_ACTION_TYPES.AUTHENTICATE_SUCCESS: {
+            return {
+                ...state,
+                user: { ...state.user, ...action.payload.user },
+                token: action.payload.token,
+                isAuthenticated: true,
+                isLoading: false,
+                hasError: false,
             };
         }
         case USER_ACTION_TYPES.RESET_STATE: {

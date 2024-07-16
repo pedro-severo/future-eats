@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { useCallback } from 'react';
 
 type Options = {
     secure?: boolean;
@@ -9,17 +10,16 @@ export enum COOKIES_LABEL {
     TOKEN = 'token',
 }
 
-export const cookies = () => {
-    const set = async (
-        field: COOKIES_LABEL,
-        value: string,
-        options?: Options
-    ) => {
-        Cookies.set(field, value, options);
-    };
-    const get = (field: COOKIES_LABEL): string | undefined => {
+export const useCookies = () => {
+    const set = useCallback(
+        (field: COOKIES_LABEL, value: string, options?: Options) => {
+            Cookies.set(field, value, options);
+        },
+        []
+    );
+    const get = useCallback((field: COOKIES_LABEL): string | undefined => {
         return Cookies.get(field);
-    };
+    }, []);
     return {
         set,
         get,

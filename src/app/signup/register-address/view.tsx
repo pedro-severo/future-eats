@@ -41,10 +41,10 @@ export const RegisterAddressView = ({
                 <designSystem.typography variant="h2">
                     Registrar endereço
                 </designSystem.typography>
-                {inputProperties.map((inputProp, index) => {
+                {inputProperties.map((inputProp) => {
                     return (
                         <Controller
-                            key={index}
+                            key={inputProp.key}
                             name={inputProp.name}
                             control={control}
                             render={
