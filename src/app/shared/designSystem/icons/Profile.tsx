@@ -3,7 +3,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 // istanbul ignore file
 
-export default function Profile({ color }: { color: string }) {
+function MemoProfile({ color }: { color: string }) {
     return (
         <SvgIcon fill={color}>
             <svg
@@ -20,3 +20,7 @@ export default function Profile({ color }: { color: string }) {
         </SvgIcon>
     );
 }
+
+const Profile = React.memo(MemoProfile);
+
+export default Profile;

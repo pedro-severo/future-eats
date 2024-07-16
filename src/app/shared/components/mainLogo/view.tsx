@@ -1,8 +1,9 @@
 import React from 'react';
-import mainLogo from '../../assets/images/logo-future-eats-invert.png';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 // istanbul ignore next
-export const MainLogoView = () => {
+export const MemoMainLogo = ({ mainLogo }: { mainLogo: StaticImageData }) => {
     return <Image src={mainLogo} alt="CompanyLogo" />;
 };
+
+export const MainLogoView = React.memo(MemoMainLogo);

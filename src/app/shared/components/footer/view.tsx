@@ -5,7 +5,7 @@ import PATH from '../../constants/pathsEnum';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { theme } from '../../designSystem/themeProvider';
 
-export const FooterView = ({
+const MemoFooterView = ({
     router,
     pagePath,
 }: {
@@ -68,3 +68,5 @@ export const FooterView = ({
         </FooterWrapper>
     );
 };
+
+export const FooterView = React.memo(MemoFooterView);

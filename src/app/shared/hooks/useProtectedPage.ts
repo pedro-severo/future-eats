@@ -20,7 +20,7 @@ export const useProtectedPage = () => {
 
     useEffect(() => {
         // istanbul ignore else
-        if (token && !isAuthenticated) handleAuthentication(token);
+        if (isAuthenticated === undefined) handleAuthentication(token);
     }, [token, isAuthenticated, handleAuthentication]);
 
     useEffect(() => {

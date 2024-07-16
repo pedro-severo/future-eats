@@ -7,7 +7,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { registerAddressInputProperties } from '../constants/inputProperties';
 import { useUserAddressState } from '../../../shared/stores/redux/userAddress';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../shared/stores/redux/userAddress/interface';
-import { useHeader } from '../../../shared/hooks/useHeader';
 import { useUserState } from '../../../shared/stores/redux/user';
 import { RegisterAddressInput } from '../../../shared/services/api/registerAddress/interfaces';
 import { useRegisterAddressRequest } from '../../../shared/services/api/registerAddress/useRegisterAddressRequest';
@@ -15,13 +14,11 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PATH from '../../../shared/constants/pathsEnum';
 import { useProtectedPage } from '../../../shared/hooks/useProtectedPage';
+import { useNavigationHeaderState } from '../../../shared/stores/navigationHeader';
 
 export const useRegisterAddressPage = () => {
     useProtectedPage();
-    useHeader({
-        title: '',
-        shouldRenderHeader: true,
-    });
+    const { setNavigationHeader } = useNavigationHeaderState();
     const router = useRouter();
     const { schema } = useRegisterAddressSchema();
     const { control, handleSubmit } = useForm<IRegisterAddressInputNames>({
@@ -35,6 +32,14 @@ export const useRegisterAddressPage = () => {
     const {
         userState: { user },
     } = useUserState();
+
+    useEffect(() => {
+        setNavigationHeader({
+            shouldRenderHeader: true,
+            title: '',
+            shouldRenderBackIcon: false,
+        });
+    }, []);
 
     useEffect(() => {
         if (!user.id) router.push(PATH.SIGNUP);

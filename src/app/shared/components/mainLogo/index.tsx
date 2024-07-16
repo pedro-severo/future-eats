@@ -1,5 +1,6 @@
 import React from 'react';
 import { Suspense, lazy } from 'react';
+import mainLogo from '../../assets/images/logo-future-eats-invert.png';
 import designSystem from '../../designSystem';
 
 // istanbul ignore next
@@ -17,7 +18,7 @@ export const MainLogo = () => {
                 />
             }
         >
-            <MainLogoView />
+            <MainLogoView mainLogo={mainLogo} />
         </Suspense>
     );
 };

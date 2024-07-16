@@ -6,15 +6,13 @@ import { LoginInput } from '../../shared/services/api/login/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 import { useUserState } from '../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
-import { useHeader } from '../../shared/hooks/useHeader';
 import { useUnprotectedPage } from '../../shared/hooks/useUnprotectedPage';
+import { useEffect } from 'react';
+import { useNavigationHeaderState } from '../../shared/stores/navigationHeader';
 
 export const useLoginPage = () => {
     useUnprotectedPage();
-    useHeader({
-        title: '',
-        shouldRenderHeader: false,
-    });
+    const { setNavigationHeader } = useNavigationHeaderState();
     const { schema } = useLoginSchema();
     const { control, handleSubmit } = useForm<IFormInputNames>({
         // @ts-expect-error yup expected error
@@ -33,6 +31,14 @@ export const useLoginPage = () => {
     const onCloseAlert = () => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
     };
+
+    useEffect(() => {
+        setNavigationHeader({
+            title: '',
+            shouldRenderHeader: false,
+            shouldRenderBackIcon: false,
+        });
+    }, []);
 
     return {
         onSubmitForm: onSubmit,

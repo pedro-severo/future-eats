@@ -1,19 +1,23 @@
 'use client';
 
-import React from 'react';
-import { useHeader } from '../shared/hooks/useHeader';
+import React, { useEffect } from 'react';
 import { useProtectedPage } from '../shared/hooks/useProtectedPage';
+import { useNavigationHeaderState } from '../shared/stores/navigationHeader';
 
 // TODO: Remove istanbul ignore and test file
 // istanbul ignore file
 
 const Dashboard = () => {
     useProtectedPage();
-    useHeader({
-        shouldRenderHeader: true,
-        title: 'FutureEats',
-        shouldRenderBackIcon: false,
-    });
+    const { setNavigationHeader } = useNavigationHeaderState();
+
+    useEffect(() => {
+        setNavigationHeader({
+            shouldRenderHeader: true,
+            title: 'FutureEats',
+            shouldRenderBackIcon: false,
+        });
+    }, []);
     return <div>DASHBOARD</div>;
 };
 

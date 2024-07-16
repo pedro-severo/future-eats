@@ -6,7 +6,6 @@ import { useRegisterAddressPage } from '../useRegisterAddressPage';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../../shared/stores/redux/userAddress/interface';
 
 jest.mock('../../../../shared/hooks/useProtectedPage');
-jest.mock('../../../../shared/hooks/useHeader');
 
 const mockPush = jest.fn();
 

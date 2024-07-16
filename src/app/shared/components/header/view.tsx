@@ -1,16 +1,23 @@
 'use client';
-
 import React from 'react';
 import { HeaderTitle, HeaderWrapper, IconWrapper } from './styles';
-import { useNavigationHeaderState } from '../../stores/navigationHeader';
 import designSystem from '../../designSystem';
-import { usePathname, useRouter } from 'next/navigation';
 
-export const HeaderView = () => {
-    const { title, shouldRenderHeader, shouldRenderBackIcon } =
-        useNavigationHeaderState().navigationHeader;
-    const router = useRouter();
-    const pathName = usePathname();
+interface IHeaderView {
+    title: string;
+    shouldRenderHeader: boolean;
+    shouldRenderBackIcon: boolean;
+    goBack: () => void;
+    pathName: string;
+}
+
+const MemoHeader = ({
+    goBack,
+    pathName,
+    shouldRenderBackIcon,
+    shouldRenderHeader,
+    title,
+}: IHeaderView) => {
     return (
         <HeaderWrapper
             data-testid="HeaderWrapper"
@@ -18,7 +25,7 @@ export const HeaderView = () => {
             $pathName={pathName}
         >
             {shouldRenderBackIcon && (
-                <IconWrapper onClick={() => router.back()}>
+                <IconWrapper onClick={goBack}>
                     <designSystem.arrowBackIcon />
                 </IconWrapper>
             )}
@@ -26,3 +33,5 @@ export const HeaderView = () => {
         </HeaderWrapper>
     );
 };
+
+export const HeaderView = React.memo(MemoHeader);

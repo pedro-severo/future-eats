@@ -2,7 +2,7 @@ import * as React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 // istanbul ignore file
 
-export default function Cart({ color }: { color: string }) {
+export function MemoCart({ color }: { color: string }) {
     return (
         <SvgIcon fill={color}>
             <svg
@@ -19,3 +19,7 @@ export default function Cart({ color }: { color: string }) {
         </SvgIcon>
     );
 }
+
+const Cart = React.memo(MemoCart);
+
+export default Cart;

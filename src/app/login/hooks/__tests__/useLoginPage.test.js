@@ -27,8 +27,6 @@ jest.mock('next/navigation', () => ({
     },
 }));
 
-jest.mock('../../../shared/hooks/useHeader');
-
 describe('useLoginPage', () => {
     beforeEach(() => {
         jest.spyOn(useCustomHook, 'useLoginSchema').mockImplementation(() => {
