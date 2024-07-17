@@ -15,6 +15,7 @@ const Signup = () => {
     } = useSignupPage();
     return (
         <SignupPageView
+            data-testid="signup-view"
             onSubmit={onSubmitForm}
             control={control}
             hasSignupError={hasSignupError}

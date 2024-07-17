@@ -20,7 +20,10 @@ export const MainLogoDarkMode = () => {
                 />
             }
         >
-            <MainLogoDarkModeView mainLogo={mainLogo} />
+            <MainLogoDarkModeView
+                mainLogo={mainLogo}
+                data-testid="main-logo-dark-view"
+            />
         </Suspense>
     );
 };

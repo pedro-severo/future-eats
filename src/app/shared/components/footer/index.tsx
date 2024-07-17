@@ -6,5 +6,11 @@ import { useFooter } from './useFooter';
 
 export const Footer = () => {
     const { router, pagePath } = useFooter();
-    return <FooterView router={router} pagePath={pagePath} />;
+    return (
+        <FooterView
+            data-testid="footer-view"
+            router={router}
+            pagePath={pagePath}
+        />
+    );
 };

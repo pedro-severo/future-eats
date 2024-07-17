@@ -18,7 +18,7 @@ export const MainLogo = () => {
                 />
             }
         >
-            <MainLogoView mainLogo={mainLogo} />
+            <MainLogoView mainLogo={mainLogo} data-testid="main-logo-view" />
         </Suspense>
     );
 };

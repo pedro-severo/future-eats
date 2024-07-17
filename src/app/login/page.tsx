@@ -15,6 +15,7 @@ const Login = () => {
     } = useLoginPage();
     return (
         <LoginView
+            data-testid="login-view"
             onSubmit={onSubmitForm}
             control={control}
             hasLoginError={hasLoginError}

@@ -16,6 +16,8 @@ describe('Footer Component', () => {
         const wrapper = shallow(
             <Footer router={{ push: jest.fn() }} pagePath="/" />
         );
-        expect(wrapper.find('FooterView').exists()).toBeTruthy();
+        expect(
+            wrapper.find({ 'data-testid': 'footer-view' }).exists()
+        ).toBeTruthy();
     });
 });

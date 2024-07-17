@@ -11,6 +11,7 @@ interface ICallToSignup {
 const MemoCallToSignup = ({ action, callToActionLinkColor }: ICallToSignup) => {
     return (
         <CallToSignupView
+            data-testid="call-to-signup-view"
             action={action}
             callToActionLinkColor={callToActionLinkColor}
         />

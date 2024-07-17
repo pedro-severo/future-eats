@@ -11,7 +11,9 @@ describe('Header Component', () => {
     it('should render lazy loading before header view', async () => {
         const wrapper = shallow(<Header />);
         expect(wrapper.find('LazyHeaderLoading')).toBeTruthy();
-        await waitFor(() => expect(wrapper.find('HeaderView')).toBeTruthy());
+        await waitFor(() =>
+            expect(wrapper.find({ 'data-testid': 'header-view' })).toBeTruthy()
+        );
     });
     it('should render a Suspense component', () => {
         const wrapper = shallow(<Header />);

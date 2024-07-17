@@ -5,6 +5,8 @@ import { shallow } from 'enzyme';
 describe('CallToSignup component', () => {
     it('should render CallToSignup correctly', () => {
         const wrapper = shallow(<CallToSignup />);
-        expect(wrapper.find('CallToSignupView').exists()).toBeTruthy();
+        expect(
+            wrapper.find({ 'data-testid': 'call-to-signup-view' }).exists()
+        ).toBeTruthy();
     });
 });

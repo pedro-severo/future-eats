@@ -15,6 +15,7 @@ const RegisterAddress = () => {
     } = useRegisterAddressPage();
     return (
         <RegisterAddressView
+            data-testid="register-address-view"
             onSubmit={onSubmitForm}
             control={control}
             hasError={hasError}
