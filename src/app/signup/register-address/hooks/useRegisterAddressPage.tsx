@@ -10,16 +10,13 @@ import { USER_ADDRESS_ACTION_TYPES } from '../../../shared/stores/redux/userAddr
 import { useUserState } from '../../../shared/stores/redux/user';
 import { RegisterAddressInput } from '../../../shared/services/api/registerAddress/interfaces';
 import { useRegisterAddressRequest } from '../../../shared/services/api/registerAddress/useRegisterAddressRequest';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import PATH from '../../../shared/constants/pathsEnum';
+import { useCallback, useEffect } from 'react';
 import { useProtectedPage } from '../../../shared/hooks/useProtectedPage';
 import { useNavigationHeaderState } from '../../../shared/stores/navigationHeader';
 
 export const useRegisterAddressPage = () => {
     useProtectedPage();
     const { setNavigationHeader } = useNavigationHeaderState();
-    const router = useRouter();
     const { schema } = useRegisterAddressSchema();
     const { control, handleSubmit } = useForm<IRegisterAddressInputNames>({
         // @ts-expect-error yup expected error
@@ -41,31 +38,35 @@ export const useRegisterAddressPage = () => {
         });
     }, []);
 
-    useEffect(() => {
-        if (!user.id) router.push(PATH.SIGNUP);
-    }, [user, router]);
-
     const { handleRegisterAddress } = useRegisterAddressRequest();
 
-    const onSubmit = (data: IRegisterAddressInputNames) => {
-        const registerAddressInput: RegisterAddressInput = {
-            city: data.city,
-            complement: data.complement || undefined,
-            state: data.state,
-            streetName: data.streetName,
-            streetNumber: data.streetNumber,
-            zone: data.zone,
-            userId: user.id,
-        };
-        handleRegisterAddress(registerAddressInput);
-    };
+    const onSubmit = useCallback(
+        async (data: IRegisterAddressInputNames) => {
+            const registerAddressInput: RegisterAddressInput = {
+                city: data.city,
+                complement: data.complement || undefined,
+                state: data.state,
+                streetName: data.streetName,
+                streetNumber: data.streetNumber,
+                zone: data.zone,
+                userId: user.id,
+            };
+            await handleRegisterAddress(registerAddressInput);
+        },
+        [handleRegisterAddress, user.id]
+    );
 
-    const onCloseAlert = () => {
+    const onCloseAlert = useCallback(() => {
         userAddressDispatch({ type: USER_ADDRESS_ACTION_TYPES.RESET_STATE });
-    };
+    }, []);
+
+    const onSubmitForm = useCallback(handleSubmit(onSubmit), [
+        handleSubmit,
+        onSubmit,
+    ]);
 
     return {
-        onSubmit,
+        onSubmitForm,
         control,
         handleSubmit,
         inputProperties: registerAddressInputProperties,

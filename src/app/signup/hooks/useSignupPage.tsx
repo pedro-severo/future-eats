@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignupSchema } from './useSignupSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,10 +9,12 @@ import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
 import { useUserState } from '../../shared/stores/redux/user';
 import { useUnprotectedPage } from '../../shared/hooks/useUnprotectedPage';
 import { useNavigationHeaderState } from '../../shared/stores/navigationHeader';
-import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import PATH from '../../shared/constants/pathsEnum';
 
 export const useSignupPage = () => {
     useUnprotectedPage();
+    const router = useRouter();
     const { setNavigationHeader } = useNavigationHeaderState();
     const { schema } = useSignupSchema();
     const { control, handleSubmit } = useForm<IFormInputNames>({
@@ -24,19 +27,22 @@ export const useSignupPage = () => {
         userDispatch,
     } = useUserState();
 
-    const onSubmit = (data: IFormInputNames) => {
-        const signupInput: SignupInput = {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            cpf: data.cpf,
-        };
-        handleSignup(signupInput);
-    };
+    const onSubmit = useCallback(
+        async (data: IFormInputNames) => {
+            const signupInput: SignupInput = {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+                cpf: data.cpf,
+            };
+            await handleSignup(signupInput);
+        },
+        [handleSignup]
+    );
 
-    const onCloseAlert = () => {
+    const onCloseAlert = useCallback(() => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
-    };
+    }, []);
 
     useEffect(() => {
         setNavigationHeader({
@@ -46,13 +52,23 @@ export const useSignupPage = () => {
         });
     }, []);
 
+    const navigateToLogin = useCallback(() => {
+        router.push(PATH.LOGIN);
+    }, []);
+
+    const onSubmitForm = useCallback(handleSubmit(onSubmit), [
+        handleSubmit,
+        onSubmit,
+    ]);
+
     return {
-        onSubmitForm: onSubmit,
+        onSubmitForm,
         control,
         handleSubmit,
         hasSignupError: hasError,
         alertMessage,
         onCloseAlert,
         isLoading,
+        navigateToLogin,
     };
 };

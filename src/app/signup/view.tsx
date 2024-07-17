@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SignupForm, SignupPageWrapper } from './styles';
 import designSystem from '../shared/designSystem';
 import { Controller, Control } from 'react-hook-form';
 import { SignupInputNames } from './hooks/useSignupSchema';
-import { theme } from '../shared/designSystem/themeProvider';
-import { inputProperties } from './constants/inputProperties';
+import { inputProperties } from './interfaces/inputProperties';
 import { MainLogo } from '../shared/components/mainLogo';
 import { CustomButton } from '../shared/components/customButton';
-import { useRouter } from 'next/navigation';
-import PATH from '../shared/constants/pathsEnum';
+import { PasswordInput } from '../shared/components/passwordInput';
 
 interface ISignupPageView {
     onSubmit: () => void;
@@ -16,22 +14,20 @@ interface ISignupPageView {
     control: Control<any, any>;
     hasSignupError: boolean;
     closeAlert: () => void;
+    navigateToLogin: () => void;
     isLoading: boolean;
     alertMessage?: string;
 }
 
-export const SignupPageView = ({
+const MemoSignupPageView = ({
     onSubmit,
     control,
     hasSignupError,
     closeAlert,
     alertMessage,
     isLoading,
+    navigateToLogin,
 }: ISignupPageView) => {
-    const router = useRouter();
-    const [showPassword, setShowPassword] = useState(false);
-    const [showPasswordConfirmation, setShowPasswordConfirmation] =
-        useState(false);
     return (
         <SignupPageWrapper>
             <designSystem.alert
@@ -96,107 +92,20 @@ export const SignupPageView = ({
                         )
                     }
                 />
-                <Controller
-                    name={SignupInputNames.PASSWORD}
+                <PasswordInput
+                    inputName={SignupInputNames.PASSWORD}
                     control={control}
-                    render={
-                        // istanbul ignore next
-                        ({ field, fieldState: { error } }) => (
-                            <designSystem.textFieldInput
-                                {...field}
-                                disabled={isLoading}
-                                placeholder={
-                                    inputProperties.password.placeholder
-                                }
-                                label={inputProperties.password.label}
-                                type={showPassword ? 'text' : 'password'}
-                                error={!!error}
-                                helperText={error?.message}
-                                InputProps={{
-                                    endAdornment: (
-                                        <designSystem.inputAdornment position="start">
-                                            <designSystem.iconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={() =>
-                                                    setShowPassword(
-                                                        !showPassword
-                                                    )
-                                                }
-                                                edge="end"
-                                            >
-                                                {showPassword ?
-                                                    <designSystem.visibilityOffIcon
-                                                        style={{
-                                                            color: `${theme.palette.secondary.main}`,
-                                                        }}
-                                                    />
-                                                :   <designSystem.visibilityIcon
-                                                        style={{
-                                                            color: `${theme.palette.secondary.main}`,
-                                                        }}
-                                                    />
-                                                }
-                                            </designSystem.iconButton>
-                                        </designSystem.inputAdornment>
-                                    ),
-                                }}
-                            />
-                        )
-                    }
+                    disable={isLoading}
+                    label={inputProperties.password.label}
+                    placeholder={inputProperties.password.placeholder}
                 />
-                <Controller
-                    name={SignupInputNames.PASSWORD_CONFIRMATION}
+                <PasswordInput
+                    inputName={SignupInputNames.PASSWORD_CONFIRMATION}
                     control={control}
-                    render={
-                        // istanbul ignore next
-                        ({ field, fieldState: { error } }) => (
-                            <designSystem.textFieldInput
-                                {...field}
-                                disabled={isLoading}
-                                placeholder={
-                                    inputProperties.passwordConfirmation
-                                        .placeholder
-                                }
-                                label={
-                                    inputProperties.passwordConfirmation.label
-                                }
-                                type={
-                                    showPasswordConfirmation ? 'text' : (
-                                        'password'
-                                    )
-                                }
-                                error={!!error}
-                                helperText={error?.message}
-                                InputProps={{
-                                    endAdornment: (
-                                        <designSystem.inputAdornment position="start">
-                                            <designSystem.iconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={() =>
-                                                    setShowPasswordConfirmation(
-                                                        !showPasswordConfirmation
-                                                    )
-                                                }
-                                                edge="end"
-                                            >
-                                                {showPasswordConfirmation ?
-                                                    <designSystem.visibilityOffIcon
-                                                        style={{
-                                                            color: `${theme.palette.secondary.main}`,
-                                                        }}
-                                                    />
-                                                :   <designSystem.visibilityIcon
-                                                        style={{
-                                                            color: `${theme.palette.secondary.main}`,
-                                                        }}
-                                                    />
-                                                }
-                                            </designSystem.iconButton>
-                                        </designSystem.inputAdornment>
-                                    ),
-                                }}
-                            />
-                        )
+                    disable={isLoading}
+                    label={inputProperties.passwordConfirmation.label}
+                    placeholder={
+                        inputProperties.passwordConfirmation.placeholder
                     }
                 />
                 <CustomButton
@@ -217,8 +126,10 @@ export const SignupPageView = ({
                 fullWidth={true}
                 label="Voltar para Login"
                 data-testid="go-to-login-button"
-                onClick={() => router.push(PATH.LOGIN)}
+                onClick={navigateToLogin}
             />
         </SignupPageWrapper>
     );
 };
+
+export const SignupPageView = React.memo(MemoSignupPageView);

@@ -7,8 +7,7 @@ const RegisterAddress = () => {
     const {
         inputProperties,
         control,
-        handleSubmit,
-        onSubmit,
+        onSubmitForm,
         hasError,
         alertMessage,
         onCloseAlert,
@@ -16,7 +15,7 @@ const RegisterAddress = () => {
     } = useRegisterAddressPage();
     return (
         <RegisterAddressView
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={onSubmitForm}
             control={control}
             hasError={hasError}
             alertMessage={alertMessage}
