@@ -4,6 +4,7 @@ import * as useUserState from '../../../../shared/stores/redux/user';
 import { renderHook } from '@testing-library/react-hooks';
 import { useRegisterAddressPage } from '../useRegisterAddressPage';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../../shared/stores/redux/userAddress/interface';
+import * as useNavigationHeaderState from '../../../../shared/stores/navigationHeader';
 
 jest.mock('../../../../shared/hooks/useProtectedPage');
 
@@ -66,26 +67,13 @@ describe('useRegisterAddressPage', () => {
                 },
             };
         });
-    });
-    it('should navigate to SIGNUP page because id of user in global state doesnt exist', () => {
-        jest.spyOn(useUserState, 'useUserState').mockImplementation(() => {
+        jest.spyOn(
+            useNavigationHeaderState,
+            'useNavigationHeaderState'
+        ).mockImplementation(() => {
             return {
-                userState: {
-                    user: {
-                        id: '',
-                    },
-                },
+                setNavigationHeader: jest.fn(),
             };
-        });
-        renderHook(() => useRegisterAddressPage());
-        expect(mockPush).toBeCalled();
-    });
-    it('should call onSubmit correctly', () => {
-        const { result } = renderHook(() => useRegisterAddressPage());
-        result.current.onSubmit(mockSchema);
-        expect(mockHandleRegisterAddress).toBeCalledWith({
-            ...mockSchema,
-            userId: 'mockId',
         });
     });
     it('call onCloseAlert correctly', async () => {

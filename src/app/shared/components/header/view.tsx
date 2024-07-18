@@ -20,12 +20,12 @@ const MemoHeader = ({
 }: IHeaderView) => {
     return (
         <HeaderWrapper
-            data-testid="HeaderWrapper"
+            data-testid="header-wrapper"
             $shouldRenderHeader={shouldRenderHeader}
             $pathName={pathName}
         >
             {shouldRenderBackIcon && (
-                <IconWrapper onClick={goBack}>
+                <IconWrapper data-testid="icon-wrapper" onClick={goBack}>
                     <designSystem.arrowBackIcon />
                 </IconWrapper>
             )}

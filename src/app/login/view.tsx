@@ -20,7 +20,7 @@ interface ILoginPageView {
     alertMessage?: string;
 }
 
-const MemoLoginPageView = ({
+export const MemoLoginPageView = ({
     onSubmit,
     control,
     hasLoginError,

@@ -1,38 +1,25 @@
 import React from 'react';
-import { LoginPageView } from '../view';
+import { LoginView } from '../view';
 import { shallow } from 'enzyme';
 import { LoginForm } from '../styles';
 import designSystem from '../../shared/designSystem';
 import { CallToSignup } from '../components/callToSignup';
-import PATH from '../../shared/constants/pathsEnum';
-
-const mockPush = jest.fn();
-
-jest.mock('next/navigation', () => ({
-    useRouter() {
-        return {
-            push: mockPush,
-        };
-    },
-}));
 
 describe('LoginPageView', () => {
     let wrapper;
-    const mockSetShowPassword = jest.fn();
     const mockOnSubmit = jest.fn();
     const mockControl = {};
+    const mockNavigateToSignup = jest.fn();
     beforeEach(() => {
+        jest.clearAllMocks();
         wrapper = shallow(
-            <LoginPageView
+            <LoginView
                 onSubmit={mockOnSubmit}
                 control={mockControl}
                 isLoading={false}
+                navigateToSignup={mockNavigateToSignup}
             />
         );
-        jest.spyOn(React, 'useState').mockImplementation(() => [
-            false,
-            mockSetShowPassword,
-        ]);
     });
 
     it('should test LoginPageView rendering', () => {
@@ -46,11 +33,11 @@ describe('LoginPageView', () => {
     it('should call CallToSignup action with the correct parameter', () => {
         const callToSignup = wrapper.find(CallToSignup);
         callToSignup.props().action();
-        expect(mockPush).toBeCalledWith(PATH.SIGNUP);
+        expect(mockNavigateToSignup).toBeCalled();
     });
     it('should render Alert component', () => {
         wrapper = shallow(
-            <LoginPageView
+            <LoginView
                 onSubmit={mockOnSubmit}
                 control={mockControl}
                 hasLoginError={true}

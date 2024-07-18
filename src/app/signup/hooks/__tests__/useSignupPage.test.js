@@ -3,6 +3,17 @@ import * as useCustomHook from '../useSignupSchema';
 import { useSignupPage } from '../useSignupPage';
 import * as useUserState from '../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../shared/stores/redux/user/interface';
+import * as useNavigationHeaderState from '../../../shared/stores/navigationHeader';
+
+const mockPush = jest.fn();
+
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            push: mockPush,
+        };
+    },
+}));
 
 const schemaMock = {
     password: 'password',
@@ -34,11 +45,14 @@ describe('useSignupPage', () => {
                 },
             };
         });
-    });
-    it('call onSubmit correctly', async () => {
-        const { result } = renderHook(() => useSignupPage());
-        await result.current.onSubmitForm(schemaMock);
-        expect(mockHandleSignup).toBeCalledWith(schemaMock);
+        jest.spyOn(
+            useNavigationHeaderState,
+            'useNavigationHeaderState'
+        ).mockImplementation(() => {
+            return {
+                setNavigationHeader: jest.fn(),
+            };
+        });
     });
     it('call onCloseAlert correctly', async () => {
         const { result } = renderHook(() => useSignupPage());

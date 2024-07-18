@@ -1,72 +1,51 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { HeaderView } from '../view';
-import * as NavigationHeaderContext from '../../../../shared/stores/navigationHeader';
-import { HeaderWrapper, IconWrapper } from '../styles';
-import { shallow } from 'enzyme';
 import 'jest-styled-components';
 
-const mockBack = jest.fn();
-
-jest.mock('next/navigation', () => ({
-    useRouter() {
-        return {
-            back: mockBack,
-        };
-    },
-    usePathname() {
-        return '/';
-    },
-}));
-
 describe('Header View', () => {
-    const mockNavigationHeaderState = {
-        title: 'headerTitle',
-        shouldRenderHeader: true,
-        shouldRenderBackIcon: true,
-    };
-    const mockNavigationHeaderDispatch = jest.fn();
-    const mockUseNavigationHeaderStateReturn = {
-        navigationHeaderDispatch: mockNavigationHeaderDispatch,
-        navigationHeader: mockNavigationHeaderState,
-    };
-    beforeEach(() => {
-        jest.spyOn(
-            NavigationHeaderContext,
-            'useNavigationHeaderState'
-        ).mockImplementation(() => mockUseNavigationHeaderStateReturn);
+    let wrapper;
+    it('should render header wrapper component', () => {
+        wrapper = render(<HeaderView />);
+        expect(wrapper.getByTestId('header-wrapper')).toBeTruthy();
     });
-    it('should render header content', () => {
-        render(
-            <HeaderView>
-                <HeaderWrapper />
-            </HeaderView>
+    it('should render HeaderWrapper with css visibility prop as hidden', () => {
+        wrapper = render(<HeaderView shouldRenderHeader={false} />);
+        expect(wrapper.getByTestId('header-wrapper')).toHaveStyleRule(
+            'visibility',
+            'hidden'
         );
-        const headerTitle = screen.getByText(mockNavigationHeaderState.title);
-        expect(headerTitle).toBeInTheDocument();
     });
-    it('should test goBack icon call', () => {
-        const wrapper = shallow(<HeaderView />);
-        wrapper.find(IconWrapper).simulate('click');
-        expect(mockBack).toBeCalledTimes(1);
+    it('should render HeaderWrapper with css visibility prop as none', () => {
+        wrapper = render(<HeaderView shouldRenderHeader />);
+        expect(wrapper.getByTestId('header-wrapper')).toHaveStyleRule(
+            'visibility',
+            'none'
+        );
     });
-    it('should test logic on css when shouldRenderHeader is false', () => {
-        const mockNavigationHeaderState = {
-            title: 'headerTitle',
-            shouldRenderHeader: false,
-            navigationHistory: [],
-        };
-        const mockUseNavigationHeaderStateReturn = {
-            navigationHeaderDispatch: mockNavigationHeaderDispatch,
-            navigationHeader: mockNavigationHeaderState,
-        };
-        jest.spyOn(
-            NavigationHeaderContext,
-            'useNavigationHeaderState'
-        ).mockImplementation(() => mockUseNavigationHeaderStateReturn);
-        const wrapper = shallow(<HeaderView />);
-        const HeaderWrapper = wrapper.find('[data-testid="HeaderWrapper"]');
-        expect(HeaderWrapper.exists()).toBeTruthy();
-        expect(HeaderWrapper).toHaveStyleRule('visibility', 'hidden');
+    it('should render HeaderWrapper with css display prop as flex', () => {
+        wrapper = render(<HeaderView pathName={'/path'} />);
+        expect(wrapper.getByTestId('header-wrapper')).toHaveStyleRule(
+            'display',
+            'flex'
+        );
+    });
+    it('should render HeaderWrapper with css display prop as none', () => {
+        wrapper = render(<HeaderView pathName={'/'} />);
+        expect(wrapper.getByTestId('header-wrapper')).toHaveStyleRule(
+            'display',
+            'none'
+        );
+    });
+    it('should render HeaderWrapper with css display prop as none', () => {
+        wrapper = render(<HeaderView pathName={'/'} />);
+        expect(wrapper.getByTestId('header-wrapper')).toHaveStyleRule(
+            'display',
+            'none'
+        );
+    });
+    it('should render IconWrapper', () => {
+        wrapper = render(<HeaderView shouldRenderBackIcon={true} />);
+        expect(wrapper.getByTestId('icon-wrapper')).toBeTruthy();
     });
 });
