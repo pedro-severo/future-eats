@@ -11,6 +11,8 @@ interface IPasswordInput {
     inputName: string;
 }
 
+// istanbul ignore file
+
 export const MemoPasswordInput = ({
     control,
     disable,

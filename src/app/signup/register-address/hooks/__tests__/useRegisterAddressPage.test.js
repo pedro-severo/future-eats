@@ -83,4 +83,17 @@ describe('useRegisterAddressPage', () => {
             type: USER_ADDRESS_ACTION_TYPES.RESET_STATE,
         });
     });
+    it('call onSubmit correctly', () => {
+        const { result } = renderHook(() => useRegisterAddressPage());
+        result.current.onSubmit({});
+        expect(mockHandleRegisterAddress).toBeCalledWith({
+            city: undefined,
+            complement: undefined,
+            state: undefined,
+            streetName: undefined,
+            streetNumber: undefined,
+            userId: 'mockId',
+            zone: undefined,
+        });
+    });
 });

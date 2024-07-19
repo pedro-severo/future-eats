@@ -60,6 +60,7 @@ export const useRegisterAddressPage = () => {
         userAddressDispatch({ type: USER_ADDRESS_ACTION_TYPES.RESET_STATE });
     }, []);
 
+    // call handleSubmit(onSubmit) inside a arrow function is not working
     const onSubmitForm = useCallback(handleSubmit(onSubmit), [
         handleSubmit,
         onSubmit,
@@ -74,5 +75,8 @@ export const useRegisterAddressPage = () => {
         alertMessage,
         onCloseAlert,
         isLoading,
+        // exposing onSubmit function to be able to test it, because currently is not possible to test onSubmitForm function,
+        // once his call back function is the directly invoking of handleSubmit, for reasons already exposed on onSubmitForm nomination
+        onSubmit,
     };
 };

@@ -4,6 +4,7 @@ import { useSignupPage } from '../useSignupPage';
 import * as useUserState from '../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../shared/stores/redux/user/interface';
 import * as useNavigationHeaderState from '../../../shared/stores/navigationHeader';
+import PATH from '../../../shared/constants/pathsEnum';
 
 const mockPush = jest.fn();
 
@@ -60,5 +61,15 @@ describe('useSignupPage', () => {
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.RESET_STATE,
         });
+    });
+    it('call navigateToLogin correctly', () => {
+        const { result } = renderHook(() => useSignupPage());
+        result.current.navigateToLogin();
+        expect(mockPush).toBeCalledWith(PATH.LOGIN);
+    });
+    it('call onSubmit correctly', () => {
+        const { result } = renderHook(() => useSignupPage());
+        result.current.onSubmit({});
+        expect(mockHandleSignup).toBeCalledWith({});
     });
 });

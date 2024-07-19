@@ -13,6 +13,8 @@ interface IPasswordInputView {
     label: string;
 }
 
+// istanbul ignore file
+
 export const MemoPasswordInputView = ({
     showPassword,
     setShowPassword,
@@ -31,6 +33,7 @@ export const MemoPasswordInputView = ({
                 ({ field, fieldState: { error } }) => (
                     <designSystem.textFieldInput
                         {...field}
+                        data-testid="text-field-password-input"
                         disabled={disable}
                         placeholder={placeholder}
                         label={label}

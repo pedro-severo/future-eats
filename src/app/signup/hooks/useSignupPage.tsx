@@ -56,6 +56,7 @@ export const useSignupPage = () => {
         router.push(PATH.LOGIN);
     }, []);
 
+    // call handleSubmit(onSubmit) inside a arrow function is not working
     const onSubmitForm = useCallback(handleSubmit(onSubmit), [
         handleSubmit,
         onSubmit,
@@ -70,5 +71,8 @@ export const useSignupPage = () => {
         onCloseAlert,
         isLoading,
         navigateToLogin,
+        // exposing onSubmit function to be able to test it, because currently is not possible to test onSubmitForm function,
+        // once his call back function is the directly invoking of handleSubmit, for reasons already exposed on onSubmitForm nomination
+        onSubmit,
     };
 };

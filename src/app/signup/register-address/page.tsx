@@ -3,6 +3,7 @@ import React from 'react';
 import { useRegisterAddressPage } from './hooks/useRegisterAddressPage';
 import { RegisterAddressView } from './view';
 
+// TODO: Remove from signup
 const RegisterAddress = () => {
     const {
         inputProperties,

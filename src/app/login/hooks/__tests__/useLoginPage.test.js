@@ -4,6 +4,7 @@ import * as useUserState from '../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../shared/stores/redux/user/interface';
 import { renderHook } from '@testing-library/react-hooks';
 import * as useNavigationHeaderState from '../../../shared/stores/navigationHeader';
+import PATH from '../../../shared/constants/pathsEnum';
 
 const schemaMock = {
     password: 'password',
@@ -58,5 +59,15 @@ describe('useLoginPage', () => {
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.RESET_STATE,
         });
+    });
+    it('call navigateToSignup correctly', () => {
+        const { result } = renderHook(() => useLoginPage());
+        result.current.navigateToSignup();
+        expect(mockNavigate).toBeCalledWith(PATH.SIGNUP);
+    });
+    it('call navigateToSignup correctly', () => {
+        const { result } = renderHook(() => useLoginPage());
+        result.current.onSubmit();
+        expect(mockHandleMockLogin).toBeCalled();
     });
 });

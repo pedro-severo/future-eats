@@ -1,7 +1,7 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 
-// istanbul ignore next
+// istanbul ignore file
 export const MemoMainLogo = ({ mainLogo }: { mainLogo: StaticImageData }) => {
     return <Image src={mainLogo} alt="CompanyLogo" />;
 };

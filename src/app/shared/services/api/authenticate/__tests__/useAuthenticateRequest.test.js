@@ -41,6 +41,11 @@ describe('useAuthenticateRequest', () => {
         );
     });
 
+    it('should call handleAuthentication correctly but with a empty token', async () => {
+        const { result } = renderHook(() => useAuthenticateRequest());
+        await result.current.handleAuthentication('');
+        expect(mockAuthenticateQuery).toBeCalledWith('');
+    });
     it('should call handleAuthentication correctly', async () => {
         const { result } = renderHook(() => useAuthenticateRequest());
         await result.current.handleAuthentication(mockToken);

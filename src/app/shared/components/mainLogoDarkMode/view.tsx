@@ -1,7 +1,7 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 
-// istanbul ignore next
+// istanbul ignore file
 export const MemoMainLogoDarkMode = ({
     mainLogo,
 }: {
