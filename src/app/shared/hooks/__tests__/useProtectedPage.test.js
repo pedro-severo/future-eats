@@ -46,7 +46,6 @@ describe('useProtectedPage tests suite', () => {
             return {
                 userState: {
                     token: '',
-                    isAuthenticated: false,
                 },
             };
         });

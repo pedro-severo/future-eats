@@ -16,7 +16,7 @@ interface IRegisterAddressView {
     alertMessage?: string;
 }
 
-export const RegisterAddressView = ({
+const MemoRegisterAddressView = ({
     onSubmit,
     inputProperties,
     control,
@@ -77,3 +77,5 @@ export const RegisterAddressView = ({
         </RegisterAddressWrapper>
     );
 };
+
+export const RegisterAddressView = React.memo(MemoRegisterAddressView);

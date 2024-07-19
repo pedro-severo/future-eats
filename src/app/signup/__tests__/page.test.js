@@ -21,7 +21,7 @@ describe('Signup', () => {
         wrapper = shallow(<Signup />);
     });
     it('should test SignupPage rendering', () => {
-        const SignupPageView = wrapper.find('SignupPageView');
+        const SignupPageView = wrapper.find({ 'data-testid': 'signup-view' });
         expect(SignupPageView.exists()).toBeTruthy();
     });
 });

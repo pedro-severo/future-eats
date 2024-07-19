@@ -6,7 +6,7 @@ interface ICallToSignupView {
     callToActionLinkColor?: string;
 }
 
-export const CallToSignupView = ({
+export const MemoCallToSignupView = ({
     action,
     callToActionLinkColor,
 }: ICallToSignupView) => {
@@ -23,3 +23,5 @@ export const CallToSignupView = ({
         </designSystem.typography>
     );
 };
+
+export const CallToSignupView = React.memo(MemoCallToSignupView);

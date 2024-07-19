@@ -3,6 +3,18 @@ import * as useCustomHook from '../useSignupSchema';
 import { useSignupPage } from '../useSignupPage';
 import * as useUserState from '../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../shared/stores/redux/user/interface';
+import * as useNavigationHeaderState from '../../../shared/stores/navigationHeader';
+import PATH from '../../../shared/constants/pathsEnum';
+
+const mockPush = jest.fn();
+
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            push: mockPush,
+        };
+    },
+}));
 
 const schemaMock = {
     password: 'password',
@@ -15,7 +27,6 @@ jest.mock('../../../shared/services/api/signup/useSignupRequest', () => ({
     useSignupRequest: () => ({ handleSignup: mockHandleSignup }),
 }));
 
-jest.mock('../../../shared/hooks/useHeader');
 jest.mock('../../../shared/hooks/useUnprotectedPage');
 
 const mockUserDispatch = jest.fn();
@@ -35,11 +46,14 @@ describe('useSignupPage', () => {
                 },
             };
         });
-    });
-    it('call onSubmit correctly', async () => {
-        const { result } = renderHook(() => useSignupPage());
-        await result.current.onSubmitForm(schemaMock);
-        expect(mockHandleSignup).toBeCalledWith(schemaMock);
+        jest.spyOn(
+            useNavigationHeaderState,
+            'useNavigationHeaderState'
+        ).mockImplementation(() => {
+            return {
+                setNavigationHeader: jest.fn(),
+            };
+        });
     });
     it('call onCloseAlert correctly', async () => {
         const { result } = renderHook(() => useSignupPage());
@@ -47,5 +61,15 @@ describe('useSignupPage', () => {
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.RESET_STATE,
         });
+    });
+    it('call navigateToLogin correctly', () => {
+        const { result } = renderHook(() => useSignupPage());
+        result.current.navigateToLogin();
+        expect(mockPush).toBeCalledWith(PATH.LOGIN);
+    });
+    it('call onSubmit correctly', () => {
+        const { result } = renderHook(() => useSignupPage());
+        result.current.onSubmit({});
+        expect(mockHandleSignup).toBeCalledWith({});
     });
 });

@@ -7,22 +7,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { registerAddressInputProperties } from '../constants/inputProperties';
 import { useUserAddressState } from '../../../shared/stores/redux/userAddress';
 import { USER_ADDRESS_ACTION_TYPES } from '../../../shared/stores/redux/userAddress/interface';
-import { useHeader } from '../../../shared/hooks/useHeader';
 import { useUserState } from '../../../shared/stores/redux/user';
 import { RegisterAddressInput } from '../../../shared/services/api/registerAddress/interfaces';
 import { useRegisterAddressRequest } from '../../../shared/services/api/registerAddress/useRegisterAddressRequest';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import PATH from '../../../shared/constants/pathsEnum';
+import { useCallback, useEffect } from 'react';
 import { useProtectedPage } from '../../../shared/hooks/useProtectedPage';
+import { useNavigationHeaderState } from '../../../shared/stores/navigationHeader';
 
 export const useRegisterAddressPage = () => {
     useProtectedPage();
-    useHeader({
-        title: '',
-        shouldRenderHeader: true,
-    });
-    const router = useRouter();
+    const { setNavigationHeader } = useNavigationHeaderState();
     const { schema } = useRegisterAddressSchema();
     const { control, handleSubmit } = useForm<IRegisterAddressInputNames>({
         // @ts-expect-error yup expected error
@@ -37,30 +31,43 @@ export const useRegisterAddressPage = () => {
     } = useUserState();
 
     useEffect(() => {
-        if (!user.id) router.push(PATH.SIGNUP);
-    }, [user, router]);
+        setNavigationHeader({
+            shouldRenderHeader: true,
+            title: '',
+            shouldRenderBackIcon: false,
+        });
+    }, []);
 
     const { handleRegisterAddress } = useRegisterAddressRequest();
 
-    const onSubmit = (data: IRegisterAddressInputNames) => {
-        const registerAddressInput: RegisterAddressInput = {
-            city: data.city,
-            complement: data.complement || undefined,
-            state: data.state,
-            streetName: data.streetName,
-            streetNumber: data.streetNumber,
-            zone: data.zone,
-            userId: user.id,
-        };
-        handleRegisterAddress(registerAddressInput);
-    };
+    const onSubmit = useCallback(
+        async (data: IRegisterAddressInputNames) => {
+            const registerAddressInput: RegisterAddressInput = {
+                city: data.city,
+                complement: data.complement || undefined,
+                state: data.state,
+                streetName: data.streetName,
+                streetNumber: data.streetNumber,
+                zone: data.zone,
+                userId: user.id,
+            };
+            await handleRegisterAddress(registerAddressInput);
+        },
+        [handleRegisterAddress, user.id]
+    );
 
-    const onCloseAlert = () => {
+    const onCloseAlert = useCallback(() => {
         userAddressDispatch({ type: USER_ADDRESS_ACTION_TYPES.RESET_STATE });
-    };
+    }, []);
+
+    // call handleSubmit(onSubmit) inside a arrow function is not working
+    const onSubmitForm = useCallback(handleSubmit(onSubmit), [
+        handleSubmit,
+        onSubmit,
+    ]);
 
     return {
-        onSubmit,
+        onSubmitForm,
         control,
         handleSubmit,
         inputProperties: registerAddressInputProperties,
@@ -68,5 +75,8 @@ export const useRegisterAddressPage = () => {
         alertMessage,
         onCloseAlert,
         isLoading,
+        // exposing onSubmit function to be able to test it, because currently is not possible to test onSubmitForm function,
+        // once his call back function is the directly invoking of handleSubmit, for reasons already exposed on onSubmitForm nomination
+        onSubmit,
     };
 };

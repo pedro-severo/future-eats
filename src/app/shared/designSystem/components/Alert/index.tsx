@@ -15,7 +15,7 @@ const StyledCollapse = styled(Collapse)`
 `;
 
 // TODO: Auto close is messing if the same alert is opened twice
-export const Alert = ({
+export const MemoAlert = ({
     isOpen,
     message,
     timeout = 3000,
@@ -45,3 +45,5 @@ export const Alert = ({
         </StyledCollapse>
     );
 };
+
+export const Alert = React.memo(MemoAlert);

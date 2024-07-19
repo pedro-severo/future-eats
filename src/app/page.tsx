@@ -4,18 +4,27 @@
 
 import React, { useEffect } from 'react';
 import { useUnprotectedPage } from './shared/hooks/useUnprotectedPage';
-import { useHeader } from './shared/hooks/useHeader';
 import { HomeWrapper } from './styles';
 import { MainLogoDarkMode } from './shared/components/mainLogoDarkMode';
 import { useRouter } from 'next/navigation';
 import PATH from './shared/constants/pathsEnum';
+import { useNavigationHeaderState } from './shared/stores/navigationHeader';
 
 // TODO: Remove istanbul ignore and test file
 // istanbul ignore next
 const Home = () => {
     useUnprotectedPage();
-    useHeader({ shouldRenderHeader: false, title: '' });
+    const { setNavigationHeader } = useNavigationHeaderState();
     const router = useRouter();
+
+    useEffect(() => {
+        setNavigationHeader({
+            shouldRenderHeader: false,
+            title: '',
+            shouldRenderBackIcon: false,
+        });
+    }, []);
+
     useEffect(() => {
         setTimeout(() => {
             router.push(PATH.LOGIN);

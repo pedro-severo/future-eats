@@ -3,12 +3,12 @@ import React from 'react';
 import { useRegisterAddressPage } from './hooks/useRegisterAddressPage';
 import { RegisterAddressView } from './view';
 
+// TODO: Remove from signup
 const RegisterAddress = () => {
     const {
         inputProperties,
         control,
-        handleSubmit,
-        onSubmit,
+        onSubmitForm,
         hasError,
         alertMessage,
         onCloseAlert,
@@ -16,7 +16,8 @@ const RegisterAddress = () => {
     } = useRegisterAddressPage();
     return (
         <RegisterAddressView
-            onSubmit={handleSubmit(onSubmit)}
+            data-testid="register-address-view"
+            onSubmit={onSubmitForm}
             control={control}
             hasError={hasError}
             alertMessage={alertMessage}

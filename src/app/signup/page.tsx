@@ -5,23 +5,24 @@ import { useSignupPage } from './hooks/useSignupPage';
 
 const Signup = () => {
     const {
-        handleSubmit,
         onSubmitForm,
         control,
         hasSignupError,
         onCloseAlert,
         alertMessage,
         isLoading,
+        navigateToLogin,
     } = useSignupPage();
-
     return (
         <SignupPageView
-            onSubmit={handleSubmit(onSubmitForm)}
+            data-testid="signup-view"
+            onSubmit={onSubmitForm}
             control={control}
             hasSignupError={hasSignupError}
             closeAlert={onCloseAlert}
             alertMessage={alertMessage}
             isLoading={isLoading}
+            navigateToLogin={navigateToLogin}
         />
     );
 };

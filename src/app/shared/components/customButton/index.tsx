@@ -14,7 +14,7 @@ interface ICustomButton {
     onClick?: () => void;
 }
 
-export const CustomButton = ({
+export const MemoCustomButton = ({
     isLoading = false,
     circularProgressColor,
     type,
@@ -44,3 +44,5 @@ export const CustomButton = ({
         </designSystem.button>
     );
 };
+
+export const CustomButton = React.memo(MemoCustomButton);

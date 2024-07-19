@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LoginForm, LoginPageWrapper } from './styles';
 import designSystem from '../shared/designSystem';
 import { Controller, Control } from 'react-hook-form';
@@ -6,9 +6,8 @@ import { LoginInputNames } from './hooks/useLoginSchema';
 import { theme } from '../shared/designSystem/themeProvider';
 import { MainLogo } from '../shared/components/mainLogo';
 import { CallToSignup } from './components/callToSignup';
-import { useRouter } from 'next/navigation';
-import PATH from '../shared/constants/pathsEnum';
 import { CustomButton } from '../shared/components/customButton';
+import { PasswordInput } from '../shared/components/passwordInput';
 
 interface ILoginPageView {
     onSubmit: () => void;
@@ -17,19 +16,19 @@ interface ILoginPageView {
     hasLoginError: boolean;
     closeAlert: () => void;
     isLoading: boolean;
+    navigateToSignup: () => void;
     alertMessage?: string;
 }
 
-export const LoginPageView = ({
+export const MemoLoginPageView = ({
     onSubmit,
     control,
     hasLoginError,
     closeAlert,
     alertMessage,
     isLoading,
+    navigateToSignup,
 }: ILoginPageView) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const router = useRouter();
     return (
         <LoginPageWrapper>
             <designSystem.alert
@@ -60,52 +59,12 @@ export const LoginPageView = ({
                         )
                     }
                 />
-                <Controller
-                    name={LoginInputNames.PASSWORD}
+                <PasswordInput
+                    inputName={LoginInputNames.PASSWORD}
                     control={control}
-                    render={
-                        // istanbul ignore next
-                        ({ field, fieldState: { error } }) => (
-                            <designSystem.textFieldInput
-                                {...field}
-                                placeholder="Mínimo 6 caracteres"
-                                type={showPassword ? 'text' : 'password'}
-                                label="Senha"
-                                error={!!error}
-                                helperText={error?.message}
-                                disabled={isLoading}
-                                InputProps={{
-                                    endAdornment: (
-                                        <designSystem.inputAdornment position="start">
-                                            <designSystem.iconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={() => {
-                                                    setShowPassword(
-                                                        !showPassword
-                                                    );
-                                                }}
-                                                edge="end"
-                                                id="password-visibility-icon-button"
-                                            >
-                                                {showPassword ?
-                                                    <designSystem.visibilityOffIcon
-                                                        style={{
-                                                            color: `${theme.palette.secondary.main}`,
-                                                        }}
-                                                    />
-                                                :   <designSystem.visibilityIcon
-                                                        style={{
-                                                            color: `${theme.palette.secondary.main}`,
-                                                        }}
-                                                    />
-                                                }
-                                            </designSystem.iconButton>
-                                        </designSystem.inputAdornment>
-                                    ),
-                                }}
-                            />
-                        )
-                    }
+                    label="Senha"
+                    placeholder="Mínimo 6 caracteres"
+                    disable={isLoading}
                 />
                 <CustomButton
                     type="submit"
@@ -119,9 +78,11 @@ export const LoginPageView = ({
                 />
             </LoginForm>
             <CallToSignup
-                action={() => router.push(PATH.SIGNUP)}
+                action={navigateToSignup}
                 callToActionLinkColor={theme.palette.text.hint}
             />
         </LoginPageWrapper>
     );
 };
+
+export const LoginView = React.memo(MemoLoginPageView);

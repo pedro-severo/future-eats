@@ -33,6 +33,7 @@ export const useSignupSchema = (): IUseSchemaResponse => {
                     errorMessages.unmatchedPasswordConfirmation
                 )
                 .required(errorMessages.requiredField),
+            // TODO: Regex is blocking names with ~ ' ^ and another accents
             name: yup
                 .string()
                 .required(errorMessages.requiredField)

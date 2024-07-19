@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignupSchema } from './useSignupSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,15 +7,15 @@ import { SignupInput } from '../../shared/services/api/signup/interface';
 import { IFormInputNames } from '../interfaces/FormInputNames';
 import { USER_ACTION_TYPES } from '../../shared/stores/redux/user/interface';
 import { useUserState } from '../../shared/stores/redux/user';
-import { useHeader } from '../../shared/hooks/useHeader';
 import { useUnprotectedPage } from '../../shared/hooks/useUnprotectedPage';
+import { useNavigationHeaderState } from '../../shared/stores/navigationHeader';
+import { useRouter } from 'next/navigation';
+import PATH from '../../shared/constants/pathsEnum';
 
 export const useSignupPage = () => {
     useUnprotectedPage();
-    useHeader({
-        title: '',
-        shouldRenderHeader: true,
-    });
+    const router = useRouter();
+    const { setNavigationHeader } = useNavigationHeaderState();
     const { schema } = useSignupSchema();
     const { control, handleSubmit } = useForm<IFormInputNames>({
         // @ts-expect-error yup expected error
@@ -26,27 +27,52 @@ export const useSignupPage = () => {
         userDispatch,
     } = useUserState();
 
-    const onSubmit = (data: IFormInputNames) => {
-        const signupInput: SignupInput = {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            cpf: data.cpf,
-        };
-        handleSignup(signupInput);
-    };
+    const onSubmit = useCallback(
+        async (data: IFormInputNames) => {
+            const signupInput: SignupInput = {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+                cpf: data.cpf,
+            };
+            await handleSignup(signupInput);
+        },
+        [handleSignup]
+    );
 
-    const onCloseAlert = () => {
+    const onCloseAlert = useCallback(() => {
         userDispatch({ type: USER_ACTION_TYPES.RESET_STATE });
-    };
+    }, []);
+
+    useEffect(() => {
+        setNavigationHeader({
+            title: '',
+            shouldRenderBackIcon: true,
+            shouldRenderHeader: true,
+        });
+    }, []);
+
+    const navigateToLogin = useCallback(() => {
+        router.push(PATH.LOGIN);
+    }, []);
+
+    // call handleSubmit(onSubmit) inside a arrow function is not working
+    const onSubmitForm = useCallback(handleSubmit(onSubmit), [
+        handleSubmit,
+        onSubmit,
+    ]);
 
     return {
-        onSubmitForm: onSubmit,
+        onSubmitForm,
         control,
         handleSubmit,
         hasSignupError: hasError,
         alertMessage,
         onCloseAlert,
         isLoading,
+        navigateToLogin,
+        // exposing onSubmit function to be able to test it, because currently is not possible to test onSubmitForm function,
+        // once his call back function is the directly invoking of handleSubmit, for reasons already exposed on onSubmitForm nomination
+        onSubmit,
     };
 };

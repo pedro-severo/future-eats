@@ -1,26 +1,28 @@
 'use client';
 import React from 'react';
-import { LoginPageView } from './view';
+import { LoginView } from './view';
 import { useLoginPage } from './hooks/useLoginPage';
 
 const Login = () => {
     const {
         onSubmitForm,
         control,
-        handleSubmit,
         hasLoginError,
         onCloseAlert,
         alertMessage,
         isLoading,
+        navigateToSignup,
     } = useLoginPage();
     return (
-        <LoginPageView
-            onSubmit={handleSubmit(onSubmitForm)}
+        <LoginView
+            data-testid="login-view"
+            onSubmit={onSubmitForm}
             control={control}
             hasLoginError={hasLoginError}
             closeAlert={onCloseAlert}
             alertMessage={alertMessage}
             isLoading={isLoading}
+            navigateToSignup={navigateToSignup}
         />
     );
 };

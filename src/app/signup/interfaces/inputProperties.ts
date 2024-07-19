@@ -1,3 +1,4 @@
+// TODO: refac to use a ENUM
 export const inputProperties = {
     email: {
         label: 'E-mail',

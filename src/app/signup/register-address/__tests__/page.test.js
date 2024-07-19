@@ -24,7 +24,9 @@ describe('RegisterAddressPage', () => {
         wrapper = shallow(<RegisterAddress />);
     });
     it('should test RegisterAddress page rendering', () => {
-        const RegisterAddressView = wrapper.find('RegisterAddressView');
+        const RegisterAddressView = wrapper.find({
+            'data-testid': 'register-address-view',
+        });
         expect(RegisterAddressView.exists()).toBeTruthy();
     });
 });

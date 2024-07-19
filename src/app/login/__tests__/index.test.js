@@ -40,7 +40,7 @@ describe('LoginPage', () => {
         });
     });
     it('should test LoginPage rendering', () => {
-        const LoginPageView = wrapper.find('LoginPageView');
+        const LoginPageView = wrapper.find({ 'data-testid': 'login-view' });
         expect(LoginPageView.exists()).toBeTruthy();
     });
 });

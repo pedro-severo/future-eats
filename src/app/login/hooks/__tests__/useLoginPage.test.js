@@ -3,6 +3,8 @@ import { useLoginPage } from '../useLoginPage';
 import * as useUserState from '../../../shared/stores/redux/user';
 import { USER_ACTION_TYPES } from '../../../shared/stores/redux/user/interface';
 import { renderHook } from '@testing-library/react-hooks';
+import * as useNavigationHeaderState from '../../../shared/stores/navigationHeader';
+import PATH from '../../../shared/constants/pathsEnum';
 
 const schemaMock = {
     password: 'password',
@@ -27,8 +29,6 @@ jest.mock('next/navigation', () => ({
     },
 }));
 
-jest.mock('../../../shared/hooks/useHeader');
-
 describe('useLoginPage', () => {
     beforeEach(() => {
         jest.spyOn(useCustomHook, 'useLoginSchema').mockImplementation(() => {
@@ -44,11 +44,14 @@ describe('useLoginPage', () => {
                 },
             };
         });
-    });
-    it('call onSubmit correctly', async () => {
-        const { result } = renderHook(() => useLoginPage());
-        await result.current.onSubmitForm(schemaMock);
-        expect(mockHandleMockLogin).toBeCalledWith(schemaMock);
+        jest.spyOn(
+            useNavigationHeaderState,
+            'useNavigationHeaderState'
+        ).mockImplementation(() => {
+            return {
+                setNavigationHeader: jest.fn(),
+            };
+        });
     });
     it('call onCloseAlert correctly', async () => {
         const { result } = renderHook(() => useLoginPage());
@@ -56,5 +59,15 @@ describe('useLoginPage', () => {
         expect(mockUserDispatch).toBeCalledWith({
             type: USER_ACTION_TYPES.RESET_STATE,
         });
+    });
+    it('call navigateToSignup correctly', () => {
+        const { result } = renderHook(() => useLoginPage());
+        result.current.navigateToSignup();
+        expect(mockNavigate).toBeCalledWith(PATH.SIGNUP);
+    });
+    it('call navigateToSignup correctly', () => {
+        const { result } = renderHook(() => useLoginPage());
+        result.current.onSubmit();
+        expect(mockHandleMockLogin).toBeCalled();
     });
 });

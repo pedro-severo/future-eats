@@ -21,7 +21,11 @@ describe('MainLogo Component', () => {
         expect(
             wrapper.find({ 'data-testid': 'main-logo-lazy-loading' })
         ).toBeTruthy();
-        await waitFor(() => expect(wrapper.find('MainLogoView')).toBeTruthy());
+        await waitFor(() =>
+            expect(
+                wrapper.find({ 'data-testid': 'main-logo-view' })
+            ).toBeTruthy()
+        );
     });
     it('should render a Suspense component', () => {
         const wrapper = shallow(<MainLogo />);

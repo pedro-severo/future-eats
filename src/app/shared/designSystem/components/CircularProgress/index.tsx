@@ -9,7 +9,7 @@ interface ICircularProgressIndeterminate extends CircularProgressProps {
     dataTestId?: string;
 }
 
-export const CircularProgressIndeterminate = ({
+export const MemoCircularProgressIndeterminate = ({
     color,
     dataTestId = 'circular-progress-indeterminate',
 }: ICircularProgressIndeterminate) => {
@@ -19,3 +19,7 @@ export const CircularProgressIndeterminate = ({
         </Box>
     );
 };
+
+export const CircularProgressIndeterminate = React.memo(
+    MemoCircularProgressIndeterminate
+);

@@ -13,7 +13,7 @@ export const useAuthenticateRequest = () => {
     const handleAuthentication = useCallback(
         async (token: string): Promise<void> => {
             try {
-                const data = await authenticateQuery(token);
+                const data = await authenticateQuery(token || '');
                 const user = mapUserDTOToUser(data.user);
                 userDispatch({
                     type: USER_ACTION_TYPES.AUTHENTICATE_SUCCESS,
